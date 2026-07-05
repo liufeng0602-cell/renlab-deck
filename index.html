@@ -346,18 +346,13 @@ const slides = [
 /*16*/`<div class="slide"><div class="pageno">14</div>
   <div class="kicker reveal">SECURITY · 数据安全边界</div>
   <h2 class="reveal">数据安全：<span class="hl">边界提前说清</span></h2>
-  <div class="cards" style="gap:10px;grid-template-columns:repeat(2,1fr)">
-    <div class="card reveal"><p><b>01 只收脱敏数据</b>｜PII 在你方本地脱敏后交付，我们不接触可识别原始个人信息</p></div>
-    <div class="card reveal"><p><b>02 最小必要原则</b>｜仅提取本次推演所需核心字段，控制采集范围与粒度</p></div>
-    <div class="card reveal"><p><b>03 合规协议兜底</b>｜签署 NDA 与数据处理协议，界定用途/存储/销毁</p></div>
-    <div class="card reveal"><p><b>04 专用与隔离</b>｜数据/校准参数/结论仅用于本次合作，不给第三方或竞品项目；行业排他另行商务约定</p></div>
-    <div class="card reveal"><p><b>05 不进入通用训练</b>｜客户数据不进入通用模型训练，不用于改进面向其他客户的通用能力</p></div>
-    <div class="card reveal"><p><b>06 第三方服务边界</b>｜如需调用经客户认可的云服务或基础模型，处理范围与留存策略协议明确；默认不传输 PII 或原始敏感数据</p></div>
-    <div class="card reveal"><p><b>07 访问控制与审计</b>｜数据仅授权项目成员访问，关键操作保留审计记录</p></div>
-    <div class="card reveal"><p><b>08 留存与销毁</b>｜按协议约定留存周期，项目结束后支持删除与销毁确认</p></div>
-    <div class="card reveal"><p><b>09 部署形态</b>｜可在深度合作阶段评估托管工作区、客户专属环境、VPC 或私有化部署</p></div>
-    <div class="card reveal"><p><b>10 合规与伦理边界</b>｜仅用于群体级决策模拟与方案优化，不用于个体定向操控、歧视性定价、规避监管</p></div>
-  </div>
+  <ul class="feat" style="gap:14px;margin-top:8px">
+    <li class="reveal"><b>01 只收脱敏数据</b> —— PII 在你方本地脱敏后交付，我们不接触可识别原始个人信息</li>
+    <li class="reveal"><b>02 最小必要原则</b> —— 仅提取本次推演所需核心字段，严格控制采集范围与粒度</li>
+    <li class="reveal"><b>03 合规协议兜底</b> —— 签署 NDA 与数据处理协议，界定用途、存储期限与销毁流程</li>
+    <li class="reveal"><b>04 专用与隔离</b> —— 数据、校准参数与结论仅用于本次合作，不给第三方或竞品项目；如需行业排他，另行商务约定</li>
+    <li class="reveal"><b>05 合规与伦理边界</b> —— 仅用于群体级决策模拟与方案优化，不用于个体定向操控、歧视性定价或规避监管</li>
+  </ul>
 </div>`,
 /*17*/`<div class="slide center"><div class="pageno">→</div>
   <div class="kicker reveal">NEXT STEP · 建议下一步</div>

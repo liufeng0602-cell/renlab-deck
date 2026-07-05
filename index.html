@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>境瞳科技 Renlab · 客户介绍主 Deck v2（动态科技版）</title>
+<style>
+:root{
+  --bg:#04060c; --ink:#eef3ff; --sub:#a6b6d8;
+  --accent:#5b8cff; --accent2:#9a6cff; --cyan:#25e6ff; --gold:#ffd27a; --green:#43e58a; --red:#ff6b7a;
+  --line:rgba(130,160,230,.22); --card:rgba(255,255,255,.045);
+  --mono:'SF Mono',ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;
+  --sans:-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+#net{position:fixed;inset:0;z-index:0;display:block}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 42%,transparent 30%,rgba(4,6,12,.72) 100%)}
+.aurora{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.6}
+.aurora span{position:absolute;border-radius:50%;filter:blur(90px);animation:drift 22s ease-in-out infinite}
+.aurora .s1{width:560px;height:560px;background:radial-gradient(circle,#2b52ffaa,transparent 70%);top:-140px;left:-100px}
+.aurora .s2{width:520px;height:520px;background:radial-gradient(circle,#8a3cffaa,transparent 70%);bottom:-160px;right:-80px;animation-delay:-7s}
+.aurora .s3{width:420px;height:420px;background:radial-gradient(circle,#14d9ff88,transparent 70%);top:45%;left:60%;animation-delay:-13s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-40px) scale(1.12)}}
+
+#stage{position:fixed;inset:0;z-index:3;display:flex;align-items:center;justify-content:center}
+.slide{position:absolute;width:min(1200px,94vw);height:min(690px,92vh);
+  background:linear-gradient(155deg,rgba(18,25,48,.55),rgba(6,9,20,.5));
+  border:1px solid var(--line);border-radius:26px;padding:48px 58px;
+  box-shadow:0 50px 140px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);
+  opacity:0;transform:translateY(46px) scale(.975) rotateX(4deg);pointer-events:none;transform-origin:center bottom;
+  transition:opacity .7s cubic-bezier(.19,.7,.2,1),transform .7s cubic-bezier(.19,.7,.2,1);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;
+  backdrop-filter:blur(7px) saturate(130%);-webkit-backdrop-filter:blur(7px) saturate(130%)}
+.slide::before{content:"";position:absolute;inset:0;border-radius:26px;padding:1px;pointer-events:none;
+  background:linear-gradient(140deg,rgba(91,140,255,.5),transparent 40%,transparent 60%,rgba(154,108,255,.4));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.8}
+.slide::after{content:"";position:absolute;top:-40%;left:-30%;width:80%;height:180%;pointer-events:none;
+  background:linear-gradient(115deg,transparent,rgba(255,255,255,.06),transparent);transform:rotate(8deg);opacity:0}
+.slide.active{opacity:1;transform:translateY(0) scale(1) rotateX(0)}
+.slide.active::after{animation:sheen 1.4s .3s ease-out}
+@keyframes sheen{0%{left:-40%;opacity:0}20%{opacity:1}100%{left:120%;opacity:0}}
+.slide.exit-up{opacity:0;transform:translateY(-40px) scale(.975) rotateX(-4deg)}
+.slide>*{position:relative;z-index:2}
+
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.24em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;text-shadow:0 0 18px rgba(37,230,255,.5)}
+.kicker::before{content:"";width:28px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px}
+.pageno{position:absolute;top:44px;right:56px;font-family:var(--mono);font-size:60px;font-weight:800;color:rgba(120,150,230,.12);z-index:1;line-height:1}
+h1{font-size:54px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-bottom:14px;
+  background:linear-gradient(120deg,#fff 15%,#a9c2ff 55%,#d7c4ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 30px rgba(120,140,255,.35))}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:18px}
+h2 .hl{background:linear-gradient(120deg,var(--cyan),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(120,140,255,.5))}
+.lead{font-size:19px;line-height:1.7;color:#c3d0ee;max-width:64ch}
+.lead b{color:#fff}
+.sm{font-size:15px;line-height:1.6;color:var(--sub)}
+.quote{margin-top:18px;font-size:18px;line-height:1.6;color:var(--ink);border-left:3px solid var(--gold);padding:14px 20px;
+  background:linear-gradient(90deg,rgba(255,210,122,.1),rgba(255,210,122,.02));border-radius:0 14px 14px 0}
+ul.feat{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:4px}
+ul.feat li{font-size:19px;line-height:1.5;color:var(--ink);padding-left:34px;position:relative}
+ul.feat li::before{content:"";position:absolute;left:0;top:8px;width:15px;height:15px;border-radius:5px;background:linear-gradient(135deg,var(--cyan),var(--accent2));box-shadow:0 0 18px rgba(91,140,255,.9);transform:rotate(45deg)}
+ul.feat li b{color:#fff}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.012));border:1px solid var(--line);border-radius:18px;padding:22px 20px;
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s,box-shadow .4s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(120px 80px at 50% 0%,rgba(91,140,255,.18),transparent 70%);opacity:0;transition:.4s}
+.slide.active .card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 50px rgba(20,40,120,.5)}
+.slide.active .card:hover::before{opacity:1}
+.card .num-ic{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--cyan);margin-bottom:10px;text-shadow:0 0 16px rgba(37,230,255,.5)}
+.card .ic{font-size:28px;margin-bottom:10px;filter:drop-shadow(0 0 14px rgba(120,160,255,.5))}
+.card h3{font-size:19px;margin-bottom:8px;color:#fff}
+.card p{font-size:14px;line-height:1.55;color:var(--sub)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;align-content:center}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+.metric{background:linear-gradient(160deg,rgba(67,229,138,.1),rgba(255,255,255,.02));border:1px solid rgba(67,229,138,.3);border-radius:18px;padding:22px;text-align:center}
+.metric .num{font-family:var(--mono);font-size:40px;font-weight:700;background:linear-gradient(120deg,var(--green),#b6ffd8);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 20px rgba(67,229,138,.5))}
+.metric .lab{font-size:13px;color:var(--sub);margin-top:6px;line-height:1.4}
+.tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:13px;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:7px 14px;margin:4px 8px 4px 0;background:rgba(255,255,255,.03)}
+.tag b{color:var(--cyan)}
+table.road{width:100%;border-collapse:separate;border-spacing:0;margin-top:4px;font-size:13px;border-radius:14px;overflow:hidden}
+table.road th,table.road td{border:1px solid var(--line);padding:15px 14px;text-align:left;vertical-align:top;line-height:1.55}
+table.road th{background:linear-gradient(180deg,rgba(91,140,255,.18),rgba(91,140,255,.06));font-weight:700;color:#fff;font-size:14px}
+table.road td{background:rgba(10,14,28,.5)}
+table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;font-weight:600;background:rgba(255,255,255,.03)}
+.road .l1{color:var(--green)} .road .l2{color:var(--cyan)} .road .l3{color:var(--gold)}
+.stage-row{display:flex;flex-direction:column;gap:12px;margin-top:2px}
+.stage-item{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:16px;padding:16px 20px;transition:.35s}
+.slide.active .stage-item:hover{border-color:var(--accent);transform:translateX(6px)}
+.stage-item .em{font-size:24px;filter:drop-shadow(0 0 12px rgba(120,160,255,.5))}
+.stage-item .tx{font-size:15px;line-height:1.55;color:var(--ink)} .stage-item .tx b{color:#fff}
+.steps{display:flex;gap:14px;margin-top:12px;align-items:stretch}
+.step{flex:1;position:relative;padding:22px 20px;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:16px;transition:.4s}
+.slide.active .step:hover{transform:translateY(-6px);border-color:var(--cyan)}
+.step .n{font-family:var(--mono);color:var(--cyan);font-size:14px;margin-bottom:8px}
+.step h4{font-size:17px;margin-bottom:6px;color:#fff} .step p{font-size:14px;color:var(--sub);line-height:1.5}
+.warn{color:var(--gold);font-size:13px;font-family:var(--mono)}
+.big-final{font-size:48px;font-weight:800;line-height:1.18;background:linear-gradient(120deg,#fff,#a9c2ff,#d7c4ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 30px rgba(120,140,255,.4))}
+.center{align-items:center;text-align:center;justify-content:center}
+.center .lead{margin-left:auto;margin-right:auto;color:#cdd8f5}
+.dot-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.pill{background:linear-gradient(160deg,rgba(91,140,255,.16),rgba(154,108,255,.08));border:1px solid rgba(130,160,230,.45);border-radius:12px;padding:10px 16px;font-size:15px;color:#eef3ff}
+/* proofcast console */
+.console{background:linear-gradient(160deg,rgba(10,16,34,.85),rgba(6,10,22,.8));border:1px solid rgba(37,230,255,.3);border-radius:16px;padding:20px 22px;box-shadow:0 0 40px rgba(37,230,255,.08),inset 0 0 40px rgba(37,230,255,.04)}
+.console .bar{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--cyan);margin-bottom:14px;border-bottom:1px solid rgba(37,230,255,.15);padding-bottom:10px}
+.console .status{color:var(--green);display:flex;align-items:center;gap:6px}
+.console .status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.3}}
+.prog{height:8px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0 16px}
+.prog i{display:block;height:100%;width:98%;background:linear-gradient(90deg,var(--cyan),var(--accent));border-radius:6px;box-shadow:0 0 14px rgba(37,230,255,.6)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kpi{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.kpi .v{font-family:var(--mono);font-size:28px;font-weight:700;color:#fff}
+.kpi .k{font-size:12px;color:var(--sub);margin-top:4px}
+.kpi.g .v{color:var(--green)} .kpi.c .v{color:var(--cyan)} .kpi.gd .v{color:var(--gold)}
+.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:20px}
+.qr-wrap img{width:172px;height:172px;border-radius:16px;border:3px solid rgba(130,160,230,.5);background:#fff;padding:6px;box-shadow:0 0 40px rgba(91,140,255,.3)}
+.qr-wrap .cap{font-size:15px;color:var(--sub)}
+
+.slide.active .reveal{animation:rise .75s both}
+.slide.active .reveal:nth-child(1){animation-delay:.06s}
+.slide.active .reveal:nth-child(2){animation-delay:.15s}
+.slide.active .reveal:nth-child(3){animation-delay:.24s}
+.slide.active .reveal:nth-child(4){animation-delay:.33s}
+.slide.active .reveal:nth-child(5){animation-delay:.42s}
+.slide.active .reveal:nth-child(6){animation-delay:.51s}
+.slide.active .reveal:nth-child(7){animation-delay:.6s}
+.slide.active .reveal:nth-child(8){animation-delay:.69s}
+@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.98);filter:blur(6px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+
+#hud{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:16px;background:rgba(10,14,26,.55);border:1px solid var(--line);border-radius:999px;padding:8px 16px;backdrop-filter:blur(14px)}
+#hud button{background:none;border:none;color:var(--sub);cursor:pointer;font-size:20px;padding:2px 10px;border-radius:8px;transition:.2s}
+#hud button:hover{color:#fff;background:rgba(255,255,255,.1)}
+#counter{font-family:var(--mono);font-size:13px;color:var(--sub);min-width:56px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--accent),var(--gold));z-index:30;transition:width .6s;box-shadow:0 0 14px rgba(91,140,255,.8)}
+.logo-badge{position:fixed;top:20px;left:26px;z-index:20;font-family:var(--mono);font-size:13px;letter-spacing:.15em;color:var(--sub)}
+.logo-badge b{color:#fff}
+.hint{position:fixed;top:22px;right:26px;z-index:20;font-family:var(--mono);font-size:12px;color:var(--sub);opacity:.65}
+@media print{.slide{position:relative;page-break-after:always;opacity:1!important;transform:none!important;width:100%;height:98vh;margin:0 auto}#hud,#progress,.logo-badge,.hint,.aurora,.vignette,#net{display:none}}
+</style>
+</head>
+<body>
+<canvas id="net"></canvas>
+<div class="aurora"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+<div class="vignette"></div>
+<div id="progress"></div>
+<div class="logo-badge">RENLAB · <b>境瞳科技</b></div>
+<div class="hint">← → 翻页 · F 全屏 · P 打印/PDF</div>
+<div id="stage"></div>
+<div id="hud"><button id="prev">‹</button><span id="counter">01 / 18</span><button id="next">›</button></div>
+
+<script>
+(function(){
+  const c=document.getElementById('net'),x=c.getContext('2d');
+  let W,H,DPR=Math.min(devicePixelRatio||1,2),pts=[],mouse={x:-999,y:-999};
+  function resize(){W=c.width=innerWidth*DPR;H=c.height=innerHeight*DPR;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';
+    const n=Math.min(120,Math.floor(innerWidth*innerHeight/14000));pts=[];
+    for(let i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28*DPR,vy:(Math.random()-.5)*.28*DPR,r:(Math.random()*1.6+.6)*DPR,p:Math.random()*Math.PI*2});}
+  addEventListener('resize',resize);resize();
+  addEventListener('mousemove',e=>{mouse.x=e.clientX*DPR;mouse.y=e.clientY*DPR});
+  const LINK=140*DPR;let t=0;
+  function loop(){t+=.016;x.clearRect(0,0,W,H);
+    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy);if(d<180*DPR){p.x+=dx/d*1.1;p.y+=dy/d*1.1;}}
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<LINK){const o=(1-d/LINK)*.5;x.strokeStyle='rgba(90,150,255,'+o.toFixed(3)+')';x.lineWidth=DPR*.6;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();}}
+    for(const p of pts){const pulse=(Math.sin(t*1.4+p.p)*.5+.5);const r=p.r*(1+pulse*.5);const g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,r*4);
+      g.addColorStop(0,'rgba(120,180,255,'+(.5+pulse*.4)+')');g.addColorStop(1,'rgba(120,180,255,0)');x.fillStyle=g;x.beginPath();x.arc(p.x,p.y,r*4,0,7);x.fill();
+      x.fillStyle='rgba(190,220,255,.9)';x.beginPath();x.arc(p.x,p.y,r,0,7);x.fill();}
+    requestAnimationFrame(loop);}loop();
+})();
+
+const slides = [
+/*1*/`<div class="slide center">
+  <div class="kicker reveal">AI FRONTIER LAB · SOCIAL WORLD MODEL</div>
+  <h1 class="reveal">让每一个重要商业决策<br>先在「虚拟社会」里跑一遍</h1>
+  <p class="lead reveal">境瞳科技 Renlab · 决策模拟推演</p>
+  <div class="dot-list reveal" style="justify-content:center;margin-top:22px">
+    <span class="pill">中国人民大学信息学院孵化</span><span class="pill">英诺天使投资</span>
+  </div>
+</div>`,
+/*2*/`<div class="slide"><div class="pageno">01</div>
+  <div class="kicker reveal">WHO WE ARE</div>
+  <h2 class="reveal">一支从顶尖实验室走出的 <span class="hl">AI Frontier Lab</span></h2>
+  <ul class="feat">
+    <li class="reveal">中国人民大学信息学院孵化，获<b>英诺天使</b>等一线基金联合注资</li>
+    <li class="reveal">汇聚<b>人大、清华、CMU、NUS</b> 等全球顶尖院校的博士与研究员</li>
+    <li class="reveal">发表顶会顶刊论文 <b>100+ 篇</b>，具备 Data-to-Context 全栈研发能力</li>
+    <li class="reveal">深耕 <b>Agent Memory、多智能体强化学习、群体智能</b> 核心领域</li>
+  </ul>
+</div>`,
+/*3*/`<div class="slide">
+  <div class="kicker reveal">WHAT WE DO · DYNAMIC AGENT SWARM</div>
+  <h2 class="reveal">我们做 Social World Model<br><span class="hl">一个「可推演的虚拟社会」</span></h2>
+  <p class="lead reveal">用<b>百万级</b>具备记忆、动机、立场的 AI 智能体，构成一个虚拟社会。把你的决策（新品/定价/创意/政策）投进去，在真实投入之前，先看人群会怎么反应 —— 接受、围观，还是反噬。</p>
+  <p class="lead reveal" style="margin-top:10px">不同于让通用大模型凭经验猜结果，这是<b>基于真实用户分布的多主体互动模拟</b> —— 人群结构真实、意见会传播、结果可校准。</p>
+  <div class="quote reveal">把「决策 → 真实市场 → 收结果」的昂贵试错，前移成「决策 → 虚拟社会 → 先看结果」的低成本推演。</div>
+</div>`,
+/*4*/`<div class="slide"><div class="pageno">02</div>
+  <div class="kicker reveal">CAPABILITIES</div>
+  <h2 class="reveal">我们能为你带来<span class="hl">什么价值</span></h2>
+  <div class="cards">
+    <div class="card reveal"><div class="num-ic">①</div><h3>人群反应预判</h3><p>在新品、策略或创意正式上市前，精准测试目标人群的接受度与潜在反馈，提前规避市场试错风险。</p></div>
+    <div class="card reveal"><div class="num-ic">②</div><h3>方案 A/B 推演</h3><p>针对两套备选方案，基于人群画像与行为数据模拟推演，量化评估哪套更能引发正向反应，科学择优。</p></div>
+    <div class="card reveal"><div class="num-ic">③</div><h3>舆情传播模拟</h3><p>精准模拟信息扩散路径、速度与范围，预判舆论反噬风险，锁定传播效果的关键临界点，提前预案。</p></div>
+  </div>
+</div>`,
+/*5*/`<div class="slide"><div class="pageno">03</div>
+  <div class="kicker reveal">YOUR VALUE</div>
+  <h2 class="reveal">这意味着，<span class="hl">你的决策方式将被改变</span></h2>
+  <div class="cards" style="grid-template-columns:repeat(2,1fr)">
+    <div class="card reveal"><div class="ic">💰</div><h3>省下试错成本</h3><p>把「花钱买数据」变成「先算后投」，从源头杜绝无效营销，让每分预算都产生真实价值。</p></div>
+    <div class="card reveal"><div class="ic">⚡</div><h3>抢出决策速度</h3><p>1 次 AI 推演替代数周传统调研，洞察与验证效率提升 10 倍，牢牢抢占市场先机。</p></div>
+    <div class="card reveal"><div class="ic">🛡️</div><h3>提前规避风险</h3><p>上市前预演<b style="color:#fff">百万级</b>用户反馈，精准识别舆情雷区与产品缺陷，避免「发布即翻车」。</p></div>
+    <div class="card reveal"><div class="ic">🔁</div><h3>可复现·可规模化</h3><p>决策逻辑沉淀为标准化工作流，不再依赖个人经验，让顶尖策略成为企业可复用资产。</p></div>
+  </div>
+  <div class="quote reveal">终局：让 Social World Model 成为你决策流程里的「虚拟推演」标配环节。</div>
+</div>`,
+/*6*/`<div class="slide center"><div class="pageno">◆</div>
+  <div class="kicker reveal">FOR YOU · 2026 战略启航 · 定制化增长引擎</div>
+  <h2 class="reveal" style="font-size:30px;color:var(--sub)">［ 替换为客户专属痛点 Slogan ］</h2>
+  <h1 class="reveal" style="font-size:40px">打破行业固有边界<br><span class="hl" style="font-size:40px">重构价值体系 · 专属破局</span></h1>
+  <p class="lead reveal" style="margin-top:14px">精准直击业务增长核心，开启无可替代的专属破局之路。</p>
+</div>`,
+/*7*/`<div class="slide"><div class="pageno">04</div>
+  <div class="kicker reveal">ARCHITECTURE · 3D 分层动态仿真系统</div>
+  <h2 class="reveal">技术架构：<span class="hl">四层动态仿真</span></h2>
+  <div class="cards" style="grid-template-columns:repeat(2,1fr);gap:14px">
+    <div class="card reveal"><div class="num-ic">01 · 人群建模层</div><p>基于真实社会人口分布，构建<b style="color:#fff">百万级异质 Persona</b>，还原群体多样性与行为基线，拒绝同质化模拟。</p></div>
+    <div class="card reveal"><div class="num-ic">02 · 记忆与心智层</div><p>赋予 Agent 长期记忆与价值判断，立场动态演化且前后一致，行为逻辑可追踪、符合人性。<b style="color:var(--gold)">（核心壁垒）</b></p></div>
+    <div class="card reveal"><div class="num-ic">03 · 交互与传播层</div><p>模拟真实社会的信息传导，意见以「波」扩散，智能体相互影响，形成群体舆论的非线性涌现。</p></div>
+    <div class="card reveal"><div class="num-ic">04 · 校准与评估层</div><p>基于可复现协议输出区间估计，结合真实数据持续动态校准，确保误差可控、方向稳定。</p></div>
+  </div>
+  <div class="quote reveal">技术路线：LLM 原生心智 + Multi-Agent 交互 + 传播动力学深度融合 —— 让预测从静态生成转向动态涌现，误差区间更窄、方向判断更稳、趋势更具前瞻性。</div>
+</div>`,
+/*8*/`<div class="slide"><div class="pageno">05</div>
+  <div class="kicker reveal">PROOF · 公开盲测</div>
+  <h2 class="reveal">我们不谈空泛准确率，<span class="hl">我们做「公开盲测」</span></h2>
+  <div class="two" style="align-content:start;margin-top:4px">
+    <div>
+      <ul class="feat" style="gap:12px">
+        <li class="reveal"><b>结果前置</b> —— 预测数据发布前锁进公开 Git 仓库，接受全网监督，杜绝事后修饰</li>
+        <li class="reveal"><b>基线对照</b> —— 设严格「通用大模型」对照组，时间锁机制防篡改，环境公平透明</li>
+        <li class="reveal"><b>区间精准</b> —— P10-P90 区间预测 4/4 全部命中，误差范围<b style="color:var(--green)">显著窄于</b>通用大模型基线</li>
+      </ul>
+    </div>
+    <div class="metric reveal" style="align-self:center;padding:34px">
+      <div class="num" style="font-size:58px">4/4</div>
+      <div class="lab" style="font-size:14px">盲测预测全中<br>精度显著超越基线</div>
+    </div>
+  </div>
+  <div class="quote reveal">我们不只关注「是否命中」，更追求「误差多小」。可复现、可验证的实证结果，是模型对市场规律深度理解的硬核证明。</div>
+</div>`,
+/*9*/`<div class="slide"><div class="pageno">06</div>
+  <div class="kicker reveal">PRODUCT · proofcast.ai</div>
+  <h2 class="reveal">proofcast.ai：<span class="hl">现在就能体验的可用产品</span></h2>
+  <div class="two" style="align-content:center">
+    <div class="console reveal">
+      <div class="bar"><span>ProofCast AI 实时模拟控制台 v2.1</span><span class="status">模拟进行中</span></div>
+      <div class="sm" style="color:var(--cyan);font-family:var(--mono);font-size:12px;margin-bottom:6px">当前任务：2026 夏季新品发布会 · Landing Page 创意测试</div>
+      <div class="sm" style="font-size:12px;margin-bottom:2px">虚拟人群反馈收集进度 · 98%</div>
+      <div class="prog"><i></i></div>
+      <div class="kpis">
+        <div class="kpi g"><div class="v">87.5%</div><div class="k">人群喜爱度</div></div>
+        <div class="kpi c"><div class="v">2m12s</div><div class="k">平均停留</div></div>
+        <div class="kpi gd"><div class="v">12.4%</div><div class="k">潜在转化</div></div>
+      </div>
+    </div>
+    <div>
+      <p class="lead reveal" style="font-size:17px">输入 Landing Page 文案、定价策略或创意概念，系统模拟<b>百万级</b>虚拟人群的实时反应（喜爱、围观、吐槽或犹豫），约 <b>1 分钟</b>生成可视化分析报告。</p>
+      <p class="sm reveal" style="margin-top:12px">这不是概念 Demo，而是现在就能打开操作的全功能产品。接入你的真实业务数据与用户画像做专属校准后，结果将更精准贴合目标客群。</p>
+    </div>
+  </div>
+</div>`,
+/*10*/`<div class="slide"><div class="pageno">07</div>
+  <div class="kicker reveal">TIMING · 本土落地</div>
+  <h2 class="reveal">在中国，这是<span class="hl">「共创者」的红利</span></h2>
+  <p class="lead reveal">这种「先模拟、再决策」的智能预测方式，在国内尚未有团队完成规模化商业落地 —— 这不仅是技术空白，更是先行者的巨大机遇。</p>
+  <div class="cards" style="grid-template-columns:repeat(2,1fr);margin-top:16px">
+    <div class="card reveal"><h3>能力验证完成，寻找首批共创伙伴</h3><p>已通过多轮严苛公开盲测，验证核心模型精度与稳定性。正式启动「中国本土共创计划」，寻找敢突破的行业先锋。</p></div>
+    <div class="card reveal"><h3>打造行业标杆，共建技术标准</h3><p>共创客户将成为所在细分领域首个落地标杆；核心算法团队提供深度定制，联合研发行业智能决策的技术标准。</p></div>
+  </div>
+</div>`,
+/*11*/`<div class="slide"><div class="pageno">08</div>
+  <div class="kicker reveal">GLOBAL PROOF · Aaru</div>
+  <h2 class="reveal">同一条路，海外已跑出<span class="hl">十亿美金独角兽</span></h2>
+  <div class="cards">
+    <div class="card reveal"><div class="num-ic" style="color:var(--green)">$10 亿</div><h3>资本重仓 · 估值跃升</h3><p>Aaru 2025 年底最新估值，红点创投领投，多家全球一线 VC 跟投，融资超 5000 万美金。</p></div>
+    <div class="card reveal"><div class="num-ic" style="color:var(--cyan)">&lt;400 票</div><h3>极致精准 · 技术验证</h3><p>美国大选预测误差，多智能体社会模拟在复杂混沌系统中展现行业领先的预测稳定性。</p></div>
+    <div class="card reveal"><div class="num-ic" style="color:var(--gold)">500强</div><h3>全球标杆 · 顶级客户</h3><p>服务埃森哲、安永、IPG 等全球 500 强，覆盖战略咨询、审计风控及全球传媒领域。</p></div>
+  </div>
+  <div class="quote reveal">Aaru（2024 成立）只服务海外市场。在中国，这个赛道还没有自己的答案 —— 这正是境瞳的机会，也是你的先发红利。</div>
+</div>`,
+/*12*/`<div class="slide"><div class="pageno">09</div>
+  <div class="kicker reveal">ROADMAP · 不画饼，分 3 阶段落地</div>
+  <h2 class="reveal">技术路径：<span class="hl">L1 已可用 · L2 免费升级 · L3 共同终局</span></h2>
+  <table class="road reveal">
+    <tr><th>阶段</th><th class="l1">L1 单场景推演（已可用）</th><th class="l2">L2 全链路模拟（研发中·Q4）</th><th class="l3">L3 企业数字孪生（愿景）</th></tr>
+    <tr><td>核心能力</td><td>百万级异质用户建模 · 短周期行为模拟 · 基础传播链 · 单场景 A/B 反事实</td><td>长记忆智能体 · 多角色动态博弈 · 长周期演化 · 实时数据闭环 · 多模态理解</td><td>全角色 1:1 复刻 · 跨场景因果推理 · 黑天鹅预警 · AI 自动决策寻优</td></tr>
+    <tr><td>大白话</td><td>搭出和真实用户结构一致的虚拟社会，方案投入即看接受度与转化，直观对比优劣</td><td>虚拟用户有记忆与惯性，模拟竞品/监管多方博弈，接真实数据后精度持续提升</td><td>复刻完整企业生态，预判决策连锁反应与黑天鹅，AI 自动推演输出最优方案</td></tr>
+    <tr><td>价值</td><td>🎯 单场景试错成本显著降低</td><td>🎯 覆盖全链路业务决策</td><td>🎯 决策模拟成为标准流程，沉淀为核心数字资产</td></tr>
+  </table>
+</div>`,
+/*13*/`<div class="slide"><div class="pageno">10</div>
+  <div class="kicker reveal">PARTNERSHIP · 合作成长路径</div>
+  <h2 class="reveal">同步享受<span class="hl">技术升级红利</span></h2>
+  <div class="stage-row">
+    <div class="stage-item reveal"><div class="em">🎯</div><div class="tx"><b>第一阶段（试点·现在）</b>：基于成熟 L1 能力做单场景闭环验证，用你的真实数据校准专属模型。「准确率达标再推进」，从试点开始零试错风险。</div></div>
+    <div class="stage-item reveal"><div class="em">🤝</div><div class="tx"><b>第二阶段（长期·6月内）</b>：L2 进阶能力免费无缝升级，覆盖核心业务场景。接入实时数据流持续迭代，从辅助工具转变为标准化决策平台。</div></div>
+    <div class="stage-item reveal"><div class="em">🚀</div><div class="tx"><b>第三阶段（深度嵌入·1-3年）</b>：L3 落地后搭建专属企业决策数字孪生体，深度嵌入所有决策流程，成为核心竞争力的智能基础设施。</div></div>
+  </div>
+  <div class="quote reveal">✅ 你的专属壁垒：数据仅用于校准专属模型，合作越久拟合度越高 —— 这是竞品无法复制的认知与技术护城河。</div>
+</div>`,
+/*14*/`<div class="slide"><div class="pageno">11</div>
+  <div class="kicker reveal">HOW TO START</div>
+  <h2 class="reveal">从一次<span class="hl">「可验证、无风险」的试点</span>开始</h2>
+  <div class="steps reveal">
+    <div class="step"><div class="n">01 精准选题</div><h4>共选场景</h4><p>共选一个近期真实、可落地的决策场景，须具备明确量化指标，拒绝假设性议题。</p></div>
+    <div class="step"><div class="n">02 结果推演</div><h4>提前锁定</h4><p>基于真实数据输入，提前输出具体预测结果与关键指标，双方书面锁定预期。</p></div>
+    <div class="step"><div class="n">03 结果对账</div><h4>公开对照</h4><p>真实结果落地后，公开透明对照预测值与实际值，用客观数据验证准确率。</p></div>
+  </div>
+  <div class="quote reveal">「你不需要一开始就把决策交给我们，只需要给我们一次用结果证明自己的机会。」</div>
+</div>`,
+/*15*/`<div class="slide"><div class="pageno">12</div>
+  <div class="kicker reveal">DATA · 最小必要数据</div>
+  <h2 class="reveal">我们需要的支持：<span class="hl">最小必要数据</span></h2>
+  <div class="two">
+    <div class="card reveal" style="align-self:center"><div class="ic">📥</div><h3>我们需要什么</h3><p>仅需与试点场景高度相关、经专业脱敏的用户画像与行为聚合数据。分布越贴近真实群体，预测越精准 —— 高质量样本是准确率的核心来源。</p></div>
+    <div class="card reveal" style="align-self:center"><div class="ic">🚫</div><h3>我们不需要什么</h3><p>绝不索要可识别个人的敏感信息（PII：姓名、身份证、手机号等）；也无需核心商业机密、未公开业务逻辑或原始数据库凭证，充分保障数据安全。</p></div>
+  </div>
+</div>`,
+/*16*/`<div class="slide"><div class="pageno">13</div>
+  <div class="kicker reveal">SECURITY · 数据安全边界 ⚠️</div>
+  <h2 class="reveal">数据安全：<span class="hl">边界提前说清</span></h2>
+  <div class="cards" style="gap:12px">
+    <div class="card reveal"><div class="num-ic" style="font-size:16px">01 只收脱敏数据</div><p>PII 在你方本地脱敏后交付，我们全程不接触可识别原始个人信息。</p></div>
+    <div class="card reveal"><div class="num-ic" style="font-size:16px">02 最小必要原则</div><p>仅提取本次推演所需核心字段，严格控制采集范围与粒度。</p></div>
+    <div class="card reveal"><div class="num-ic" style="font-size:16px">03 合规协议兜底</div><p>签署 NDA 与数据处理协议，界定用途、存储期限及销毁流程。</p></div>
+    <div class="card reveal"><div class="num-ic" style="font-size:16px">04 数据隔离机制</div><p>数据仅为你专属服务，不接入通用训练池，不与第三方共享。</p></div>
+    <div class="card reveal"><div class="num-ic" style="font-size:16px">05 隐私计算方案</div><p>支持联邦学习、本地化部署，「数据可用不可见」，不触碰原始数据。<span class="warn">【待技术确认】</span></p></div>
+    <div class="card reveal" style="display:flex;align-items:center;justify-content:center"><p style="text-align:center;color:var(--ink)">我们主动把边界画在前面 —— 用技术与规则的双重保障，让<b style="color:#fff">信任始于透明</b>。</p></div>
+  </div>
+</div>`,
+/*17*/`<div class="slide center">
+  <div class="kicker reveal">RENLAB</div>
+  <div class="big-final reveal">让每一个重要决策，<br>都先跑一遍。</div>
+  <p class="lead reveal" style="margin-top:24px">境瞳科技 Renlab</p>
+</div>`
+];
+
+const stage=document.getElementById('stage');
+slides.forEach((h)=>{const d=document.createElement('div');d.innerHTML=h;stage.appendChild(d.firstElementChild);});
+const els=[...document.querySelectorAll('.slide')];
+let cur=0;const counter=document.getElementById('counter'),prog=document.getElementById('progress');
+function show(n){n=Math.max(0,Math.min(els.length-1,n));
+  els.forEach((s,i)=>{s.classList.remove('active','exit-up');if(i<n)s.classList.add('exit-up');});
+  els[n].classList.add('active');cur=n;
+  counter.textContent=String(n+1).padStart(2,'0')+' / '+String(els.length).padStart(2,'0');
+  prog.style.width=(n/(els.length-1)*100)+'%';}
+function next(){show(cur+1)}function prev(){show(cur-1)}
+document.getElementById('next').onclick=next;document.getElementById('prev').onclick=prev;
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  else if(e.key==='p'||e.key==='P'){window.print()}
+  else if(e.key==='Home')show(0);else if(e.key==='End')show(els.length-1);});
+let sx=0;document.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)dx<0?next():prev()},{passive:true});
+show(0);
+(function(){const m=location.search.match(/shot=(\d+)/);if(m){document.querySelectorAll('.reveal').forEach(e=>e.style.animation='none');const st=document.createElement('style');st.textContent='.reveal{opacity:1!important;transform:none!important;filter:none!important}';document.head.appendChild(st);show(+m[1]);}})();
+</script>
+</body>
+</html>

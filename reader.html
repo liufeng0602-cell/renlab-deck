@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renlab · 文档</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+:root{--bg:#0a0e17;--ink:#e9eefb;--sub:#a6b6d8;--accent:#5b8cff;--cyan:#25e6ff;--gold:#ffd27a;--line:rgba(130,160,230,.2);--card:rgba(255,255,255,.03)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,'PingFang SC','Microsoft YaHei',system-ui,sans-serif;line-height:1.8;
+  background-image:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(40,60,140,.25),transparent 70%)}
+.wrap{max-width:860px;margin:0 auto;padding:56px 26px 120px}
+#md h1{font-size:34px;font-weight:800;letter-spacing:-.01em;margin:8px 0 20px;line-height:1.25;
+  background:linear-gradient(120deg,#fff,#a9c2ff,#d7c4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+#md h2{font-size:25px;font-weight:800;margin:44px 0 16px;padding-top:24px;border-top:1px solid var(--line);color:#fff}
+#md h3{font-size:20px;font-weight:700;margin:30px 0 12px;color:var(--cyan)}
+#md h4,#md h5{font-size:16px;margin:20px 0 8px;color:var(--gold)}
+#md p{margin:12px 0;color:#cfd9f2}
+#md strong{color:#fff}
+#md ul,#md ol{padding-left:24px;margin:12px 0}
+#md li{margin:7px 0;color:#cfd9f2}
+#md blockquote{margin:18px 0;padding:14px 20px;border-left:3px solid var(--gold);
+  background:linear-gradient(90deg,rgba(255,210,122,.09),rgba(255,210,122,.02));border-radius:0 12px 12px 0;color:#e9eefb}
+#md blockquote p{color:#e9eefb;margin:6px 0}
+#md table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px;display:block;overflow-x:auto}
+#md th,#md td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+#md th{background:linear-gradient(180deg,rgba(91,140,255,.16),rgba(91,140,255,.05));color:#fff;font-weight:700}
+#md tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+#md code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:6px;font-size:.9em;color:var(--cyan)}
+#md hr{border:none;border-top:1px solid var(--line);margin:36px 0}
+#md a{color:var(--accent)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:10;backdrop-filter:blur(12px);background:rgba(10,14,23,.7);
+  border-bottom:1px solid var(--line);padding:12px 26px;display:flex;justify-content:space-between;align-items:center}
+.topbar .brand{font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.12em;color:var(--sub)}
+.topbar .brand b{color:#fff}
+.topbar .nav a{color:var(--sub);text-decoration:none;font-size:13px;margin-left:16px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;transition:.2s}
+.topbar .nav a:hover{color:#fff;border-color:var(--accent)}
+.loading{color:var(--sub);text-align:center;padding:80px 0}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="brand">RENLAB · <b>境瞳科技</b></span>
+  <span class="nav">
+    <a href="./">动态 PPT</a>
+    <a href="reader.html?doc=deck-content.md">PPT文稿</a>
+    <a href="reader.html?doc=doc-cece.md">测测文档</a>
+  </span>
+</div>
+<div class="wrap"><div id="md" class="loading">加载中…</div></div>
+<script>
+const doc = new URLSearchParams(location.search).get('doc') || 'deck-content.md';
+fetch(doc).then(r=>r.text()).then(t=>{
+  document.getElementById('md').classList.remove('loading');
+  document.getElementById('md').innerHTML = marked.parse(t);
+  document.title = (t.match(/^#\s+(.+)/m)||[])[1] || 'Renlab 文档';
+}).catch(e=>{document.getElementById('md').textContent='加载失败: '+e});
+</script>
+</body>
+</html>

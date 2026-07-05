@@ -135,6 +135,56 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
 .logo-badge b{color:#fff}
 .hint{position:fixed;top:22px;right:26px;z-index:20;font-family:var(--mono);font-size:12px;color:var(--sub);opacity:.65}
 @media print{.slide{position:relative;page-break-after:always;opacity:1!important;transform:none!important;width:100%;height:98vh;margin:0 auto}#hud,#progress,.logo-badge,.hint,.aurora,.vignette,#net{display:none}}
+
+/* ===== 移动端适配 ===== */
+@media (max-width:640px){
+  .slide,.slide *{box-sizing:border-box}
+  .slide h1,.slide h2,.slide p,.slide li,.slide .tx,.card h3{overflow-wrap:break-word;word-break:break-word}
+  .slide{width:92vw;max-width:92vw;height:88vh;padding:24px 18px;border-radius:18px;gap:4px;justify-content:flex-start;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  .kicker{font-size:10px;letter-spacing:.14em;margin-bottom:8px}
+  .pageno{font-size:34px;top:20px;right:20px}
+  h1{font-size:29px;line-height:1.18;margin-bottom:12px}
+  h2{font-size:22px;line-height:1.22;margin-bottom:12px}
+  .lead{font-size:15px;line-height:1.6}
+  .sm{font-size:12.5px}
+  .quote{font-size:14px;padding:11px 14px;margin-top:12px}
+  ul.feat{gap:10px}
+  ul.feat li{font-size:15px;padding-left:24px;line-height:1.45}
+  ul.feat li::before{width:11px;height:11px;top:6px}
+  /* 所有多列卡片一律塌成单列 */
+  .cards{grid-template-columns:1fr!important;gap:10px}
+  .card{padding:14px 15px;border-radius:12px}
+  .card .num-ic{font-size:19px;margin-bottom:6px}
+  .card .ic{font-size:22px;margin-bottom:6px}
+  .card h3{font-size:16px;margin-bottom:5px}
+  .card p{font-size:13px;line-height:1.5}
+  .two{grid-template-columns:1fr!important;gap:12px}
+  .metrics{grid-template-columns:1fr!important;gap:10px}
+  .metric{padding:16px}
+  .metric .num{font-size:34px}
+  .steps{flex-direction:column;gap:10px}
+  .stage-row{gap:9px}
+  .stage-item{padding:12px 14px;gap:11px}
+  .stage-item .em{font-size:19px}
+  .stage-item .tx{font-size:13.5px;line-height:1.5}
+  .console{padding:14px 15px}
+  .kpis{grid-template-columns:repeat(3,1fr);gap:8px}
+  .kpi{padding:9px}
+  .kpi .v{font-size:16px}
+  .kpi .k{font-size:10px}
+  .big-final{font-size:26px}
+  .pill{font-size:13px;padding:8px 13px}
+  .dot-list{gap:8px}
+  /* 表格：允许横向滚动，避免挤压 */
+  table.road{font-size:11px;display:block;overflow-x:auto;white-space:nowrap;scroll-snap-type:x proximity}
+  table.road th,table.road td{padding:9px 10px;white-space:normal;min-width:150px;scroll-snap-align:start}
+  table.road td:first-child,table.road th:first-child{min-width:58px;width:58px}
+  .road-hint{display:block!important;font-family:var(--mono);font-size:12px;color:var(--cyan);margin-top:10px;text-align:center;opacity:.85}
+  .logo-badge{font-size:10px;top:14px;left:16px}
+  .hint{display:none}
+  #hud{bottom:14px;padding:6px 12px;gap:12px}
+  #hud button{font-size:22px}
+}
 </style>
 </head>
 <body>
@@ -310,6 +360,7 @@ const slides = [
     <tr><td>大白话</td><td>搭出和真实用户结构一致的虚拟社会，方案投入即看接受度与转化</td><td>虚拟用户有记忆与惯性，模拟竞品/监管博弈，接真实数据后精度持续提升</td><td>构建企业级决策数字孪生，预判连锁反应与风险，AI 辅助推演最优方案</td></tr>
     <tr><td>价值</td><td>单场景试错成本显著降低</td><td>覆盖全链路业务决策</td><td>决策模拟成为标准流程，沉淀为核心数字资产</td></tr>
   </table>
+  <div class="road-hint" style="display:none">← 左右滑动查看 L1 / L2 / L3 →</div>
 </div>`,
 /*13*/`<div class="slide"><div class="pageno">11</div>
   <div class="kicker reveal">PARTNERSHIP · 从试点验证到连续推演</div>

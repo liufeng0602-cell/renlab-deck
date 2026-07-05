@@ -139,12 +139,15 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
 /* ===== 移动端适配 ===== */
 @media (max-width:640px){
   .slide,.slide *{box-sizing:border-box}
-  .slide h1,.slide h2,.slide p,.slide li,.slide .tx,.card h3{overflow-wrap:break-word;word-break:break-word}
-  .slide{width:92vw;max-width:92vw;height:88vh;padding:24px 18px;border-radius:18px;gap:4px;justify-content:flex-start;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  .slide h1,.slide h2,.slide p,.slide li,.slide .tx,.card h3{overflow-wrap:break-word;word-break:break-word;line-break:auto}
+  #stage{align-items:center;padding:0}
+  .slide{width:92vw;max-width:92vw;height:auto;max-height:90vh;min-height:auto;padding:28px 20px;border-radius:18px;gap:6px;justify-content:center;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  .slide.center{padding:40px 22px}
+  .pageno{display:none}
   .kicker{font-size:10px;letter-spacing:.14em;margin-bottom:8px}
   .pageno{font-size:34px;top:20px;right:20px}
-  h1{font-size:29px;line-height:1.18;margin-bottom:12px}
-  h2{font-size:22px;line-height:1.22;margin-bottom:12px}
+  h1{font-size:28px;line-height:1.2;margin-bottom:12px;text-wrap:balance}
+  h2{font-size:22px;line-height:1.22;margin-bottom:12px;text-wrap:balance}
   .lead{font-size:15px;line-height:1.6}
   .sm{font-size:12.5px}
   .quote{font-size:14px;padding:11px 14px;margin-top:12px}
@@ -153,6 +156,11 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
   ul.feat li::before{width:11px;height:11px;top:6px}
   /* 所有多列卡片一律塌成单列 */
   .cards{grid-template-columns:1fr!important;gap:10px}
+  /* 例外: 行业行保持 2 列, 更紧凑 */
+  .cards-2col-mobile{grid-template-columns:1fr 1fr!important;gap:8px}
+  .cards-2col-mobile .card{padding:10px 11px}
+  .cards-2col-mobile .card h3{font-size:14px;margin-bottom:4px}
+  .cards-2col-mobile .card p{font-size:11.5px;line-height:1.4}
   .card{padding:14px 15px;border-radius:12px}
   .card .num-ic{font-size:19px;margin-bottom:6px}
   .card .ic{font-size:22px;margin-bottom:6px}
@@ -176,10 +184,10 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
   .pill{font-size:13px;padding:8px 13px}
   .dot-list{gap:8px}
   /* 表格：允许横向滚动，避免挤压 */
-  table.road{font-size:11px;display:block;overflow-x:auto;white-space:nowrap;scroll-snap-type:x proximity}
-  table.road th,table.road td{padding:9px 10px;white-space:normal;min-width:150px;scroll-snap-align:start}
-  table.road td:first-child,table.road th:first-child{min-width:58px;width:58px}
-  .road-hint{display:block!important;font-family:var(--mono);font-size:12px;color:var(--cyan);margin-top:10px;text-align:center;opacity:.85}
+  /* 手机端: 隐藏横表, 显示堆叠卡片 */
+  table.road{display:none}
+  .road-hint{display:none!important}
+  .road-stack{display:flex!important;flex-direction:column;gap:12px;margin-top:6px}
   .logo-badge{font-size:10px;top:14px;left:16px}
   .hint{display:none}
   #hud{bottom:14px;padding:6px 12px;gap:12px}
@@ -253,7 +261,7 @@ const slides = [
     <div class="card reveal"><div class="num-ic">②</div><h3>方案 A/B 推演</h3><p>两套备选方案，基于人群画像与行为数据模拟推演，量化评估哪套更能引发正向反应。</p></div>
     <div class="card reveal"><div class="num-ic">③</div><h3>舆情传播模拟</h3><p>模拟信息扩散路径、速度与范围，预判是否出现负面扩散，锁定关键临界点。</p></div>
   </div>
-  <div class="cards reveal" style="grid-template-columns:repeat(4,1fr);margin-top:16px">
+  <div class="cards reveal cards-2col-mobile" style="grid-template-columns:repeat(4,1fr);margin-top:16px">
     <div class="card"><h3 style="font-size:15px">广告行业</h3><p>投前策略沙盘 · 人群/预算/创意反事实推演 · 竞品应对</p></div>
     <div class="card"><h3 style="font-size:15px">汽车行业</h3><p>定价/配置/权益推演 · 老车主与社区反应 · 竞品动作应对</p></div>
     <div class="card"><h3 style="font-size:15px">互联网平台</h3><p>政策/激励调整生态推演 · 新市场分阶段上线 · 商业化生态影响</p></div>
@@ -360,7 +368,11 @@ const slides = [
     <tr><td>大白话</td><td>搭出和真实用户结构一致的虚拟社会，方案投入即看接受度与转化</td><td>虚拟用户有记忆与惯性，模拟竞品/监管博弈，接真实数据后精度持续提升</td><td>构建企业级决策数字孪生，预判连锁反应与风险，AI 辅助推演最优方案</td></tr>
     <tr><td>价值</td><td>单场景试错成本显著降低</td><td>覆盖全链路业务决策</td><td>决策模拟成为标准流程，沉淀为核心数字资产</td></tr>
   </table>
-  <div class="road-hint" style="display:none">← 左右滑动查看 L1 / L2 / L3 →</div>
+  <div class="road-stack" style="display:none">
+    <div class="card"><div class="num-ic" style="color:var(--green);font-size:16px">L1 单场景推演 · 已可交付</div><p><b>核心能力</b>：百万级等效人群建模 · 短周期行为模拟 · 基础传播链 · 单场景 A/B 反事实<br><b>大白话</b>：搭出和真实用户结构一致的虚拟社会，方案投入即看接受度与转化<br><b>价值</b>：单场景试错成本显著降低</p></div>
+    <div class="card"><div class="num-ic" style="color:var(--cyan);font-size:16px">L2 全链路模拟 · 研发中·下一阶段</div><p><b>核心能力</b>：长记忆智能体 · 多角色动态博弈 · 长周期演化 · 实时数据闭环 · 多模态理解<br><b>大白话</b>：虚拟用户有记忆与惯性，模拟竞品/监管博弈，接真实数据后精度持续提升<br><b>价值</b>：覆盖全链路业务决策</p></div>
+    <div class="card"><div class="num-ic" style="color:var(--gold);font-size:16px">L3 企业决策数字孪生 · 愿景</div><p><b>核心能力</b>：企业级决策数字孪生 · 跨场景因果推理 · 尾部风险压力测试 · AI 辅助决策寻优<br><b>大白话</b>：构建企业级决策数字孪生，预判连锁反应与风险，AI 辅助推演最优方案<br><b>价值</b>：决策模拟成为标准流程，沉淀为核心数字资产</p></div>
+  </div>
 </div>`,
 /*13*/`<div class="slide"><div class="pageno">11</div>
   <div class="kicker reveal">PARTNERSHIP · 从试点验证到连续推演</div>

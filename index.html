@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
 <title>境瞳科技 Renlab · 客户介绍主 Deck v2（动态科技版）</title>
 <style>
 :root{
@@ -13,39 +14,42 @@
   --sans:-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
-#net{position:fixed;inset:0;z-index:0;display:block}
-.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 42%,transparent 30%,rgba(4,6,12,.72) 100%)}
-.aurora{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.6}
+html,body{height:100%;height:100vh;height:100dvh;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+#net{position:fixed;top:0;right:0;bottom:0;left:0;z-index:0;display:block}
+.vignette{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 42%,transparent 30%,rgba(4,6,12,.72) 100%)}
+.aurora{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.6}
 .aurora span{position:absolute;border-radius:50%;filter:blur(90px);animation:drift 22s ease-in-out infinite}
 .aurora .s1{width:560px;height:560px;background:radial-gradient(circle,#2b52ffaa,transparent 70%);top:-140px;left:-100px}
 .aurora .s2{width:520px;height:520px;background:radial-gradient(circle,#8a3cffaa,transparent 70%);bottom:-160px;right:-80px;animation-delay:-7s}
 .aurora .s3{width:420px;height:420px;background:radial-gradient(circle,#14d9ff88,transparent 70%);top:45%;left:60%;animation-delay:-13s}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-40px) scale(1.12)}}
 
-#stage{position:fixed;inset:0;z-index:3;display:flex;align-items:center;justify-content:center}
-.slide{position:absolute;width:min(1200px,94vw);height:min(690px,92vh);
+#stage{position:fixed;top:0;right:0;bottom:0;left:0;z-index:3;overflow:hidden}
+#viewport{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;
   background:linear-gradient(155deg,rgba(18,25,48,.55),rgba(6,9,20,.5));
   border:1px solid var(--line);border-radius:26px;padding:48px 58px;
   box-shadow:0 50px 140px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);
-  opacity:0;transform:translateY(46px) scale(.975) rotateX(4deg);pointer-events:none;transform-origin:center bottom;
-  transition:opacity .7s cubic-bezier(.19,.7,.2,1),transform .7s cubic-bezier(.19,.7,.2,1);
-  display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;
-  backdrop-filter:blur(7px) saturate(130%);-webkit-backdrop-filter:blur(7px) saturate(130%)}
+  opacity:0;visibility:hidden;transform:translateY(46px) scale(.975) rotateX(4deg);pointer-events:none;transform-origin:center center;
+  transition:opacity .7s cubic-bezier(.19,.7,.2,1),transform .7s cubic-bezier(.19,.7,.2,1),visibility 0s linear .7s;
+  display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden}
 .slide::before{content:"";position:absolute;inset:0;border-radius:26px;padding:1px;pointer-events:none;
   background:linear-gradient(140deg,rgba(91,140,255,.5),transparent 40%,transparent 60%,rgba(154,108,255,.4));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.8}
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:xor;opacity:.8}
 .slide::after{content:"";position:absolute;top:-40%;left:-30%;width:80%;height:180%;pointer-events:none;
   background:linear-gradient(115deg,transparent,rgba(255,255,255,.06),transparent);transform:rotate(8deg);opacity:0}
-.slide.active{opacity:1;transform:translateY(0) scale(1) rotateX(0)}
+.slide.exit-up{opacity:0;transform:translateY(-40px) scale(.975) rotateX(-4deg)}
+.slide.active{opacity:1;visibility:visible;transform:translateY(0) scale(1) rotateX(0);
+  transition:opacity .7s cubic-bezier(.19,.7,.2,1),transform .7s cubic-bezier(.19,.7,.2,1),visibility 0s linear 0s;
+  backdrop-filter:blur(7px) saturate(130%);-webkit-backdrop-filter:blur(7px) saturate(130%)}
+.slide.active.exit-up{opacity:1;transform:translateY(0) scale(1) rotateX(0)}
 .slide.active::after{animation:sheen 1.4s .3s ease-out}
 @keyframes sheen{0%{left:-40%;opacity:0}20%{opacity:1}100%{left:120%;opacity:0}}
-.slide.exit-up{opacity:0;transform:translateY(-40px) scale(.975) rotateX(-4deg)}
 .slide>*{position:relative;z-index:2}
 
 .kicker{font-family:var(--mono);font-size:13px;letter-spacing:.24em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;text-shadow:0 0 18px rgba(37,230,255,.5)}
 .kicker::before{content:"";width:28px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px}
-.pageno{position:absolute;top:44px;right:56px;font-family:var(--mono);font-size:60px;font-weight:800;color:rgba(120,150,230,.12);z-index:1;line-height:1}
+.pageno{position:absolute;top:44px;right:56px;font-family:var(--mono);font-size:60px;font-weight:800;color:rgba(120,150,230,.12);z-index:1;line-height:1;display:none}
 h1{font-size:54px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-bottom:14px;
   background:linear-gradient(120deg,#fff 15%,#a9c2ff 55%,#d7c4ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 30px rgba(120,140,255,.35))}
 h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:18px}
@@ -124,27 +128,28 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
 .slide.active .reveal:nth-child(6){animation-delay:.51s}
 .slide.active .reveal:nth-child(7){animation-delay:.6s}
 .slide.active .reveal:nth-child(8){animation-delay:.69s}
-@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.98);filter:blur(6px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-#hud{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:16px;background:rgba(10,14,26,.55);border:1px solid var(--line);border-radius:999px;padding:8px 16px;backdrop-filter:blur(14px)}
+#hud{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:16px;background:rgba(10,14,26,.55);border:1px solid var(--line);border-radius:999px;padding:8px 16px;padding-bottom:calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 #hud button{background:none;border:none;color:var(--sub);cursor:pointer;font-size:20px;padding:2px 10px;border-radius:8px;transition:.2s}
 #hud button:hover{color:#fff;background:rgba(255,255,255,.1)}
 #counter{font-family:var(--mono);font-size:13px;color:var(--sub);min-width:56px;text-align:center}
 #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--accent),var(--gold));z-index:30;transition:width .6s;box-shadow:0 0 14px rgba(91,140,255,.8)}
-.logo-badge{position:fixed;top:20px;left:26px;z-index:20;font-family:var(--mono);font-size:13px;letter-spacing:.15em;color:var(--sub)}
+.logo-badge{position:absolute;top:20px;left:26px;z-index:20;font-family:var(--mono);font-size:13px;letter-spacing:.15em;color:var(--sub)}
 .logo-badge b{color:#fff}
-.hint{position:fixed;top:22px;right:26px;z-index:20;font-family:var(--mono);font-size:12px;color:var(--sub);opacity:.65}
-@media print{.slide{position:relative;page-break-after:always;opacity:1!important;transform:none!important;width:100%;height:98vh;margin:0 auto}#hud,#progress,.logo-badge,.hint,.aurora,.vignette,#net{display:none}}
+.hint{position:absolute;top:22px;right:26px;z-index:20;font-family:var(--mono);font-size:12px;color:var(--sub);opacity:.65}
+@media print{.slide{position:relative;page-break-after:always;opacity:1!important;visibility:visible!important;transform:none!important;width:100%;height:98vh;margin:0 auto}#hud,#progress,.logo-badge,.hint,.aurora,.vignette,#net{display:none}}
 
 /* ===== 移动端适配 ===== */
 @media (max-width:640px){
   .slide,.slide *{box-sizing:border-box}
   .slide h1,.slide h2,.slide p,.slide li,.slide .tx,.card h3{overflow-wrap:break-word;word-break:break-word;line-break:auto}
   #stage{align-items:center;padding:0}
-  .slide{width:92vw;max-width:92vw;height:auto;max-height:90vh;min-height:auto;padding:28px 20px;border-radius:18px;gap:6px;justify-content:center;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  .slide{width:1280px;height:720px;padding:48px 58px;border-radius:26px;overflow:hidden}
   .slide.center{padding:40px 22px}
   /* 超长内容页: 顶对齐可滚动, 避免上下裁切 */
-  .slide-dense{justify-content:flex-start!important;padding-top:18px;padding-bottom:52px;max-height:92vh}
+  .slide-dense{justify-content:flex-start!important;padding-top:18px;padding-bottom:52px;overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch}
   .slide-dense h2{font-size:19px;margin-bottom:10px}
   .slide-dense .lead{font-size:13.5px}
   .slide-dense .sm{font-size:12px;line-height:1.55}
@@ -153,8 +158,8 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
   .pageno{display:none}
   .kicker{font-size:10px;letter-spacing:.14em;margin-bottom:8px}
   .pageno{font-size:34px;top:20px;right:20px}
-  h1{font-size:28px;line-height:1.2;margin-bottom:12px;text-wrap:balance}
-  h2{font-size:22px;line-height:1.22;margin-bottom:12px;text-wrap:balance}
+  h1{font-size:28px;line-height:1.2;margin-bottom:12px;text-wrap:balance;-webkit-text-wrap:balance}
+  h2{font-size:22px;line-height:1.22;margin-bottom:12px;text-wrap:balance;-webkit-text-wrap:balance}
   .lead{font-size:15px;line-height:1.6}
   .sm{font-size:12.5px}
   .quote{font-size:14px;padding:11px 14px;margin-top:12px}
@@ -207,15 +212,43 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
 <div class="aurora"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
 <div class="vignette"></div>
 <div id="progress"></div>
+<div id="stage"><div id="viewport">
 <div class="logo-badge">RENLAB · <b>境瞳科技</b></div>
 <div class="hint">← → 翻页 · F 全屏 · P 打印/PDF</div>
-<div id="stage"></div>
+</div></div>
 <div id="hud"><button id="prev">‹</button><span id="counter">01 / 18</span><button id="next">›</button></div>
 
 <script>
+// Compatibility polyfills
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(cb){return setTimeout(cb, 16)};
+if(!String.prototype.padStart){
+  String.prototype.padStart = function(len, str){
+    str = str || ' ';
+    return this.length >= len ? String(this) : new Array(len - this.length + 1).join(str) + String(this);
+  }
+}
+let passiveSupported = false;
+try{
+  const opts = Object.defineProperty({}, 'passive', {get(){passiveSupported = true}});
+  window.addEventListener('test-passive', null, opts);
+}catch(e){}
+function addPassiveEvent(el, ev, fn){
+  el.addEventListener(ev, fn, passiveSupported ? {passive: true} : false);
+}
+function requestFullscreen(el){
+  if(el.requestFullscreen) return el.requestFullscreen();
+  if(el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+  if(el.mozRequestFullScreen) return el.mozRequestFullScreen();
+}
+function exitFullscreen(){
+  if(document.exitFullscreen) return document.exitFullscreen();
+  if(document.webkitExitFullscreen) return document.webkitExitFullscreen();
+  if(document.mozCancelFullScreen) return document.mozCancelFullScreen();
+}
+
 (function(){
   const c=document.getElementById('net'),x=c.getContext('2d');
-  let W,H,DPR=Math.min(devicePixelRatio||1,2),pts=[],mouse={x:-999,y:-999};
+  let W,H,DPR=Math.min(devicePixelRatio||1,1.5),pts=[],mouse={x:-999,y:-999};
   function resize(){W=c.width=innerWidth*DPR;H=c.height=innerHeight*DPR;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';
     const n=Math.min(120,Math.floor(innerWidth*innerHeight/14000));pts=[];
     for(let i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28*DPR,vy:(Math.random()-.5)*.28*DPR,r:(Math.random()*1.6+.6)*DPR,p:Math.random()*Math.PI*2});}
@@ -256,7 +289,7 @@ const slides = [
 /*3*/`<div class="slide">
   <div class="kicker reveal">WHAT WE DO · SOCIAL WORLD MODEL</div>
   <h2 class="reveal">我们做 Social World Model<br><span class="hl">一个「可推演的虚拟社会」</span></h2>
-  <p class="lead reveal">我们已构建基于加权代理的<b>百万级等效人群模拟系统</b>。初始人群基于社会人口学统计与公开分布构建，客户项目中可接入脱敏聚合业务数据进行专属校准。把你的决策投进去，在真实投入之前，先看人群会怎么反应 —— 接受、犹豫，还是反感。</p>
+  <p class="lead reveal">我们已构建基于加权代理的<b>百万级等效人群模拟系统</b>。初始人群基于社会人口学统计与公开分布构建，底层接入「芥子」人群底座，以匿名微观样本、普查结构和调查态度数据作为社会先验，客户项目中可接入脱敏聚合业务数据进行专属校准。把你的决策投进去，在真实投入之前，先看人群会怎么反应 —— 接受、犹豫，还是反感。</p>
   <p class="lead reveal" style="margin-top:10px">不同于让通用大模型凭经验猜结果，境瞳会基于公开人群分布与客户脱敏聚合业务数据，对人群结构、行为基线、网络位置与传播路径进行校准，再进行多主体互动模拟 —— 让模拟结果更贴近客户真实用户结构，且支持持续校准。</p>
   <div class="quote reveal">把「决策 → 真实市场 → 收结果」的昂贵试错，前移成「决策 → 虚拟社会 → 先看结果」的低成本推演。</div>
 </div>`,
@@ -291,7 +324,7 @@ const slides = [
   <div class="kicker reveal">ARCHITECTURE · 四层动态仿真</div>
   <h2 class="reveal">技术架构：<span class="hl">四层动态仿真系统</span></h2>
   <div class="cards" style="grid-template-columns:repeat(2,1fr);gap:14px">
-    <div class="card reveal"><div class="num-ic">01 · 人群建模层</div><p>基于真实社会人口分布，构建<b style="color:#fff">百万级等效人群（加权代理）</b>，还原群体多样性与行为基线。</p></div>
+    <div class="card reveal"><div class="num-ic">01 · 人群建模层</div><p>以「芥子」人群底座为社会先验，基于匿名微观样本、普查结构、调查态度与客户脱敏聚合业务数据，构建<b style="color:#fff">百万级等效人群（加权代理）</b>，还原群体多样性、行为基线与可校准人群分布。</p></div>
     <div class="card reveal"><div class="num-ic">02 · 记忆与状态层</div><p>为代表性 Agent / 关键人群单元维护长期偏好、记忆与状态，立场演化前后一致、可追踪。<b style="color:var(--gold)">（关键能力）</b></p></div>
     <div class="card reveal"><div class="num-ic">03 · 交互与传播层</div><p>基于网络结构、平台规则、节点影响力与接触频次，模拟信息扩散、断流与放大。</p></div>
     <div class="card reveal"><div class="num-ic">04 · 校准与评估层</div><p>基于可复现协议输出区间估计，结合真实数据持续校准 —— 误差可度量、可回放、方向可跟踪。</p></div>
@@ -299,6 +332,27 @@ const slides = [
   <div class="quote reveal">技术路线：LLM 驱动的 Agent 状态建模 + Multi-Agent 交互 + 传播动力学融合。核心不在于智能体数量，而在于分层、网络位置、行为状态与持续校准。</div>
 </div>`,
 /*7*/`<div class="slide"><div class="pageno">05</div>
+  <div class="kicker reveal">PEOPLE FOUNDATION · 芥子</div>
+  <h2 class="reveal">人群底座：<span class="hl">芥子 —— 不是编人，而是可审计的人群先验</span></h2>
+  <p class="lead reveal" style="font-size:16px">芥子是境瞳社会模拟的人群底座。它不是让大模型临时编几个“25岁、女、爱旅游”的空壳角色，而是基于匿名微观样本、普查结构和调查态度数据，构建可追溯、可加权、可校准的原型人群。</p>
+  <div class="quote reveal">一句话：芥子解决「虚拟社会里的人从哪里来」的问题——先有统计上可信的人，再做多智能体推演。</div>
+  <div class="cards reveal" style="grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px">
+    <div class="card">
+      <div class="num-ic" style="font-size:17px">1. 规模与覆盖</div>
+      <p style="font-size:13px;line-height:1.6">• 13.5M+ 原型人 · 100国覆盖<br>• 5个国家深度建成：结构层、关系网、类型层、运行时接口完整<br>• 95个国家态度覆盖：价值观、信任、政治倾向、生活满意度等真实调查变量<br><span style="color:var(--gold);font-size:12px">*我们明确区分「深度建成」和「态度覆盖」，不把100国都包装成完整社会数字孪生</span></p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:17px">2. 可信机制</div>
+      <p style="font-size:13px;line-height:1.6">• 抽样权重还原：按普查/调查权重还原真实人口结构<br>• 缺失不编造：未采集字段保留为空，不用大模型补假数据<br>• 来源可追溯：字段和关系边带来源标签，区分观测、推断、生成<br>• 实测与推算分账：真实问卷态度和画像推算兴趣分开存储<br>• 时间口径标注：保留测量年份，人口状态按真实规则推进</p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:17px">3. 如何进入模拟</div>
+      <p style="font-size:13px;line-height:1.6">芥子作为社会先验：目标人群抽样 → 注入身份/记忆/关系/类型 → 接入模拟引擎 → 输出分群反应、传播路径与反事实结果<br><br>客户数据用于构建专属校准层：校准品牌认知、品类偏好、渠道触达、历史转化与业务语境。</p>
+    </div>
+  </div>
+  <p class="sm reveal" style="text-align:center;margin-top:14px;color:var(--gold)">芥子提供真实社会先验，客户数据提供业务专属校准。二者结合，才是可用于决策的虚拟社会。</p>
+</div>`,
+/*8*/`<div class="slide"><div class="pageno">06</div>
   <div class="kicker reveal">DELIVERABLE · 一次推演你拿到什么</div>
   <h2 class="reveal">我们交付的不是"预测数"，<span class="hl">而是一套可执行决策包</span></h2>
   <div class="cards" style="grid-template-columns:repeat(2,1fr);gap:12px">
@@ -311,7 +365,7 @@ const slides = [
   </div>
   <p class="lead reveal" style="font-size:14px;margin-top:10px;color:#b9c7ea">关键指标可替换为订单、ROI、转化率、留存、负面率、创作者流失率、社区投诉率等</p>
 </div>`,
-/*8*/`<div class="slide"><div class="pageno">06</div>
+/*9*/`<div class="slide"><div class="pageno">07</div>
   <div class="kicker reveal">HOW TO VERIFY · 先用你的场景验证</div>
   <h2 class="reveal">如何验证：<span class="hl">先用你的真实场景跑一遍</span></h2>
   <p class="lead reveal" style="font-size:17px">我们不要求你先相信一个"准确率"，也不要求你一开始就把核心决策交给我们。正式合作前，先把问题变成一次可审计、可对账的验证。</p>
@@ -322,7 +376,7 @@ const slides = [
   </div>
   <div class="quote reveal">统一评估：输入锁定 · 输出以书面/系统留痕提前提交 · 多基线对照（历史均值/GPT直问/专家/内部模型）· 结果复盘。<br><b>不用先相信我们，先让我们在你的场景里证明有没有增量。</b></div>
 </div>`,
-/*9*/`<div class="slide"><div class="pageno">07</div>
+/*10*/`<div class="slide"><div class="pageno">08</div>
   <div class="kicker reveal">PRODUCT · proofcast.ai</div>
   <h2 class="reveal">proofcast.ai：<span class="hl">现在就能体验的可用产品</span></h2>
   <div class="two" style="align-content:center">
@@ -344,7 +398,7 @@ const slides = [
   </div>
   <p class="sm reveal" style="margin-top:12px;color:#b9c7ea">注：公开通用版主要用于体验工作流与输出形态；正式业务预测能力，以客户数据校准后的试点对账结果为准。</p>
 </div>`,
-/*10*/`<div class="slide"><div class="pageno">08</div>
+/*11*/`<div class="slide"><div class="pageno">09</div>
   <div class="kicker reveal">TIMING · 本土落地</div>
   <h2 class="reveal">在中国，与<span class="hl">头部客户共建行业标准</span></h2>
   <p class="lead reveal">这种「先模拟、再决策」的方式，国内仍处早期阶段。我们不要求客户基于概念直接下注，而是把验证前置：先通过历史回放、影子推演或小闭环试点，在你的真实业务场景里证明是否有增量价值。</p>
@@ -354,17 +408,6 @@ const slides = [
     <li class="reveal">经客户授权后，共创项目可沉淀为<b>所在行业标杆案例</b></li>
     <li class="reveal">合作越久，<b>客户专属校准层</b>越贴合你的业务语境与用户分布</li>
   </ul>
-</div>`,
-/*11*/`<div class="slide"><div class="pageno">09</div>
-  <div class="kicker reveal">GLOBAL PROOF · Aaru</div>
-  <h2 class="reveal">海外对标：<span class="hl">机构级需求正在出现</span></h2>
-  <p class="lead reveal">美国 Aaru 是海外多智能体社会模拟方向的代表性公司之一，将 AI Agents / 社会模拟用于政治、市场、消费者与机构决策场景：</p>
-  <ul class="feat">
-    <li class="reveal">2024 成立，2025 年底完成融资、<b>估值约 10 亿美元</b>，红点创投领投</li>
-    <li class="reveal">约 5000 次 AI 推演预测美国某地初选，<b>票数误差不足 400 票</b></li>
-    <li class="reveal">客户涉及 <b>埃森哲、安永、The Interpublic Group（IPG）</b> 等</li>
-  </ul>
-  <div class="quote reveal">Social World Model 已在海外进入机构级决策场景。但中国市场的用户结构、媒介平台、监管边界与数据环境都不同，不能直接照搬 —— 境瞳的机会，是做面向中国市场的本土 Social World Model。</div>
 </div>`,
 /*12*/`<div class="slide"><div class="pageno">10</div>
   <div class="kicker reveal">POSITIONING · 世界模型版图</div>
@@ -410,7 +453,7 @@ const slides = [
   <p class="sm reveal" style="margin-top:12px"><b style="color:#fff">架构支撑</b>：多智能体信息隔离 · 结构化状态+独立记忆 · 状态优先建模（不逐字生成对话，优先预测人群状态/态度/传播趋势）· 关键推演默认保留对照组 · 日志回放与偏差归因</p>
   <p class="sm reveal" style="margin-top:8px"><b style="color:#fff">怎么评估自己（看决策有没有用，不看像不像真人）</b>：POC 阶段看 方向判断 / 方案排序 / 区间质量 / COD 反事实敏感性；进入真实闭环后再看 ASR 动作成功率。<br><b style="color:var(--gold)">关于 L3 说实话</b>：社会世界"自我进化 AI"仍属愿景，难在归因、伦理与合规 —— 我们不把 L3 包装成现货，先把受约束 L2 做到可验证、可回放、可对账。</p>
 </div>`,
-/*14b*/`<div class="slide">
+/*14*/`<div class="slide">
   <div class="kicker reveal">PARTNERSHIP · 从试点验证到连续推演</div>
   <h2 class="reveal">合作路径：<span class="hl">从试点验证到连续推演</span></h2>
   <p class="lead reveal" style="font-size:16px">我们不是交付一次性报告，而是从可验收试点开始，逐步沉淀只属于你的决策校准层。</p>
@@ -421,7 +464,7 @@ const slides = [
   </div>
   <div class="quote reveal">✅ 你的专属壁垒：你的数据只用于构建面向你的专属校准层与评估基线；合作越久，模型对你的业务语境与用户分布拟合越充分 —— 这是竞品难以短期复现的场景校准资产。</div>
 </div>`,
-/*14*/`<div class="slide"><div class="pageno">13</div>
+/*15*/`<div class="slide"><div class="pageno">12</div>
   <div class="kicker reveal">POC · 2–4 周可验收试点</div>
   <h2 class="reveal">合作起点：<span class="hl">2–4 周 POC 计划</span></h2>
   <p class="lead reveal" style="font-size:16px">目标不是一开始替你做决策，而是先验证：境瞳能否在你的真实场景中，优于现有基线。</p>
@@ -433,7 +476,7 @@ const slides = [
     <div class="stage-item reveal"><div class="em">5</div><div class="tx"><b>下一阶段判断</b>：达标进入专属校准与连续推演；不达标复盘原因，不强推长期合作</div></div>
   </div>
 </div>`,
-/*15*/`<div class="slide"><div class="pageno">14</div>
+/*16*/`<div class="slide"><div class="pageno">13</div>
   <div class="kicker reveal">DATA · 最小必要数据</div>
   <h2 class="reveal">我们需要的数据：<span class="hl">最小必要，不要个人信息</span></h2>
   <div class="two">
@@ -441,19 +484,108 @@ const slides = [
     <div class="card reveal" style="align-self:start"><div class="ic">🚫</div><h3>不需要什么</h3><p>❌ 姓名、手机号、身份证、精确地址等 PII<br>❌ 原始数据库凭证<br>❌ 与本次试点无关的业务数据<br>❌ 默认不需要用户级明细，优先用分桶/聚合/脱敏数据</p></div>
   </div>
   <p class="sm reveal" style="margin-top:10px;color:#b9c7ea">时间窗口通常为过去 3–12 个月相关聚合数据；评论等文本优先用情绪/主题分布或脱敏样本，不需原始评论与用户 ID；敏感业务信息仅在 NDA 与数据处理协议范围内最小化使用。</p>
+  <p class="sm reveal" style="margin-top:8px;color:var(--gold)">客户数据不是用于扩充公共人群底座，而是用于构建面向本客户场景的专属校准层；不会回流为其他客户可用的人群资产。</p>
 </div>`,
-/*16*/`<div class="slide"><div class="pageno">15</div>
+/*17*/`<div class="slide"><div class="pageno">14</div>
   <div class="kicker reveal">SECURITY · 数据安全边界</div>
   <h2 class="reveal">数据安全：<span class="hl">边界提前说清</span></h2>
   <ul class="feat" style="gap:14px;margin-top:8px">
     <li class="reveal"><b>01 只收脱敏数据</b> —— PII 在你方本地脱敏后交付，我们不接触可识别原始个人信息</li>
     <li class="reveal"><b>02 最小必要原则</b> —— 仅提取本次推演所需核心字段，严格控制采集范围与粒度</li>
     <li class="reveal"><b>03 合规协议兜底</b> —— 签署 NDA 与数据处理协议，界定用途、存储期限与销毁流程</li>
-    <li class="reveal"><b>04 专用与隔离</b> —— 数据、校准参数与结论仅用于本次合作，不给第三方或竞品项目；如需行业排他，另行商务约定</li>
+    <li class="reveal"><b>04 专用与隔离</b> —— 数据、校准参数与结论仅用于本次合作，不给第三方或竞品项目；如需行业排他，另行商务约定<br><span style="color:var(--sub);font-size:14px">芥子公共底座与客户专属校准层隔离；客户数据、校准参数和项目结论不回流公共底座，不用于其他客户项目。</span></li>
     <li class="reveal"><b>05 合规与伦理边界</b> —— 仅用于群体级决策模拟与方案优化，不用于个体定向操控、歧视性定价或规避监管</li>
   </ul>
 </div>`,
-/*17*/`<div class="slide center"><div class="pageno">→</div>
+/*17*/`<div class="slide slide-dense"><div class="pageno" style="color:var(--gold)">A1</div>
+  <div class="kicker reveal">APPENDIX A · DATA COVERAGE</div>
+  <h2 class="reveal">附录A：<span class="hl">数据覆盖与边界</span></h2>
+  <p class="lead reveal" style="font-size:15px">总规模：<b style="color:#fff">13.5M+ 原型人 · 覆盖100个国家</b>，所有数据经去重、成人过滤后口径统一，可审计可追溯。</p>
+  <div class="cards reveal" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">🔹 5个深度建成国家（四层完整）</div>
+      <p style="font-size:13px;line-height:1.7">
+      • 墨西哥：330万原型人（普查微观样本）<br>
+      • 美国：281万原型人（普查微观样本，按权重还原2.61亿成年人口，对齐官方2.58亿公开数据）<br>
+      • 法国：260万原型人（普查微观样本）<br>
+      • 智利：215万原型人（普查微观样本）<br>
+      • 中国：239万原型人（CGSS微观种子 × 第七次人口普查公开边际加权展开，对齐2026人口数据）<br>
+      <span style="color:var(--sub);font-size:12px">*5国深度层合计1325万+原型人，包含结构层、关系网、类型层、运行时接口完整能力</span>
+      </p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">🔹 95国态度覆盖层</div>
+      <p style="font-size:13px;line-height:1.7">
+      • 25万+真实受访者态度向量<br>
+      • 数据来源：GSS/CGSS/WVS/Afrobarometer五源归一化<br>
+      • 覆盖字段：价值观、信任度、政治倾向、生活满意度等核心态度变量<br>
+      • 边界：未铺设关系网，仅作为态度先验使用
+      </p>
+    </div>
+  </div>
+  <div class="card reveal" style="margin-top:10px">
+    <div class="num-ic" style="font-size:16px">🔹 数据更新与权重口径</div>
+    <p style="font-size:13px;line-height:1.7">
+    • 普查层：按各国官方最新公开普查数据更新，权重严格对齐官方人口结构、年龄分布、教育梯度、家庭规模<br>
+    • 态度层：每12个月更新一次调查数据，所有字段保留测量年份标注<br>
+    • 所有字段明确标注来源类型、更新时间、权重口径，支持全链路审计
+    </p>
+  </div>
+  <p class="sm reveal" style="margin-top:8px;color:var(--gold)">*总规模经重叠去重、成人过滤后约1350万+，对外统一口径为13.5M+原型人。</p>
+</div>`,
+/*18*/`<div class="slide slide-dense"><div class="pageno" style="color:var(--gold)">A2</div>
+  <div class="kicker reveal">APPENDIX B · AUDIT MECHANISM</div>
+  <h2 class="reveal">附录B：<span class="hl">可信度与审计机制（四条铁律）</span></h2>
+  <p class="lead reveal" style="font-size:15px">所有数据与生成内容严格遵循工程可信原则，不做“看起来完美”的假数据，所有字段可审计可追溯。</p>
+  <div class="cards reveal" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">01 缺失为空，绝不编造</div>
+      <p style="font-size:13px;line-height:1.7">未调查、未采集、未回答的字段统一保留为空，不用大模型生成补全假数据，不做“看起来完整”的虚假用户画像。</p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">02 字段带来源标签</div>
+      <p style="font-size:13px;line-height:1.7">所有字段统一标注来源类型，明确区分「官方普查/公开统计/问卷实测/模型推断/合成生成」五档，全链路可追溯可审计。</p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">03 关系边分类标注</div>
+      <p style="font-size:13px;line-height:1.7">所有关系边明确区分「观测/推断/生成」三档，不把按规律生成的弱关系冒充真实观测的社会关系。</p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">04 实测与推算分账</div>
+      <p style="font-size:13px;line-height:1.7">问卷实测的兴趣/态度数据，和按人群特征推算的兴趣标签分开存储、分开标注，不混淆实测结果和推算结果。</p>
+    </div>
+  </div>
+  <div class="quote reveal" style="margin-top:12px">额外机制：时间口径真实，用联合国WPP生命表计算人口存活、按法定年龄计算退休，不同年份数据标注测量年，不把横截面数据伪装成人生轨迹。</div>
+</div>`,
+/*19*/`<div class="slide slide-dense"><div class="pageno" style="color:var(--gold)">A3</div>
+  <div class="kicker reveal">APPENDIX C · NETWORK & RUNTIME</div>
+  <h2 class="reveal">附录C：<span class="hl">关系网结构与运行时流程</span></h2>
+  <div class="cards reveal" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">🔹 关系网结构</div>
+      <p style="font-size:13px;line-height:1.7">
+      • <b>强关系（血缘/婚姻）</b>：从普查数据的家庭ID和与户主关系直接提取，真实观测，各国平均户规模精确对齐官方数据（墨西哥3.74/法国2.17/智利3.10/美国2.41）<br>
+      • <b>弱关系</b>：按社会学同质性规律校准生成，明确标注为「生成先验」，不冒充真实关系<br>
+      • <b>小世界特征</b>：实测平均路径长度4.8-5.2，聚类系数符合真实社会特征；美墨通过移民桥节点自然连通，跨国平均路径5.58，为自然涌现结果非人工拼接<br>
+      • <b>结构质量指标</b>：GNN识别真实夫妻AUC 0.911、亲子关系AUC 0.87、兄妹关系AUC 0.95<br>
+      <span style="color:var(--gold);font-size:12px">*注：以上指标仅用于关系网结构质量自检，不等同于业务结果预测准确率</span>
+      </p>
+    </div>
+    <div class="card">
+      <div class="num-ic" style="font-size:16px">🔹 运行时流程</div>
+      <p style="font-size:13px;line-height:1.7">
+      1. 目标人群抽样：按客户场景从芥子底座抽样对应人群<br>
+      2. 生成人设卡：注入身份、属性、初始立场<br>
+      3. 加载上下文：注入记忆、关系、人群类型标签<br>
+      4. 接入引擎：对接任意大模型/多智能体模拟器<br>
+      5. 输出结果：分群反应、传播路径、反事实对比结果<br><br>
+      <b>产品形态</b>：jiezi.renlab.ai（公开Demo）、只读API、SDK<br>
+      数据主权归客户，服务端不运行客户业务模拟逻辑。
+      </p>
+    </div>
+  </div>
+</div>`,
+/*20*/`<div class="slide center"><div class="pageno">→</div>
   <div class="kicker reveal">NEXT STEP · 建议下一步</div>
   <h2 class="reveal">从一个<span class="hl">「非核心但可对账」</span>的场景开始</h2>
   <div class="stage-row reveal" style="max-width:720px;margin:16px auto 0;text-align:left">
@@ -468,24 +600,60 @@ const slides = [
 ];
 
 const stage=document.getElementById('stage');
-slides.forEach((h)=>{const d=document.createElement('div');d.innerHTML=h;stage.appendChild(d.firstElementChild);});
-const els=[...document.querySelectorAll('.slide')];
-let cur=0;const counter=document.getElementById('counter'),prog=document.getElementById('progress');
+const viewport=document.getElementById('viewport');
+// 自适应缩放：viewport 1280x720 居中 + scale 等比适配任意分辨率
+function applyScale(){
+  const w=window.innerWidth,h=window.innerHeight;
+  const scale=Math.min(w/1280,h/720)*0.97;
+  viewport.style.transform=`translate(-50%,-50%) scale(${scale})`;
+}
+let _resizeTimer=null;
+function resizeStage(){
+  if(_resizeTimer) clearTimeout(_resizeTimer);
+  _resizeTimer=setTimeout(()=>{_resizeTimer=null;applyScale();},60);
+}
+window.addEventListener('resize',resizeStage);
+if(window.visualViewport){window.visualViewport.addEventListener('resize',resizeStage);}
+applyScale();
+
+slides.forEach((h)=>{const d=document.createElement('div');d.innerHTML=h;viewport.appendChild(d.firstElementChild);});
+const els=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+let cur=0,_switching=null;const counter=document.getElementById('counter'),prog=document.getElementById('progress');
 function show(n){n=Math.max(0,Math.min(els.length-1,n));
-  els.forEach((s,i)=>{s.classList.remove('active','exit-up');if(i<n)s.classList.add('exit-up');});
-  els[n].classList.add('active');cur=n;
+  // 已经在目标页且已激活 → 跳过
+  if(n===cur&&els[n].classList.contains('active')) return;
+  // 防抖：取消上一次未完成的切换定时器，立即执行本次
+  if(_switching){clearTimeout(_switching);_switching=null;}
+  const prev=cur;cur=n;
+  // 1. 清除 exit-up，给目标之前的 slide 加 exit-up
+  els.forEach(s=>s.classList.remove('exit-up'));
+  for(let i=0;i<n;i++) els[i].classList.add('exit-up');
+  // 2. 新 slide 先激活（开始 0.7s fade-in）
+  els[n].classList.add('active');
+  // 3. 旧 slide 延迟 50ms 再关（新 slide 已有约 7% 不透明度，交叉不闪）
+  if(prev!==n){
+    const old=prev;
+    setTimeout(()=>{els[old].classList.remove('active');},50);
+  }
   counter.textContent=String(n+1).padStart(2,'0')+' / '+String(els.length).padStart(2,'0');
-  prog.style.width=(n/(els.length-1)*100)+'%';}
+  prog.style.width=(n/(els.length-1)*100)+'%';
+  // 4. 过渡完成后清除标记
+  _switching=setTimeout(()=>{_switching=null;},400);}
 function next(){show(cur+1)}function prev(){show(cur-1)}
 document.getElementById('next').onclick=next;document.getElementById('prev').onclick=prev;
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
   else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
-  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement||document.webkitFullscreenElement?exitFullscreen():requestFullscreen(document.documentElement)}
   else if(e.key==='p'||e.key==='P'){window.print()}
   else if(e.key==='Home')show(0);else if(e.key==='End')show(els.length-1);});
-let sx=0;document.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
-document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)dx<0?next():prev()},{passive:true});
+let sx=0,sy=0;
+addPassiveEvent(document, 'touchstart', e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY});
+addPassiveEvent(document, 'touchend', e=>{
+  const dx=e.changedTouches[0].clientX-sx;
+  const dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)){dx<0?next():prev()}
+});
 show(0);
 (function(){const m=location.search.match(/shot=(\d+)/);if(m){document.querySelectorAll('.reveal').forEach(e=>e.style.animation='none');const st=document.createElement('style');st.textContent='.reveal{opacity:1!important;transform:none!important;filter:none!important}';document.head.appendChild(st);show(+m[1]);}})();
 </script>

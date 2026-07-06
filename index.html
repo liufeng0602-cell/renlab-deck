@@ -143,6 +143,13 @@ table.road td:first-child,table.road th:first-child{color:var(--sub);width:96px;
   #stage{align-items:center;padding:0}
   .slide{width:92vw;max-width:92vw;height:auto;max-height:90vh;min-height:auto;padding:28px 20px;border-radius:18px;gap:6px;justify-content:center;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
   .slide.center{padding:40px 22px}
+  /* 超长内容页: 顶对齐可滚动, 避免上下裁切 */
+  .slide-dense{justify-content:flex-start!important;padding-top:18px;padding-bottom:52px;max-height:92vh}
+  .slide-dense h2{font-size:19px;margin-bottom:10px}
+  .slide-dense .lead{font-size:13.5px}
+  .slide-dense .sm{font-size:12px;line-height:1.55}
+  .slide-dense .quote{font-size:12.5px}
+  .slide-dense .card p{font-size:12px}
   .pageno{display:none}
   .kicker{font-size:10px;letter-spacing:.14em;margin-bottom:8px}
   .pageno{font-size:34px;top:20px;right:20px}
@@ -360,21 +367,49 @@ const slides = [
   <div class="quote reveal">Social World Model 已在海外进入机构级决策场景。但中国市场的用户结构、媒介平台、监管边界与数据环境都不同，不能直接照搬 —— 境瞳的机会，是做面向中国市场的本土 Social World Model。</div>
 </div>`,
 /*12*/`<div class="slide"><div class="pageno">10</div>
-  <div class="kicker reveal">ROADMAP · 分 3 阶段落地</div>
-  <h2 class="reveal">技术路径：<span class="hl">L1 已可交付 · L2 研发中 · L3 愿景</span></h2>
-  <table class="road reveal">
-    <tr><th>阶段</th><th class="l1">L1 单场景推演（已可交付）</th><th class="l2">L2 全链路模拟（研发中·下一阶段）</th><th class="l3">L3 企业决策数字孪生（愿景）</th></tr>
-    <tr><td>核心能力</td><td>百万级等效人群建模 · 短周期行为模拟 · 基础传播链 · 单场景 A/B 反事实</td><td>长记忆智能体 · 多角色动态博弈 · 长周期演化 · 实时数据闭环 · 多模态理解</td><td>企业级决策数字孪生 · 跨场景因果推理 · 尾部风险压力测试 · AI 辅助决策寻优</td></tr>
-    <tr><td>大白话</td><td>搭出和真实用户结构一致的虚拟社会，方案投入即看接受度与转化</td><td>虚拟用户有记忆与惯性，模拟竞品/监管博弈，接真实数据后精度持续提升</td><td>构建企业级决策数字孪生，预判连锁反应与风险，AI 辅助推演最优方案</td></tr>
-    <tr><td>价值</td><td>单场景试错成本显著降低</td><td>覆盖全链路业务决策</td><td>决策模拟成为标准流程，沉淀为核心数字资产</td></tr>
-  </table>
-  <div class="road-stack" style="display:none">
-    <div class="card"><div class="num-ic" style="color:var(--green);font-size:16px">L1 单场景推演 · 已可交付</div><p><b>核心能力</b>：百万级等效人群建模 · 短周期行为模拟 · 基础传播链 · 单场景 A/B 反事实<br><b>大白话</b>：搭出和真实用户结构一致的虚拟社会，方案投入即看接受度与转化<br><b>价值</b>：单场景试错成本显著降低</p></div>
-    <div class="card"><div class="num-ic" style="color:var(--cyan);font-size:16px">L2 全链路模拟 · 研发中·下一阶段</div><p><b>核心能力</b>：长记忆智能体 · 多角色动态博弈 · 长周期演化 · 实时数据闭环 · 多模态理解<br><b>大白话</b>：虚拟用户有记忆与惯性，模拟竞品/监管博弈，接真实数据后精度持续提升<br><b>价值</b>：覆盖全链路业务决策</p></div>
-    <div class="card"><div class="num-ic" style="color:var(--gold);font-size:16px">L3 企业决策数字孪生 · 愿景</div><p><b>核心能力</b>：企业级决策数字孪生 · 跨场景因果推理 · 尾部风险压力测试 · AI 辅助决策寻优<br><b>大白话</b>：构建企业级决策数字孪生，预判连锁反应与风险，AI 辅助推演最优方案<br><b>价值</b>：决策模拟成为标准流程，沉淀为核心数字资产</p></div>
+  <div class="kicker reveal">POSITIONING · 世界模型版图</div>
+  <h2 class="reveal">我们的位置：<span class="hl">聚焦 L2，从可验证边界切入</span></h2>
+  <p class="lead reveal" style="font-size:15px">世界模型可用「能力层级 × 法则域」理解。境瞳聚焦 <b>L2 模拟器 × 社会世界</b>，但不把"通用社会 L2"包装成现货 —— 当前可交付的是<b>明确场景、明确数据边界、明确指标下的「受约束 L2」推演能力</b>。"受约束"不是降低价值，而是把可验证边界前置：只做有明确输入、明确决策、可对账结果的推演。</p>
+  <div class="two reveal" style="gap:16px;margin-top:10px">
+    <div>
+      <div class="sm" style="color:var(--cyan);font-family:var(--mono);margin-bottom:6px">纵轴 · 三层能力</div>
+      <div class="stage-row" style="gap:8px">
+        <div class="stage-item"><div class="tx"><b>L1 预测器</b>："接下茬"。通用推理模型单步已很强，但缺专门的状态/记忆/信息隔离/传播/校准框架时，用于多人长程社会模拟仍会角色漂移、信息串线、误差累积。<b>会推理 ≠ 会模拟社会</b></div></div>
+        <div class="stage-item" style="border-color:var(--accent)"><div class="tx"><b style="color:var(--cyan)">L2 模拟器</b>："在脑子里演一遍"。<b>境瞳聚焦层</b>，当前从「受约束 L2」切入：单场景、短/中周期、多方案反事实、结果可对账</div></div>
+        <div class="stage-item"><div class="tx"><b>L3 进化器</b>："科学家"，能自我归因更新。社会世界仍属研究与愿景，不作当前交付承诺；我们以日志/对账/校准为其打基础</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sm" style="color:var(--cyan);font-family:var(--mono);margin-bottom:6px">横轴 · 四类法则域</div>
+      <div class="stage-row" style="gap:7px">
+        <div class="stage-item" style="padding:11px 15px"><div class="tx">数字世界 · 规则由代码定义，确定性强 <b style="float:right;color:var(--sub)">★★</b></div></div>
+        <div class="stage-item" style="padding:11px 15px"><div class="tx">物理世界 · 规则稳定客观，可实验验证 <b style="float:right;color:var(--sub)">★★★</b></div></div>
+        <div class="stage-item" style="padding:11px 15px"><div class="tx">科学世界 · 规则客观但未被发现 <b style="float:right;color:var(--sub)">★★★★</b></div></div>
+        <div class="stage-item" style="border-color:var(--gold);padding:11px 15px"><div class="tx"><b style="color:var(--gold)">社会世界</b> · 规则会变、主观、有反身性、无唯一真值 <b style="float:right;color:var(--gold)">★★★★★</b></div></div>
+      </div>
+    </div>
   </div>
+  <div class="quote reveal" style="font-size:14px;margin-top:12px">社会世界为何最难：①规则会漂移 ②人群高度异质 ③存在反身性（你的预测会改变结果）④很难获得唯一真值 —— 最终不看"像不像真人"，而看<b>是否提升决策质量</b>。</div>
 </div>`,
-/*13*/`<div class="slide"><div class="pageno">11</div>
+/*13*/`<div class="slide slide-dense"><div class="pageno">11</div>
+  <div class="kicker reveal">DELIVERY BOUNDARY · 受约束 L2</div>
+  <h2 class="reveal">当前交付边界：<span class="hl">受约束 L2，不承诺通用 L2 / L3</span></h2>
+  <p class="lead reveal" style="font-size:15px">真正可用于决策的 L2，不是让一群 Agent 聊天，而是能稳定回答：<b>"如果我这么做，结果分布会怎么变？为什么变？哪里不确定？"</b> 我们交付的是边界清晰、可验证、可对账的「受约束 L2」。</p>
+  <table class="road reveal" style="margin-top:8px">
+    <tr><th>L2 门槛</th><th>严格要求</th><th>境瞳当前交付边界</th></tr>
+    <tr><td>长程连贯</td><td>多轮推演不崩：人设不忘、信息差不乱、状态可追踪</td><td>聚焦单场景、短/中周期；关键角色维护结构化状态，普通人群用聚合状态</td></tr>
+    <tr><td>干预敏感</td><td>改了动作，结果必须合理变化</td><td>支持 A/B/C 多方案反事实推演，输出方向判断、区间与排序</td></tr>
+    <tr><td>符合领域规则</td><td>不无原因违反行业规则、平台规范、社会心理</td><td>结构化约束+行业知识+必要校验降低反常识；如"道歉后负面更高"须能追因（甩锅/补偿不足/被关键节点二次放大）</td></tr>
+  </table>
+  <div class="road-stack road-stack13" style="display:none">
+    <div class="card"><div class="num-ic" style="font-size:15px">长程连贯</div><p><b>严格要求</b>：多轮推演不崩，人设不忘、信息差不乱、状态可追踪<br><b>当前交付</b>：聚焦单场景、短/中周期；关键角色结构化状态，普通人群聚合状态</p></div>
+    <div class="card"><div class="num-ic" style="font-size:15px">干预敏感</div><p><b>严格要求</b>：改了动作，结果必须合理变化<br><b>当前交付</b>：A/B/C 多方案反事实推演，输出方向判断、区间与排序</p></div>
+    <div class="card"><div class="num-ic" style="font-size:15px">符合领域规则</div><p><b>严格要求</b>：不无原因违反行业规则、平台规范、社会心理<br><b>当前交付</b>：结构化约束+行业知识+必要校验；反直觉结果须能追因</p></div>
+  </div>
+  <p class="sm reveal" style="margin-top:12px"><b style="color:#fff">架构支撑</b>：多智能体信息隔离 · 结构化状态+独立记忆 · 状态优先建模（不逐字生成对话，优先预测人群状态/态度/传播趋势）· 关键推演默认保留对照组 · 日志回放与偏差归因</p>
+  <p class="sm reveal" style="margin-top:8px"><b style="color:#fff">怎么评估自己（看决策有没有用，不看像不像真人）</b>：POC 阶段看 方向判断 / 方案排序 / 区间质量 / COD 反事实敏感性；进入真实闭环后再看 ASR 动作成功率。<br><b style="color:var(--gold)">关于 L3 说实话</b>：社会世界"自我进化 AI"仍属愿景，难在归因、伦理与合规 —— 我们不把 L3 包装成现货，先把受约束 L2 做到可验证、可回放、可对账。</p>
+</div>`,
+/*14b*/`<div class="slide"><div class="pageno">12</div>
   <div class="kicker reveal">PARTNERSHIP · 从试点验证到连续推演</div>
   <h2 class="reveal">合作路径：<span class="hl">从试点验证到连续推演</span></h2>
   <p class="lead reveal" style="font-size:16px">我们不是交付一次性报告，而是从可验收试点开始，逐步沉淀客户专属校准层。</p>
@@ -385,7 +420,7 @@ const slides = [
   </div>
   <div class="quote reveal">✅ 你的专属壁垒：客户数据仅用于构建面向本客户的专属校准层与评估基线；合作越久拟合越充分 —— 竞品难以短期复现的场景校准资产。</div>
 </div>`,
-/*14*/`<div class="slide"><div class="pageno">12</div>
+/*14*/`<div class="slide"><div class="pageno">13</div>
   <div class="kicker reveal">POC · 2–4 周可验收试点</div>
   <h2 class="reveal">合作起点：<span class="hl">2–4 周 POC 计划</span></h2>
   <p class="lead reveal" style="font-size:16px">目标不是一开始替你做决策，而是先验证：境瞳能否在你的真实场景中，优于现有基线。</p>
@@ -397,7 +432,7 @@ const slides = [
     <div class="stage-item reveal"><div class="em">5</div><div class="tx"><b>下一阶段判断</b>：达标进入专属校准与连续推演；不达标复盘原因，不强推长期合作</div></div>
   </div>
 </div>`,
-/*15*/`<div class="slide"><div class="pageno">13</div>
+/*15*/`<div class="slide"><div class="pageno">14</div>
   <div class="kicker reveal">DATA · 最小必要数据</div>
   <h2 class="reveal">我们需要的数据：<span class="hl">最小必要，不要个人信息</span></h2>
   <div class="two">
@@ -406,7 +441,7 @@ const slides = [
   </div>
   <p class="sm reveal" style="margin-top:10px;color:#b9c7ea">时间窗口通常为过去 3–12 个月相关聚合数据；评论等文本优先用情绪/主题分布或脱敏样本，不需原始评论与用户 ID；敏感业务信息仅在 NDA 与数据处理协议范围内最小化使用。</p>
 </div>`,
-/*16*/`<div class="slide"><div class="pageno">14</div>
+/*16*/`<div class="slide"><div class="pageno">15</div>
   <div class="kicker reveal">SECURITY · 数据安全边界</div>
   <h2 class="reveal">数据安全：<span class="hl">边界提前说清</span></h2>
   <ul class="feat" style="gap:14px;margin-top:8px">

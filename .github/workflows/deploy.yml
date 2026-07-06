@@ -1,0 +1,31 @@
+name: deploy to product.renlab.ai
+
+# Auth via GitHub OIDC -> AWS IAM role (no secrets needed in this repo).
+# The role trusts only this repo's main branch:
+#   arn:aws:iam::383189130646:role/renlab-deck-deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::383189130646:role/renlab-deck-deploy
+          aws-region: us-east-1
+
+      - name: Sync to S3
+        run: aws s3 sync . s3://renlab-deck-383189130646 --delete --exclude '.git/*' --exclude '.github/*'
+
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id E596N96TXFWEG --paths '/*'

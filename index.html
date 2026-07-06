@@ -396,15 +396,16 @@ const slides = [
   <h2 class="reveal">当前交付边界：<span class="hl">受约束 L2，不承诺通用 L2 / L3</span></h2>
   <p class="lead reveal" style="font-size:15px">真正可用于决策的 L2，不是让一群 Agent 聊天，而是能稳定回答：<b>"如果我这么做，结果分布会怎么变？为什么变？哪里不确定？"</b> 我们交付的是边界清晰、可验证、可对账的「受约束 L2」。</p>
   <table class="road reveal" style="margin-top:8px">
-    <tr><th>L2 门槛</th><th>严格要求</th><th>境瞳当前交付边界</th></tr>
-    <tr><td>长程连贯</td><td>多轮推演不崩：人设不忘、信息差不乱、状态可追踪</td><td>聚焦单场景、短/中周期；关键角色维护结构化状态，普通人群用聚合状态</td></tr>
-    <tr><td>干预敏感</td><td>改了动作，结果必须合理变化</td><td>支持 A/B/C 多方案反事实推演，输出方向判断、区间与排序</td></tr>
-    <tr><td>符合领域规则</td><td>不无原因违反行业规则、平台规范、社会心理</td><td>结构化约束+行业知识+必要校验降低反常识；如"道歉后负面更高"须能追因（甩锅/补偿不足/被关键节点二次放大）</td></tr>
+    <tr><th>L2 门槛</th><th class="l1">✅ 现在能做到</th><th class="l2">⚠️ 现在还做不到</th><th class="l3">🔓 什么条件下能做到</th></tr>
+    <tr><td>长程连贯<br><span style="color:var(--sub);font-weight:400">(演多轮不崩)</span></td><td>在一个具体场景里(如一次上市、一次活动)，稳定推演几天到几周，人物立场、谁知道什么信息不会乱</td><td>跨很长时间(几个月以上)、跨多个场景连着推演，还不够稳</td><td>接入你的实时数据、做多轮校准后，逐步把周期拉长</td></tr>
+    <tr><td>干预敏感<br><span style="color:var(--sub);font-weight:400">(改方案结果真的变)</span></td><td>给两三套方案(如定价 A/B/C)，我们能算出哪套人群反应更好、给出排序和区间</td><td>把一个行业所有可能的动作全自动穷举、找到"全局最优"</td><td>场景越聚焦、你给的历史数据越全，备选方案就能覆盖得越广</td></tr>
+    <tr><td>符合常理<br><span style="color:var(--sub);font-weight:400">(不出反常识结果)</span></td><td>靠行业知识+人工把关，保证结果不违反基本人性和平台规律</td><td>100% 全自动、无人工地保证每个结果都合理</td><td>在你的行业多跑几轮、把行业规则沉淀进模型后，人工介入越来越少</td></tr>
   </table>
+  <div class="quote reveal" style="font-size:13.5px;margin-top:10px">简单说：<b>在一个说得清楚的具体决策上，我们现在就能帮你把几套方案先跑一遍、看结果、排优劣；越想让我们做"什么都能预测的万能模型"，就越超出现阶段能力 —— 但随着合作加深、数据接入、行业规则沉淀，能力边界会一步步往外推。</b></div>
   <div class="road-stack road-stack13" style="display:none">
-    <div class="card"><div class="num-ic" style="font-size:15px">长程连贯</div><p><b>严格要求</b>：多轮推演不崩，人设不忘、信息差不乱、状态可追踪<br><b>当前交付</b>：聚焦单场景、短/中周期；关键角色结构化状态，普通人群聚合状态</p></div>
-    <div class="card"><div class="num-ic" style="font-size:15px">干预敏感</div><p><b>严格要求</b>：改了动作，结果必须合理变化<br><b>当前交付</b>：A/B/C 多方案反事实推演，输出方向判断、区间与排序</p></div>
-    <div class="card"><div class="num-ic" style="font-size:15px">符合领域规则</div><p><b>严格要求</b>：不无原因违反行业规则、平台规范、社会心理<br><b>当前交付</b>：结构化约束+行业知识+必要校验；反直觉结果须能追因</p></div>
+    <div class="card"><div class="num-ic" style="font-size:15px">长程连贯 · 演多轮不崩</div><p><b style="color:var(--green)">✅ 现在能做到</b>：一个具体场景里(如一次上市/活动)稳定推演几天到几周，立场和信息差不乱<br><b style="color:var(--gold)">⚠️ 还做不到</b>：跨几个月、跨多场景连着推演还不够稳<br><b style="color:var(--cyan)">🔓 条件</b>：接入实时数据、多轮校准后逐步拉长周期</p></div>
+    <div class="card"><div class="num-ic" style="font-size:15px">干预敏感 · 改方案结果真的变</div><p><b style="color:var(--green)">✅ 现在能做到</b>：给两三套方案(如定价 A/B/C)，算出哪套人群反应更好、给排序和区间<br><b style="color:var(--gold)">⚠️ 还做不到</b>：把一个行业所有动作全自动穷举找"全局最优"<br><b style="color:var(--cyan)">🔓 条件</b>：场景越聚焦、历史数据越全，备选覆盖越广</p></div>
+    <div class="card"><div class="num-ic" style="font-size:15px">符合常理 · 不出反常识结果</div><p><b style="color:var(--green)">✅ 现在能做到</b>：靠行业知识+人工把关，结果不违反基本人性与平台规律<br><b style="color:var(--gold)">⚠️ 还做不到</b>：100% 全自动、无人工保证每个结果都合理<br><b style="color:var(--cyan)">🔓 条件</b>：行业多跑几轮、规则沉淀进模型后，人工介入越来越少</p></div>
   </div>
   <p class="sm reveal" style="margin-top:12px"><b style="color:#fff">架构支撑</b>：多智能体信息隔离 · 结构化状态+独立记忆 · 状态优先建模（不逐字生成对话，优先预测人群状态/态度/传播趋势）· 关键推演默认保留对照组 · 日志回放与偏差归因</p>
   <p class="sm reveal" style="margin-top:8px"><b style="color:#fff">怎么评估自己（看决策有没有用，不看像不像真人）</b>：POC 阶段看 方向判断 / 方案排序 / 区间质量 / COD 反事实敏感性；进入真实闭环后再看 ASR 动作成功率。<br><b style="color:var(--gold)">关于 L3 说实话</b>：社会世界"自我进化 AI"仍属愿景，难在归因、伦理与合规 —— 我们不把 L3 包装成现货，先把受约束 L2 做到可验证、可回放、可对账。</p>

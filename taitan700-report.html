@@ -50,9 +50,24 @@
   .step4-tabbar { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
   .step4-tab-btn { border:1px solid #cdd7e6; background:#ffffff; color:#5b6a86; padding:7px 16px; border-radius:20px; font-size:13px; cursor:pointer; }
   .step4-tab-btn.active { background:#3b6fe0; color:#fff; border-color:#3b6fe0; }
+  #pwInput:focus { border-color:#3b6fe0; }
+  #pwInput.err { border-color:#e04b4f; }
 </style>
 </head>
 <body>
+
+<!-- ===== 访问密码锁 ===== -->
+<div id="pwLock" style="position:fixed; inset:0; z-index:99999; background:rgba(15,28,50,0.86); display:flex; align-items:center; justify-content:center; padding:20px;">
+  <div style="background:#ffffff; border:1px solid #dfe6f0; border-radius:14px; box-shadow:0 18px 60px rgba(6,16,35,0.35); width:100%; max-width:400px; padding:34px 30px 30px; text-align:center; box-sizing:border-box;">
+    <div style="font-size:11px; color:#3b6fe0; letter-spacing:2px; margin-bottom:10px; font-weight:600;">RENLAB · 社会世界模型</div>
+    <div style="font-size:19px; color:#14203a; font-weight:700; line-height:1.5; margin-bottom:6px;">北汽-泰钽700 复盘报告</div>
+    <div style="font-size:13px; color:#7b89a5; line-height:1.7; margin-bottom:20px;">本报告为定向交付内容，请输入访问密码后查看。</div>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="请输入访问密码" style="width:100%; box-sizing:border-box; height:44px; border:1px solid #cdd7e6; border-radius:8px; padding:0 14px; font-size:14px; color:#22334d; outline:none; text-align:center;" />
+    <div id="pwErr" style="display:none; color:#e04b4f; font-size:12px; margin-top:8px; text-align:center;">密码不正确，请重试</div>
+    <button id="pwBtn" onclick="pwUnlock()" style="width:100%; margin-top:14px; height:44px; border:0; border-radius:8px; background:#3b6fe0; color:#fff; font-size:14px; font-weight:600; cursor:pointer;">解锁报告</button>
+    <div style="font-size:11px; color:#aab4c8; margin-top:14px; line-height:1.6;">本页内容仅限授权查看 · 请勿转发</div>
+  </div>
+</div>
 
 <!-- ===== 封面 ===== -->
 <div class="page" style="min-height:90vh; display:flex; flex-direction:column; justify-content:center;">
@@ -4602,5 +4617,33 @@ function closeAgent() {
 })();
 </script>
 
+<script>
+// 访问密码锁（ES5）
+(function(){
+  var KEY='tt700_unlocked';
+  var PASS='taitan700';
+  function hide(){ document.getElementById('pwLock').style.display='none'; }
+  if(sessionStorage.getItem(KEY)==='1'){ hide(); }
+  function unlock(){
+    var inp=document.getElementById('pwInput');
+    if(inp.value===PASS){
+      sessionStorage.setItem(KEY,'1');
+      hide();
+    } else {
+      inp.value='';
+      inp.className='err';
+      var err=document.getElementById('pwErr');
+      err.style.display='block';
+      inp.focus();
+    }
+  }
+  document.getElementById('pwBtn').onclick=unlock;
+  document.getElementById('pwInput').onkeydown=function(e){
+    if(e.keyCode===13){ unlock(); }
+  };
+  window.pwUnlock=unlock;
+  document.getElementById('pwInput').focus();
+})();
+</script>
 </body>
 </html>

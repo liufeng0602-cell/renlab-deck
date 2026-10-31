@@ -141,7 +141,35 @@
     .sec-h .q{width:100%;text-align:left;margin-top:2px;}
   }
 </style>
-</head>
+<style>
+#lock{position:fixed;inset:0;z-index:9999;background:radial-gradient(1200px 800px at 50% 40%,#101F38 0%,#0E1729 70%);display:flex;align-items:center;justify-content:center;transition:opacity .3s;}
+.lock-card{width:340px;padding:38px 30px;background:#101F38;border:1px solid #2A3A52;border-radius:16px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.45);}
+.lock-ring{width:52px;height:52px;margin:0 auto 16px;border-radius:50%;border:2px solid #38BDF8;display:flex;align-items:center;justify-content:center;color:#4ADE80;font-size:24px;}
+.lock-title{color:#F1F5F9;font-size:18px;font-weight:700;letter-spacing:.5px;}
+.lock-sub{color:#94A3B8;font-size:13px;margin:8px 0 22px;}
+.lock-in{display:flex;gap:8px;}
+.lock-in input{flex:1;background:#0E1729;border:1px solid #2A3A52;color:#F1F5F9;padding:11px 12px;border-radius:10px;font-size:14px;outline:none;}
+.lock-in input:focus{border-color:#38BDF8;}
+.lock-in button{background:linear-gradient(135deg,#0EA5E9,#38BDF8);color:#0B1220;border:0;border-radius:10px;padding:0 16px;font-size:14px;font-weight:700;cursor:pointer;}
+.lock-in button:hover{filter:brightness(1.08);}
+.err{display:none;color:#F87171;font-size:12px;margin-top:12px;}
+#lock.shake .lock-card{animation:lockShake .35s;}
+@keyframes lockShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@media(max-width:480px){.lock-card{width:calc(100% - 48px);}}
+</style></head>
+
+<div id="lock">
+  <div class="lock-card">
+    <div class="lock-ring">&#128274;</div>
+    <div class="lock-title">AIVA ME7 上市舆论推演</div>
+    <div class="lock-sub">本报告已加密，输入访问密码后查看</div>
+    <div class="lock-in">
+      <input type="password" placeholder="访问密码" autocomplete="off">
+      <button type="button">进入报告</button>
+    </div>
+    <div class="err">密码错误，请重试</div>
+  </div>
+</div>
 <body>
 <div class="wrap">
 
@@ -819,5 +847,21 @@
 
 
 </div>
+
+<script>
+(function(){
+  var KEY='me7', S='me7_locked_v1';
+  var lock=document.getElementById('lock');
+  if(!lock) return;
+  try{ if(sessionStorage.getItem(S)){ lock.parentNode.removeChild(lock); return; } }catch(e){}
+  var input=lock.querySelector('input'), btn=lock.querySelector('button'), err=lock.querySelector('.err');
+  function unlock(){ try{ sessionStorage.setItem(S,'1'); }catch(e){} lock.style.opacity='0'; setTimeout(function(){ lock.parentNode.removeChild(lock); },300); }
+  function deny(){ err.style.display='block'; input.value=''; input.focus(); lock.classList.remove('shake'); void lock.offsetWidth; lock.classList.add('shake'); }
+  function check(){ (input.value.trim()===KEY) ? unlock() : deny(); }
+  btn.addEventListener('click', check);
+  input.addEventListener('keydown', function(ev){ if(ev.key==='Enter') check(); });
+  input.focus();
+})();
+</script>
 </body>
 </html>

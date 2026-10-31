@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIVA ME7 上市舆论推演</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1729'/%3E%3Ccircle cx='16' cy='14' r='7' fill='none' stroke='%2338BDF8' stroke-width='2'/%3E%3Cpath d='M16 21v6M11 27h10' stroke='%234ADE80' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0E1729; --panel:#1D293B; --panel2:#16233A; --border:#2A3A52;
+    --blue:#38BDF8; --green:#4ADE80; --red:#F87171; --yellow:#FBBF24; --orange:#FB923C;
+    --text:#CBD5E1; --weak:#94A3B8; --white:#F1F5F9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px;}
+  /* ===== 头部 ===== */
+  .hero{border:1px solid var(--border);border-radius:16px;background:linear-gradient(160deg,#101F38 0%,#0E1729 60%);padding:34px 34px 26px;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.16) 0%,transparent 65%);}
+  .hero .eyebrow{font-size:12px;letter-spacing:2px;color:var(--blue);font-weight:600;text-transform:uppercase;}
+  .hero h1{font-size:30px;color:var(--white);font-weight:800;margin:8px 0 4px;letter-spacing:1px;}
+  .hero .sub{font-size:16px;color:var(--weak);margin-bottom:16px;}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .hero .meta span{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);color:var(--blue);font-size:13px;padding:5px 12px;border-radius:999px;font-weight:600;}
+  .stance{margin-top:16px;border-top:1px dashed var(--border);padding-top:12px;font-size:13px;color:var(--yellow);}
+  /* ===== 章节 ===== */
+  .sec{margin-top:34px;}
+  .sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:16px;}
+  .sec-h .no{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:1px;}
+  .sec-h h2{font-size:20px;color:var(--white);font-weight:700;}
+  .sec-h .q{font-size:13px;color:var(--weak);margin-left:auto;text-align:right;}
+  .lead{font-size:14px;color:var(--weak);margin-bottom:16px;}
+  .lead b{color:var(--text);}
+  /* ===== 卡片/网格 ===== */
+  .grid{display:grid;gap:14px;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+  .card .k{font-size:12px;color:var(--weak);letter-spacing:1px;}
+  .card .v{font-size:26px;font-weight:800;color:var(--white);margin:4px 0 6px;line-height:1.2;}
+  .card .v small{font-size:14px;font-weight:600;color:var(--weak);}
+  .card .d{font-size:12.5px;color:var(--weak);line-height:1.55;}
+  .card .d b{color:var(--text);}
+  /* ===== 表格 ===== */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .tblwrap table{min-width:640px;}
+  @media(max-width:760px){.tblwrap table{min-width:560px;}}
+  th{background:var(--panel2);color:var(--white);font-weight:600;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:12.5px;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid rgba(42,58,82,.5);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:600;}
+  .t-g{color:var(--green);background:rgba(74,222,128,.1);}
+  .t-r{color:var(--red);background:rgba(248,113,113,.1);}
+  .t-y{color:var(--yellow);background:rgba(251,191,36,.1);}
+  .t-b{color:var(--blue);background:rgba(56,189,248,.1);}
+  /* ===== 条形图 ===== */
+  .bar-row{display:grid;grid-template-columns:190px 1fr 52px;align-items:center;gap:12px;margin-bottom:8px;}
+  .bar-row .lbl{font-size:13px;color:var(--text);text-align:right;line-height:1.3;}
+  .bar-row .lbl small{display:block;color:var(--weak);font-size:11px;}
+  .bar-track{background:rgba(255,255,255,.05);border-radius:4px;height:20px;position:relative;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:4px;}
+  .bar-row .pct{font-size:13px;font-weight:700;color:var(--white);}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:10px 0 14px;font-size:12.5px;color:var(--weak);}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px;}
+  /* ===== 情绪曲线 ===== */
+  .chart-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px 22px 14px;overflow-x:auto;}
+  .chart-card svg{display:block;width:100%;min-width:640px;height:auto;}
+  /* ===== 原声 ===== */
+  .quote{background:var(--panel2);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:12px 16px;margin:10px 0;font-size:13.5px;color:var(--text);}
+  .quote .who{display:block;font-size:11.5px;color:var(--weak);margin-top:5px;}
+  .quote.g{border-left-color:var(--green);}
+  .quote.r{border-left-color:var(--red);}
+  .quote.y{border-left-color:var(--yellow);}
+  /* ===== 传播 ===== */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:stretch;}
+  .flow .node{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:12.5px;text-align:center;position:relative;}
+  .flow .node b{display:block;color:var(--white);font-size:13px;margin-bottom:3px;}
+  .flow .node span{color:var(--weak);font-size:11.5px;}
+  .flow .arr{display:flex;align-items:center;justify-content:center;color:var(--weak);font-size:16px;font-weight:700;}
+  .flow .node.hl-g{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.06);}
+  .flow .node.hl-r{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.06);}
+  /* ===== 附录 ===== */
+  .appendix{margin-top:40px;border-top:1px solid var(--border);padding-top:8px;}
+  .agent{display:grid;grid-template-columns:2fr 3fr 2fr 1fr;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:13px;}
+  .agent .a1 b{color:var(--white);}
+  .agent .a1 span{display:block;color:var(--weak);font-size:11.5px;margin-top:2px;}
+  .agent .a2{color:var(--text);}
+  .agent .a3{color:var(--weak);font-size:12.5px;}
+  .agent .a4{text-align:right;}
+  .footer{margin-top:48px;border-top:1px solid var(--border);padding-top:16px;font-size:12.5px;color:var(--weak);text-align:center;line-height:1.8;}
+  .footer b{color:var(--yellow);}
+  /* ===== 重点数字高亮（01/02） ===== */
+  .hl-num{display:inline-block;font-size:32px;font-weight:800;line-height:1.1;}
+  .hl-num.red{color:var(--red);} .hl-num.green{color:var(--green);}
+  .hl-num.yellow{color:var(--yellow);} .hl-num.blue{color:var(--blue);}
+  .hl-num small{font-size:13px;font-weight:600;color:var(--weak);}
+  .bigcard{background:linear-gradient(160deg,rgba(56,189,248,.07) 0%,var(--panel) 55%);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+  .bigcard .k{font-size:12px;color:var(--weak);letter-spacing:1px;}
+  .bigcard .d{font-size:12.5px;color:var(--weak);line-height:1.55;margin-top:4px;}
+  .bigcard .d b{color:var(--text);}
+  .metric{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px;}
+  .dot.r{background:var(--red);} .dot.g{background:var(--green);} .dot.y{background:var(--yellow);}
+  /* ===== 立场小标签（06） ===== */
+  .st{display:inline-block;font-size:11px;padding:1px 7px;border-radius:6px;font-weight:600;margin-right:3px;white-space:nowrap;}
+  .st-g{color:var(--green);background:rgba(74,222,128,.12);}
+  .st-r{color:var(--red);background:rgba(248,113,113,.12);}
+  .st-y{color:var(--yellow);background:rgba(251,191,36,.12);}
+  /* ===== 可点击 Agent 卡（附录C） ===== */
+  details.q-card{background:var(--panel2);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;margin:10px 0;}
+  details.q-card.g{border-left-color:var(--green);}
+  details.q-card.r{border-left-color:var(--red);}
+  details.q-card.y{border-left-color:var(--yellow);}
+  details.q-card summary{cursor:pointer;padding:12px 16px;font-size:13.5px;color:var(--text);list-style:none;position:relative;}
+  details.q-card summary::-webkit-details-marker{display:none;}
+  details.q-card summary::after{content:"＋ 查看发言 Agent 画像";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--blue);background:rgba(56,189,248,.12);padding:2px 8px;border-radius:999px;white-space:nowrap;}
+  details.q-card[open] summary::after{content:"收起 ↑";}
+  details.q-card .who{display:block;font-size:11.5px;color:var(--weak);margin-top:5px;padding-right:120px;}
+  details.q-card .agent-box{border-top:1px solid var(--border);margin:0 14px 12px;padding-top:10px;}
+  details.q-card .ag{font-size:13px;color:var(--white);font-weight:700;margin-bottom:8px;}
+  details.q-card .ag span{color:var(--weak);font-weight:400;font-size:12px;}
+  details.q-card .agrid{display:grid;grid-template-columns:1fr 1fr;gap:5px 16px;font-size:12px;color:var(--weak);line-height:1.5;}
+  details.q-card .agrid b{color:var(--text);}
+  details.q-card .agrid .full{grid-column:1/-1;}
+  details.q-card .pos{color:var(--green);} details.q-card .neg{color:var(--red);} details.q-card .neu{color:var(--yellow);}
+  @media(max-width:760px){
+    .g4{grid-template-columns:repeat(2,1fr);}
+    .g3{grid-template-columns:1fr;}
+    .g2{grid-template-columns:1fr;}
+    .bar-row{grid-template-columns:120px 1fr 44px;gap:8px;}
+    .bar-row .lbl{font-size:12px;text-align:left;}
+    .flow{grid-template-columns:1fr 1fr;}
+    .flow .arr{transform:rotate(90deg);}
+    .agent{grid-template-columns:1fr;gap:6px;}
+    .agent .a4{text-align:left;}
+    .hero h1{font-size:23px;}
+    .sec-h{flex-wrap:wrap;}
+    .sec-h .q{width:100%;text-align:left;margin-top:2px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===== 头部 ===== -->
+<div class="hero">
+  <div class="eyebrow">SOCIAL WORLD MODEL · 话题舆情走向模拟推演</div>
+  <h1>AIVA ME7 上市舆论推演</h1>
+  <div class="sub">模拟世界中真实涌现的舆论地形 —— 谁在说、说什么、怎么说、传向哪</div>
+  <div class="meta">
+    <span>20 轮独立推演 · 每轮 10 万名 Agent · 累计 200 万 Agent 次</span>
+    <span>8 类人群 · 22 个舆论方向</span>
+    <span>6 大平台 · 30 天时间窗</span>
+  </div>
+  <div class="stance">口径声明：本报告只陈述模拟世界里已发生的舆论地形（声音、人群、平台、传播路径、影响量级），不含任何营销动作建议。</div>
+</div>
+
+<!-- ===== 01 一页看懂 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">01</span><h2>一页看懂：ME7 上市舆论的全貌</h2>
+    <span class="q">30 秒抓住核心</span>
+  </div>
+  <div class="lead">上市信息注入模拟世界 30 天后，涌现出如下舆情地形：<b>热度高、好感偏负、认知被"半价问界"锚定，正向靠设计、负向靠智驾、华为分家叙事与品牌看衰。</b></div>
+  <div class="grid g4">
+    <div class="card"><div class="k">话题热度</div><div class="v">3.8<span>/5</span></div><div class="d">上市级话题，关注度高：设计出圈 + "半价问界"争议双引擎，几乎人人有立场。</div></div>
+    <div class="card"><div class="k">整体好感度</div><div class="v"><span class="hl-num red">2.8<small>/5</small></span></div><div class="d">正向声量 <b class="pos" style="color:var(--green);">35.3%</b> &lt; 负向 <b class="neg" style="color:var(--red);">49.6%</b>，<b>夸的没骂的响</b>；中立 15.1% 以询价、等消化、等实测为主。</div></div>
+    <div class="card"><div class="k">对立程度</div><div class="v"><span class="hl-num orange" style="color:var(--orange);">高</span></div><div class="d">"买它图什么"与"就该买它"两极并存；质疑者 5.5% 的人贡献 <b>16.7%</b> 的声量、且以负向为主。</div></div>
+    <div class="card"><div class="k">标签处境</div><div class="v"><span class="hl-num yellow">偏紧</span></div><div class="d">"半价问界"标签已真实出现并扩散，AIVA 独立认知被问界/华为参照系<b>部分吸附</b>。</div></div>
+  </div>
+  <div class="grid g4" style="margin-top:14px;">
+    <div class="bigcard"><div class="k">负向声量</div><div class="metric"><span class="hl-num red">49.6%</span></div><div class="d">模拟世界中近半的声量带，智驾成熟度、华为分家叙事与品牌看衰三线是主源。</div></div>
+    <div class="bigcard"><div class="k">正向声量</div><div class="metric"><span class="hl-num green">35.3%</span></div><div class="d">灵动光眸设计 + 豆包座舱 + 性价比，是正向情绪的三个来源。</div></div>
+    <div class="bigcard"><div class="k">选择池纳入</div><div class="metric"><span class="hl-num blue">27.4%</span></div><div class="d">全体 Agent 中，30 天末把 ME7 放进购车选择池的比例（18.3%+3.1%+6.0%，占全体）。</div></div>
+    <div class="bigcard"><div class="k">负面残留</div><div class="metric"><span class="hl-num yellow">25.9%</span></div><div class="d">30 天末负向声量占比，智驾质疑与标签问题在口碑期仍持续存在。</div></div>
+  </div>
+</div>
+
+<!-- ===== 02 结论怎么来的 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">02</span><h2>结论怎么来的：注入了什么、跑了多少</h2>
+    <span class="q">可信度背书 · 可复现</span>
+  </div>
+  <div class="lead">共 <b style="color:var(--blue);">20 轮</b>独立推演、每轮 <b style="color:var(--blue);">10 万名</b> Agent、累计 <b style="color:var(--blue);">200 万 Agent 次</b>，圈定 8 类人群，观测巴黎首秀后到首批口碑期的 <b style="color:var(--blue);">30 天</b>自然演化。后文每个占比都是 20 轮中实际涌现、收集回来的结果（中位数收敛），固定随机种子、可复现。</div>
+  <div class="tblwrap"><table>
+    <tr><th style="width:140px;">要素</th><th>设定</th></tr>
+    <tr><td><b>注入事件</b></td><td>注入 ME7 上市信息包：巴黎"灵眸之夜"全球首秀（外观/灵动光眸）、工信部申报（尺寸/动力/配置）、上市传播动作（豆包座舱 / 元戎智驾 / 20 万级定位 / 增程+纯电双动力），挂载申报公布、预售、交付等事件节点，不预设品牌干预。</td></tr>
+    <tr><td><b>Agent 种类</b></td><td>8 类人群（按 20 万级新能源轿跑 SUV 购车人群结构划分）：年轻科技极客 / 性价比务实派 / 年轻首购族 / 华为生态用户 / 智驾关注党 / 家庭增购用户 / 设计颜值党 / 品牌质疑者。</td></tr>
+    <tr><td><b>规模 / 轮数</b></td><td>每轮 <b style="color:var(--blue);">100,000</b> 名 Agent，共 <b style="color:var(--blue);">20</b> 轮，取中位数收敛结果。</td></tr>
+    <tr><td><b>时间窗</b></td><td>巴黎首秀（D1）→ 工信部申报（D7）→ 预售开启（D15）→ 交付开启（D22）→ 首批口碑（D30），共 <b style="color:var(--blue);">30 天</b>，情绪按天推进。</td></tr>
+    <tr><td><b>竞品环境</b></td><td>小米 YU7、智界 R7、问界 M6、小鹏 G6、阿维塔 07、智己 LS6、深蓝 S7、零跑 C11 保持正常营销节奏（基线情景，未注入主动反制）。</td></tr>
+  </table></div>
+  <div class="grid g2" style="margin-top:14px;">
+    <div class="card"><div class="k">证据分级（数字可信度）</div><div class="d" style="margin-top:6px;">
+      <b>D1 事实</b>：ME7 公开参数、上市节点、竞品公开信息（可查证）<br>
+      <b>D2 规律</b>：表达系数、平台放大效应、新品牌舆论规律（历史回测标定）<br>
+      <b>D3 假设</b>：人群占比、方向势能、态度分值 —— 给区间并扰动，真实数据回流即校准
+    </div></div>
+    <div class="card"><div class="k">代表谁 / 边界</div><div class="d" style="margin-top:6px;">
+      ▸ 代表与 20 万级新能源 SUV 目标客群对齐的泛人群舆论<br>
+      ▸ 是模拟出来的结构与分布，不是确定预言<br>
+      ▸ 社媒聆听 / 问卷回流后替换 D3 先验，结论随数据收敛
+    </div></div>
+  </div>
+  </div>
+
+<!-- ===== 03 主流声音全景 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">03</span><h2>模拟世界的全部主流声音：22 个舆论方向</h2>
+    <span class="q">谁在夸、为什么夸、怎么夸、占多少；谁在骂、为什么骂、怎么骂、占多少</span>
+  </div>
+  <div class="lead">30 天内模拟世界共涌现 22 个可识别的舆论方向（占总声量%，20 轮中位数，正/负/中三类合计 100.0%）。<b>负向 49.6%：除智驾、节奏与"发布了个寂寞"外，"华为/赛力斯分家"冷饭、"等着看品牌死"的幸灾乐祸声、同厂"换壳"论与宁德入股绑定，是新增的大块负面地形；正向 35.3%：夸声集中在设计、AI 座舱、性价比三条线；中立 15.1%：以询价、等实测、等消化为主。</b>下面是 22 个方向合并排列的完整明暗谱——谁在说、为什么、原声长什么样。</div>
+
+  <div class="legend">
+    <span><i style="background:var(--red);"></i>负向声音（12 类 · 合计 49.6%）</span>
+    <span><i style="background:var(--green);"></i>正向声音（6 类 · 合计 35.3%）</span>
+    <span><i style="background:var(--yellow);"></i>中立声音（4 类 · 合计 15.1%）</span>
+  </div>
+
+  <div style="margin:12px 0 4px;padding:10px 14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;font-size:13.5px;line-height:1.6;">
+    <b style="color:var(--text);">声量集中度：</b>
+    <span>头部三话题合计 <b style="color:var(--green);">29.1%</b>（灵动光眸 10.9% + 半价问界 9.8% + 豆包座舱 8.4%）</span>
+    <span>负向前三占负向 <b style="color:var(--red);">45.4%</b>（22.5% ÷ 49.6%）</span>
+    <span>正向前三占正向 <b style="color:var(--green);">71.1%</b>（25.1% ÷ 35.3%）</span>
+    <span style="color:var(--weak);">——正向赢在集中，负向输在长尾合围</span>
+  </div>
+
+  <div class="card">
+    <div class="k" style="margin-bottom:10px;">22 个舆论方向全景 · 按占比降序（正 / 负 / 中立同表对比）</div>
+    <div class="bar-row"><div class="lbl"><span class="dot g"></span>灵动光眸设计好评<small>颜值党/科技极客/首购族</small></div><div class="bar-track"><div class="bar-fill" style="width:10.9%;background:var(--green);"></div></div><div class="pct" style="color:var(--green);">10.9%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>"半价问界"标签质疑<small>品牌质疑者/华为生态用户</small></div><div class="bar-track"><div class="bar-fill" style="width:9.8%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">9.8%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot g"></span>豆包座舱 AI 体验期待<small>科技极客/华为生态用户</small></div><div class="bar-track"><div class="bar-fill" style="width:8.4%;background:var(--green);"></div></div><div class="pct" style="color:var(--green);">8.4%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot y"></span>询价 / 等预售价格<small>务实派/首购族</small></div><div class="bar-track"><div class="bar-fill" style="width:7.3%;background:var(--yellow);"></div></div><div class="pct" style="color:var(--yellow);">7.3%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>智驾成熟度存疑（元戎未验证）<small>智驾关注党/务实派</small></div><div class="bar-track"><div class="bar-fill" style="width:6.6%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">6.6%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>华为/赛力斯"分家"冷饭<small>行业观察者/华为生态用户</small></div><div class="bar-track"><div class="bar-fill" style="width:6.1%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">6.1%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot g"></span>20 万级性价比认可<small>性价比务实派</small></div><div class="bar-track"><div class="bar-fill" style="width:5.8%;background:var(--green);"></div></div><div class="pct" style="color:var(--green);">5.8%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot g"></span>800V 快充 / 700km 续航<small>智驾关注党/参数流</small></div><div class="bar-track"><div class="bar-fill" style="width:4.6%;background:var(--green);"></div></div><div class="pct" style="color:var(--green);">4.6%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>"发布了个寂寞"<small>务实派/行业观察者</small></div><div class="bar-track"><div class="bar-fill" style="width:4.5%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">4.5%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>看衰等死·等品牌翻车<small>品牌质疑者/吃瓜路人</small></div><div class="bar-track"><div class="bar-fill" style="width:4.5%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">4.5%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot y"></span>等实测 / 首批口碑<small>全人群观望</small></div><div class="bar-track"><div class="bar-fill" style="width:4.3%;background:var(--yellow);"></div></div><div class="pct" style="color:var(--yellow);">4.3%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>上市节奏过快质疑<small>品牌质疑者</small></div><div class="bar-track"><div class="bar-fill" style="width:3.5%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">3.5%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>豆包座舱车规稳定性存疑<small>华为生态用户/行业观察者</small></div><div class="bar-track"><div class="bar-fill" style="width:3.3%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">3.3%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot g"></span>增程 1200km+ 长续航<small>家庭增购用户</small></div><div class="bar-track"><div class="bar-fill" style="width:3.2%;background:var(--green);"></div></div><div class="pct" style="color:var(--green);">3.2%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>同厂"换壳/贴牌"论<small>品牌质疑者/竞品粉丝</small></div><div class="bar-track"><div class="bar-fill" style="width:3.0%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">3.0%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>"背叛华为生态"站队敌意<small>问界车主/花粉</small></div><div class="bar-track"><div class="bar-fill" style="width:2.9%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">2.9%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot g"></span>AI 原生新品类期待<small>科技极客/行业观察者</small></div><div class="bar-track"><div class="bar-fill" style="width:2.4%;background:var(--green);"></div></div><div class="pct" style="color:var(--green);">2.4%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>新品牌售后/渠道担忧<small>首购族/家庭增购</small></div><div class="bar-track"><div class="bar-fill" style="width:2.4%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">2.4%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>等"消化"看戏<small>行业观察者/围观者</small></div><div class="bar-track"><div class="bar-fill" style="width:2.2%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">2.2%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot y"></span>等配置明细 / 选装<small>参数流</small></div><div class="bar-track"><div class="bar-fill" style="width:1.9%;background:var(--yellow);"></div></div><div class="pct" style="color:var(--yellow);">1.9%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot y"></span>等试驾 / 到店<small>家庭增购</small></div><div class="bar-track"><div class="bar-fill" style="width:1.6%;background:var(--yellow);"></div></div><div class="pct" style="color:var(--yellow);">1.6%</div></div>
+    <div class="bar-row"><div class="lbl"><span class="dot r"></span>宁德入股=电池成本锁定<small>行业观察者/参数流</small></div><div class="bar-track"><div class="bar-fill" style="width:0.8%;background:var(--red);"></div></div><div class="pct" style="color:var(--red);">0.8%</div></div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="k" style="margin-bottom:8px;color:var(--weak);">每个方向的原声样本（模拟世界涌现，非真实评论）</div>
+    <div class="quote g">这个大眼睛打灯太戳我了，比心还会回个爱心，科技感有了情绪温度——就冲这个想去看实车。<span class="who">—— 设计颜值党 · 成都 · 26 岁 · 时尚设计从业者</span></div>
+    <div class="quote g">豆包上车这个真可以，不用喊唤醒词，情绪感知也算第一梯队了。智驾首发版到底什么水平，蹲一个试驾。<span class="who">—— 年轻科技极客 · 杭州 · 27 岁 · AI 产品从业者</span></div>
+    <div class="quote r">买的问界冲的是华为光环，买 ME7 图什么？豆包陪你聊天？元戎替你开车？这两样 2026 年都不是稀缺品。<span class="who">—— 华为生态用户 · 深圳 · 33 岁 · 问界车主</span></div>
+    <div class="quote r">发布会光讲 AI 理念，内饰、空间、智驾实感一样没给，感觉发布了个寂寞。三个月从品牌发布到申报，这速度在汽车圈真少见。<span class="who">—— 品牌质疑者 · 北京 · 38 岁 · 汽车行业观察者</span></div>
+    <div class="quote r">元戎智驾城区是 OTA 解锁，等于首发车主先当测试员。跟华为 ADS、小鹏 XNGP 比，还差着几轮验证吧。<span class="who">—— 智驾关注党 · 上海 · 31 岁 · 技术参数流</span></div>
+    <div class="quote r">赛豆这不就是跟华为分了家另起炉灶？问界抱大腿抱到一半换了个人抱，等 2027 年看谁才是亲儿子。<span class="who">—— 品牌质疑者 · 深圳 · 36 岁 · 华为生态深度用户</span></div>
+    <div class="quote r">蓝电三年才卖六万辆，换个名字就敢叫 AIVA？我倒要看看这牌子能撑到第几款车，发布会越响，打脸越快。<span class="who">—— 品牌质疑者 · 上海 · 29 岁 · 吃瓜围观者</span></div>
+    <div class="quote y">配置看着不差，但新品牌第一批车，还是等 3 个月口碑再动手。增程版是真香，就看定价怎么落了。<span class="who">—— 性价比务实派 · 深圳 · 31 岁 · 家庭增购决策者</span></div>
+  </div>
+</div>
+
+<!-- ===== 04 顺风逆风旁观 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">04</span><h2>撞上"AIVA ME7"品牌话题，会遇到哪些声音？</h2>
+    <span class="q">顺风 / 逆风 / 旁观三类地形</span>
+  </div>
+  <div class="lead">把 03 列的 22 种声音，按"与 ME7 品牌话题相遇时是顺是顶"重新归堆：<b>顺风声 35.3%、逆风声 49.6%、旁观声 15.1%</b>。这是品牌会遇到什么地形，不是"该怎么做"。</div>
+  <div class="grid g3">
+    <div class="card" style="border-color:rgba(74,222,128,.35);">
+      <div class="k" style="color:var(--green);font-weight:700;">顺风声 · 35.3%</div>
+      <div class="d" style="margin-top:8px;line-height:2;">
+        <b>灵动光眸设计</b> 10.9%<br>拟人化灯语带来情绪价值，颜值内容天然可晒
+        <br><b>豆包座舱 AI 体验</b> 8.4%<br>无唤醒对话/情绪感知契合"AI 原生"心智
+        <br><b>20 万级性价比</b> 5.8%<br>双动力 + 800V 在 20 万级有配置优势
+        <br><b>续航与快充</b> 7.8%<br>纯电 700km + 增程 1200km+ 消除里程焦虑
+        <br><b>AI 原生新品类</b> 2.4%<br>少见的"先有 AI 再有车"叙事
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.35);">
+      <div class="k" style="color:var(--red);font-weight:700;">逆风声 · 49.6%</div>
+      <div class="d" style="margin-top:8px;line-height:2;">
+        <b>"半价问界"标签</b> 9.8%<br>参照系锚定问界，品牌独立性叙事被稀释
+        <br><b>智驾成熟度存疑</b> 6.6%<br>元戎无图方案未验证，被对标华为 ADS
+        <br><b>华为/赛力斯"分家"冷饭</b> 6.1%<br>弃鸿蒙转豆包被解读为"与华为闹掰"
+        <br><b>"发布了个寂寞"</b> 4.5%<br>理念多、实感少，关键信息留白
+        <br><b>看衰等死</b> 4.5%<br>蓝电销量软肋被反复翻出，幸灾乐祸吃瓜声
+        <br><b>节奏过快</b> 3.5%<br>品牌发布到申报仅 3 个月，被质疑品控
+        <br><b>座舱稳定性</b> 3.3%<br>豆包车规级验证被质疑"差几轮"
+        <br><b>同厂"换壳/贴牌"论</b> 3.0%<br>凤凰工厂共线被解读为"问界换标"
+        <br><b>"背叛华为生态"站队敌意</b> 2.9%<br>问界车主/花粉立场性攻击，情绪站队
+        <br><b>售后/生态</b> 2.4%<br>新渠道初期覆盖有限
+        <br><b>等"消化"看戏</b> 2.2%<br>双品牌内耗、产能优先权与股权结构的观望
+        <br><b>宁德入股=电池成本锁定</b> 0.8%<br>被股东绑定电芯采购，议价空间受质疑
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(251,191,36,.35);">
+      <div class="k" style="color:var(--yellow);font-weight:700;">旁观声 · 15.1%</div>
+      <div class="d" style="margin-top:8px;line-height:2;">
+        <b>询价 / 等预售</b> 7.3%<br>价格没出，先观望
+        <br><b>等实测 / 首批口碑</b> 4.3%<br>新品牌首车，不敢当小白鼠
+        <br><b>等配置明细</b> 1.9%<br>选装逻辑与低配诚意待确认
+        <br><b>等试驾到店</b> 1.6%<br>看完实车再下判断
+      </div>
+    </div>
+  </div>
+  <div class="lead" style="margin-top:14px;">地形事实：<b>逆风声里最大的两块（"半价问界"9.8% + 智驾存疑 6.6%）恰好是决定 20 万级购车决策的两个关键变量——品牌锚定与智驾信任。</b>顺风声里"灵动光眸"与"豆包座舱"合计 19.3%，是正向情绪的实际来源。各类人看到品牌话题的真实反应原声见附录 D。</div>
+</div>
+
+<!-- ===== 05 情绪曲线 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">05</span><h2>情绪会怎么随上市走</h2>
+    <span class="q">30 天情绪曲线 · 两个负向峰</span>
+  </div>
+  <div class="lead">剧情一句话：<b>巴黎首秀设计出圈、正向开高 → 申报期参数党接棒、情绪中性 → 上市传播期"半价问界"发酵、负向爬升 → 预售开启价格悬念触发第一负向峰 → 交付开启智驾实测触发第二负向峰 → 首批口碑期正向回落。</b></div>
+  <div class="chart-card">
+    <svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="30天情绪曲线">
+      <text x="20" y="30" fill="#94A3B8" font-size="13">负向情绪指数（中位数）</text>
+      <text x="20" y="352" fill="#94A3B8" font-size="13">正向情绪指数（中位数）</text>
+      <line x1="60" y1="40" x2="60" y2="330" stroke="#2A3A52" stroke-width="1"/>
+      <line x1="60" y1="330" x2="890" y2="330" stroke="#2A3A52" stroke-width="1"/>
+      <!-- 网格 -->
+      <line x1="60" y1="97" x2="890" y2="97" stroke="#1D293B" stroke-width="1"/>
+      <line x1="60" y1="155" x2="890" y2="155" stroke="#1D293B" stroke-width="1"/>
+      <line x1="60" y1="213" x2="890" y2="213" stroke="#1D293B" stroke-width="1"/>
+      <line x1="60" y1="272" x2="890" y2="272" stroke="#1D293B" stroke-width="1"/>
+      <text x="14" y="101" fill="#64748B" font-size="11">80</text>
+      <text x="14" y="159" fill="#64748B" font-size="11">60</text>
+      <text x="14" y="217" fill="#64748B" font-size="11">40</text>
+      <text x="14" y="276" fill="#64748B" font-size="11">20</text>
+      <text x="14" y="334" fill="#64748B" font-size="11">0</text>
+      <!-- 负向曲线（红色） -->
+      <polyline points="60,268 150,252 240,232 330,213 420,133 510,193 600,209 690,171 780,217 870,267"
+        fill="none" stroke="#F87171" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- 正向曲线（绿色） -->
+      <polyline points="60,177 150,195 240,213 330,225 420,218 510,210 600,200 690,194 780,189 870,187"
+        fill="none" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- 事件节点 -->
+      <circle cx="60" cy="177" r="5" fill="#4ADE80"/><text x="60" y="130" fill="#F1F5F9" font-size="12" text-anchor="middle" font-weight="700">D1</text><text x="60" y="368" fill="#94A3B8" font-size="11" text-anchor="middle">巴黎首秀</text>
+      <circle cx="150" cy="252" r="5" fill="#94A3B8"/><text x="150" y="118" fill="#94A3B8" font-size="12" text-anchor="middle">D7</text><text x="150" y="368" fill="#94A3B8" font-size="11" text-anchor="middle">工信部申报</text>
+      <circle cx="420" cy="133" r="6" fill="#F87171"/><text x="420" y="110" fill="#F87171" font-size="12" text-anchor="middle" font-weight="700">负向峰①</text><text x="420" y="368" fill="#94A3B8" font-size="11" text-anchor="middle">D15 预售开启（价格悬念）</text>
+      <circle cx="690" cy="171" r="6" fill="#F87171"/><text x="690" y="148" fill="#F87171" font-size="12" text-anchor="middle" font-weight="700">负向峰②</text><text x="690" y="368" fill="#94A3B8" font-size="11" text-anchor="middle">D22 交付开启（智驾实测）</text>
+      <circle cx="870" cy="187" r="5" fill="#4ADE80"/><text x="870" y="130" fill="#F1F5F9" font-size="12" text-anchor="middle" font-weight="700">D30</text><text x="870" y="368" fill="#94A3B8" font-size="11" text-anchor="middle">首批口碑</text>
+      <!-- 阶段带 -->
+      <rect x="60" y="345" width="90" height="14" fill="#16233A" rx="3"/><text x="105" y="356" fill="#94A3B8" font-size="10" text-anchor="middle">首秀期</text>
+      <rect x="150" y="345" width="90" height="14" fill="#16233A" rx="3"/><text x="195" y="356" fill="#94A3B8" font-size="10" text-anchor="middle">申报期</text>
+      <rect x="240" y="345" width="180" height="14" fill="#1D293B" rx="3"/><text x="330" y="356" fill="#94A3B8" font-size="10" text-anchor="middle">上市传播期</text>
+      <rect x="420" y="345" width="90" height="14" fill="#1D293B" rx="3"/><text x="465" y="356" fill="#94A3B8" font-size="10" text-anchor="middle">预售</text>
+      <rect x="510" y="345" width="180" height="14" fill="#1D293B" rx="3"/><text x="600" y="356" fill="#94A3B8" font-size="10" text-anchor="middle">等待交付期</text>
+      <rect x="690" y="345" width="180" height="14" fill="#16233A" rx="3"/><text x="780" y="356" fill="#94A3B8" font-size="10" text-anchor="middle">交付+首批口碑期</text>
+    </svg>
+  </div>
+  <div class="grid g3" style="margin-top:14px;">
+    <div class="card"><div class="k">负向峰① · D15 预售开启</div><div class="v">67.8<span>/100</span></div><div class="d">价格与配置悬念落地瞬间，性价比期望落差与"半价问界"标签叠加，负向冲高。</div></div>
+    <div class="card"><div class="k">负向峰② · D22 交付开启</div><div class="v">54.6<span>/100</span></div><div class="d">元戎智驾城区 OTA 与座舱实机表现进入实测讨论，信任缺口集中释放。</div></div>
+    <div class="card"><div class="k">正向低点 · 上市传播期尾部</div><div class="v">35.9<span>/100</span></div><div class="d">被"发布了个寂寞"与节奏质疑压制，正向声量最弱。</div></div>
+  </div>
+</div>
+
+<!-- ===== 06 谁在夸谁在骂 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">06</span><h2>谁在夸、谁在骂？</h2>
+    <span class="q">人数占比 vs 声量占比的错位</span>
+  </div>
+  <div class="lead"><b>沉默的是大多数，最响的是两端。</b>品牌质疑者 5.5% 的人贡献 16.7% 声量（88% 为负面）；设计颜值党 8.1% 的人贡献 15.2% 声量（79% 为正向）。占 25.1% 的"首购族 + 家庭增购"合计声量仅 10.1%，几乎不主动发声，但他们是选择池的真实主体。下表立场列中"正 / 负 / 中"为该人群声量的情绪构成（中位数）；本表与 03 章按舆论方向归类的声量占比是两套独立口径（分别回答"谁在说"与"在说什么"），不直接互相换算。</div>
+  <div class="tblwrap"><table>
+    <tr><th>人群</th><th>人数占比</th><th>声量占比</th><th>舆论立场（正 / 负 / 中）</th><th>主导声音</th><th>一个典型的人</th></tr>
+    <tr><td><b>年轻科技极客</b></td><td>18.0%</td><td>16.2%</td><td><span class="st st-g">正向</span>正 68% · 负 19% · 中 13%</td><td>豆包座舱 / 800V / AI 原生</td><td>男·27 岁·一线·AI 产品从业者，主动深挖智驾边界</td></tr>
+    <tr><td><b>性价比务实派</b></td><td>16.8%</td><td>13.6%</td><td><span class="st st-g">正向</span>正 46% · 负 38% · 中 16%</td><td>价格 / 配置 / 值不值</td><td>男·31 岁·一线·产品经理，逐项对比同价位竞品</td></tr>
+    <tr><td><b>年轻首购族</b></td><td>15.2%</td><td>6.1%</td><td><span class="st st-y">中立·沉默</span>正 27% · 负 15% · 中 58%</td><td>等预售 / 等口碑（沉默）</td><td>女·24 岁·新一线·设计岗，被灵动光眸吸引但观望</td></tr>
+    <tr><td><b>华为生态用户</b></td><td>14.2%</td><td>16.4%</td><td><span class="st st-r">负向</span>正 21% · 负 64% · 中 15%</td><td>鸿蒙参照 / 智驾对比 / 分家叙事 / 站队敌意</td><td>男·33 岁·一线·问界车主，以华为体系为参照系</td></tr>
+    <tr><td><b>智驾关注党</b></td><td>12.3%</td><td>11.8%</td><td><span class="st st-y">中立·偏负</span>正 33% · 负 52% · 中 15%</td><td>元戎 vs 华为 ADS / 小鹏 XNGP</td><td>男·29 岁·一线·算法工程师，关注 OTA 节奏</td></tr>
+    <tr><td><b>家庭增购用户</b></td><td>9.9%</td><td>4.0%</td><td><span class="st st-y">中立·沉默</span>正 29% · 负 10% · 中 61%</td><td>空间 / 增程续航（沉默）</td><td>女·35 岁·新一线·二胎妈妈，大五座 + 1200km 是刚需</td></tr>
+    <tr><td><b>设计颜值党</b></td><td>8.1%</td><td>15.2%</td><td><span class="st st-g">正向</span>正 79% · 负 8% · 中 13%</td><td>灵动光眸 / 造型 / 灯语</td><td>女·26 岁·新一线·时尚设计从业者，晒图传播</td></tr>
+    <tr><td><b>品牌质疑者</b></td><td>5.5%</td><td>16.7%</td><td><span class="st st-r">负向</span>正 4% · 负 88% · 中 8%</td><td>"半价问界" / 分家冷饭 / 看衰等死 / 换壳贴牌</td><td>男·38 岁·一线·汽车行业观察者，专挖品牌叙事破绽</td></tr>
+  </table></div>
+  <div class="lead" style="margin-top:12px;"><b>错位解读：</b>8 类人群里，质疑者与华为生态用户合计 19.7% 的人贡献 33.1% 声量且以负向为主——这是"半价问界"与智驾质疑的发动机；颜值党与科技极客合计 26.1% 的人贡献 31.4% 声量且以正向为主——这是设计出圈与 AI 期待的来源；真正可能买车的中坚（首购 + 家庭 + 务实，41.9%）声量占比仅 23.7%，情绪偏观望。</div>
+</div>
+
+<!-- ===== 07 竞品比较锚定 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">07</span><h2>用户拿 ME7 跟谁比、比什么、谁赢</h2>
+    <span class="q">竞品比较锚定推演</span>
+  </div>
+  <div class="lead">模拟世界中，用户讨论 ME7 时<b>主动发起竞品比较的比例为 67.6%</b>——"这车值不值"几乎必然通过比较来回答。下面是模拟中真实涌现的比较结构。</div>
+  <div class="grid g2">
+    <div class="card">
+      <div class="k" style="margin-bottom:10px;">被拿来比较的竞品（提及占比）</div>
+      <div class="bar-row"><div class="lbl">问界 M6<small>同厂参照</small></div><div class="bar-track"><div class="bar-fill" style="width:28.4%;background:var(--blue);"></div></div><div class="pct">28.4%</div></div>
+      <div class="bar-row"><div class="lbl">小米 YU7<small>同价位新势力</small></div><div class="bar-track"><div class="bar-fill" style="width:21.7%;background:var(--blue);"></div></div><div class="pct">21.7%</div></div>
+      <div class="bar-row"><div class="lbl">智界 R7<small>鸿蒙智驾</small></div><div class="bar-track"><div class="bar-fill" style="width:17.6%;background:var(--blue);"></div></div><div class="pct">17.6%</div></div>
+      <div class="bar-row"><div class="lbl">阿维塔 07<small>同价位纯电</small></div><div class="bar-track"><div class="bar-fill" style="width:12.3%;background:var(--blue);"></div></div><div class="pct">12.3%</div></div>
+      <div class="bar-row"><div class="lbl">小鹏 G6<small>智驾标杆</small></div><div class="bar-track"><div class="bar-fill" style="width:7.9%;background:var(--blue);"></div></div><div class="pct">7.9%</div></div>
+      <div class="bar-row"><div class="lbl">深蓝 S7 / 零跑 C11<small>性价比</small></div><div class="bar-track"><div class="bar-fill" style="width:5.8%;background:var(--blue);"></div></div><div class="pct">5.8%</div></div>
+      <div class="bar-row"><div class="lbl">智己 LS6<small>同价位</small></div><div class="bar-track"><div class="bar-fill" style="width:3.9%;background:var(--blue);"></div></div><div class="pct">3.9%</div></div>
+      <div class="bar-row"><div class="lbl">其他（极狐/昊铂等）<small>长尾</small></div><div class="bar-track"><div class="bar-fill" style="width:2.4%;background:var(--blue);"></div></div><div class="pct">2.4%</div></div>
+    </div>
+    <div class="card">
+      <div class="k" style="margin-bottom:10px;">用户比较的维度（提及占比）</div>
+      <div class="bar-row"><div class="lbl">价格 / 配置比</div><div class="bar-track"><div class="bar-fill" style="width:34.2%;background:var(--yellow);"></div></div><div class="pct">34.2%</div></div>
+      <div class="bar-row"><div class="lbl">智驾成熟度</div><div class="bar-track"><div class="bar-fill" style="width:24.1%;background:var(--yellow);"></div></div><div class="pct">24.1%</div></div>
+      <div class="bar-row"><div class="lbl">座舱 / 车机</div><div class="bar-track"><div class="bar-fill" style="width:18.3%;background:var(--yellow);"></div></div><div class="pct">18.3%</div></div>
+      <div class="bar-row"><div class="lbl">空间 / 舒适</div><div class="bar-track"><div class="bar-fill" style="width:11.7%;background:var(--yellow);"></div></div><div class="pct">11.7%</div></div>
+      <div class="bar-row"><div class="lbl">品牌 / 售后</div><div class="bar-track"><div class="bar-fill" style="width:7.6%;background:var(--yellow);"></div></div><div class="pct">7.6%</div></div>
+      <div class="bar-row"><div class="lbl">设计</div><div class="bar-track"><div class="bar-fill" style="width:4.1%;background:var(--yellow);"></div></div><div class="pct">4.1%</div></div>
+    </div>
+  </div>
+  <div style="margin-top:14px;">
+    <div class="k" style="margin-bottom:8px;color:var(--weak);">模拟中 ME7 对竞品的分维度胜负（用户认知层面）</div>
+    <div class="tblwrap"><table>
+      <tr><th>比较维度</th><th>ME7 的模拟处境</th><th>用户认知中的胜者</th><th>代表原声</th></tr>
+      <tr><td><b>价格 / 配置</b></td><td>20 万级双动力 + 800V，配置给得足</td><td>ME7 与 YU7 / 阿维塔 07 互有胜负</td><td class="quote y" style="margin:0;">"20 万能给 800V 加增程，配置不虚，但要看低配阉不阉。"</td></tr>
+      <tr><td><b>智驾成熟度</b></td><td>元戎无图方案未大规模验证，城区 OTA</td><td class="t-r">落后：华为 ADS / 小鹏 XNGP</td><td class="quote r" style="margin:0;">"智驾是它的短板，人家 ADS 都几轮迭代了，它还在等 OTA。"</td></tr>
+      <tr><td><b>座舱 / 车机</b></td><td>豆包大模型，无唤醒 / 情绪感知</td><td class="t-g">领先：豆包体验有新鲜感</td><td class="quote g" style="margin:0;">"座舱这块豆包是能打的，比很多车机聪明一截。"</td></tr>
+      <tr><td><b>空间 / 舒适</b></td><td>大五座跨界 SUV</td><td>ME7 与 G6 同级持平，尺寸略逊 M6</td><td class="quote y" style="margin:0;">"五座够用，跟 G6 同级，比 M6 小一圈。"</td></tr>
+      <tr><td><b>品牌 / 售后</b></td><td>新品牌，渠道初期有限</td><td class="t-r">落后：华为系 / 小米 / 问界</td><td class="quote r" style="margin:0;">"新牌子网点少，三四线修车都费劲，先看看再说。"</td></tr>
+      <tr><td><b>设计</b></td><td>灵动光眸拟人化灯语</td><td class="t-g">领先：全价位唯一</td><td class="quote g" style="margin:0;">"灯语这个玩法同价位独一份，设计确实出圈。"</td></tr>
+    </table></div>
+  </div>
+  <div class="lead" style="margin-top:12px;"><b>竞争力地形：</b>模拟中 ME7 的真实竞争力呈"两强两弱"——<b>座舱与设计领先，智驾与品牌落后</b>；价格配置是胶着区。这解释了正向声量为何集中在设计/AI、负向声量为何集中在智驾/品牌。</div>
+</div>
+
+<!-- ===== 08 购车意向分层 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">08</span><h2>声音背后的购车意向：夸与骂的人，有多少真会买</h2>
+    <span class="q">声量 ≠ 意向 · 意向分层推演</span>
+  </div>
+  <div class="lead">声量不能代表购买力。模拟世界把 10 万 Agent 按<b>发声立场 × 购车意向</b>做交叉分层，回答：夸的人里多少真有购车意向、骂的人里多少原本会买被劝退、中立里多少可转化、多少人最终把 ME7 放进购车选择池。</div>
+  <div class="tblwrap"><table style="table-layout:fixed;"><colgroup><col style="width:17%"><col style="width:8%"><col style="width:11%"><col style="width:10%"><col style="width:8%"><col style="width:46%"></colgroup>
+    <tr><th>发声立场</th><th>声量占比</th><th>其中：有 20 万级购车意向</th><th>其中：把 ME7 放进购车选择池</th><th>其中：明确预订 / 锁单意向</th><th>解读（模拟中发生了什么）</th></tr>
+    <tr>
+      <td><b>正向声量人群</b><br><span style="color:var(--weak);font-size:12px;">颜值党/科技极客/务实派/家庭</span></td>
+      <td>35.3%</td>
+      <td class="t-g">28.4%（占全体）</td>
+      <td class="t-g">18.3%（占全体）</td>
+      <td>6.1%（占全体）</td>
+      <td>被设计/AI 座舱吸引，但超七成停留在"喜欢但不敢买"——28.4% 有意向中仅 6.1% 锁单（下单率 21.5%），新品牌信任与智驾缺口拦住转化</td>
+    </tr>
+    <tr>
+      <td><b>负向声量人群</b><br><span style="color:var(--weak);font-size:12px;">质疑者/华为生态/智驾党</span></td>
+      <td>49.6%</td>
+      <td class="t-r">13.9%（占全体）</td>
+      <td class="t-r">3.1%（占全体）</td>
+      <td>1.0%（占全体）</td>
+      <td>原本有购车意向的 13.9%（占全体）中，10.8%（占全体）被"半价问界"+智驾质疑劝退（负向人群内被劝退 77.7%；占全体意向人群流失率 21.1%）——这是模拟中流失最重的意向人群</td>
+    </tr>
+    <tr>
+      <td><b>中立声量人群</b><br><span style="color:var(--weak);font-size:12px;">首购族/观望者</span></td>
+      <td>15.1%</td>
+      <td>8.9%（占全体）</td>
+      <td class="t-y">6.0%（占全体）</td>
+      <td>1.5%（占全体）</td>
+      <td>等预售价格与首批口碑，价格与实测信息落地后部分转入选择池</td>
+    </tr>
+  </table></div>
+  <div class="grid g4" style="margin-top:14px;">
+    <div class="card"><div class="k">整体购车意向</div><div class="v">51.2%</div><div class="d">10 万 Agent 中 20 万级新能源 SUV 购车意向人群占比。</div></div>
+    <div class="card"><div class="k">选择池纳入率</div><div class="v">27.4%</div><div class="d">占全体 27.4%（占有意向人群 53.5%）：30 天末把 ME7 放进购车选择池的比例（18.3%+3.1%+6.0%，占全体）。</div></div>
+    <div class="card"><div class="k">预订 / 锁单意向</div><div class="v">8.6%</div><div class="d">占全体 8.6%（占有意向人群 16.8%）：明确会预订的比例（6.1%+1.0%+1.5%，占全体），首购族与科技极客为主。</div></div>
+    <div class="card"><div class="k">被劝退流失</div><div class="v">21.1%</div><div class="d">流失率 21.1%（占意向人群）＝流失量 10.8%（占全体）——因负面质疑放弃；"半价问界"与智驾是两大流失原因。</div></div>
+  </div>
+  <div class="lead" style="margin-top:14px;"><b>意向分层结论（模拟世界事实）：</b>夸的人群里真正会下单的不到四分之一（6.1% / 28.4%）；骂的人群里 10.8%（占全体）原本是潜在买家、被舆论劝退（意向人群中流失率 21.1%）；中立观望人群贡献了选择池的近四分之一增量（6.0% / 27.4%）。声量最大的人不一定是买家，买家藏在沉默的大多数里。</div>
+</div>
+
+<!-- ===== 09 平台分布 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">09</span><h2>在哪个平台说？哪里炸、哪里静好</h2>
+    <span class="q">平台情绪分化</span>
+  </div>
+  <div class="lead">懂车帝/汽车之家以参数对比与智驾质疑为主、情绪偏负（负向浓度 43.8%-52.3%）；微博是"半价问界"话题的主发酵场（负向浓度 57.6%）；小红书以设计种草与晒图为主、情绪偏正（负向浓度 28.1%）。同一个 ME7，在不同平台是两种声音结构。</div>
+  <div class="tblwrap"><table>
+    <tr><th>平台</th><th>声量占比</th><th>情绪指数</th><th>负向浓度</th><th>主导声音</th></tr>
+    <tr><td><b>微博</b></td><td>27.9%</td><td>-20.4</td><td class="t-r">57.6%</td><td>"半价问界"、分家冷饭、节奏质疑、品牌独立性讨论</td></tr>
+    <tr><td><b>抖音</b></td><td>24.3%</td><td>-9.8</td><td class="t-r">45.9%</td><td>智驾实测争议、设计出圈视频、情绪跟评</td></tr>
+    <tr><td><b>懂车帝</b></td><td>21.8%</td><td>-14.2</td><td class="t-r">52.3%</td><td>参数对比、元戎 vs 华为 ADS、换壳/贴牌论、配置表解读</td></tr>
+    <tr><td><b>小红书</b></td><td>15.7%</td><td>+18.3</td><td class="t-g">28.1%</td><td>灵动光眸晒图、灯语种草、设计情绪价值</td></tr>
+    <tr><td><b>汽车之家</b></td><td>8.2%</td><td>-9.1</td><td class="t-r">43.8%</td><td>续航/空间实测、口碑区观望</td></tr>
+    <tr><td><b>微信私域</b></td><td>2.1%</td><td>+5.7</td><td>31.7%</td><td>熟人咨询、转介绍讨论、温和观望</td></tr>
+  </table></div>
+  <div class="lead" style="margin-top:12px;"><b>声音流动规律（模拟中真实发生）：</b>"半价问界"话题多在微博出现、在抖音扩散、在懂车帝沉淀为参数争论；设计种草从小红书发起、向微博抖音溢出。声量集中度：微博+懂车帝合计 49.7%、小红书 15.7%；负向声量加权后约 58% 集中在前两者、正向约 21% 集中在小红书——负向更容易抱团。</div>
+</div>
+
+<!-- ===== 10 传播动力学 ===== -->
+<div class="sec">
+  <div class="sec-h">
+    <span class="no">10</span><h2>传播动力学：什么人传正面、什么人传负面、谁无所谓</h2>
+    <span class="q">传播者画像 · 传播路径 · 对品牌影响</span>
+  </div>
+  <div class="lead">模拟世界按"传播角色"给每个 Agent 打标：<b>谁在传正面、谁在传负面、谁只围观不传播</b>，并追踪正负面声量的扩散路径与速度。以下全部是模拟中已发生的传播事实。</div>
+
+  <div class="grid g3">
+    <div class="card" style="border-color:rgba(74,222,128,.35);">
+      <div class="k" style="color:var(--green);font-weight:700;">正面传播者 · 26.1% 的人</div>
+      <div class="d" style="margin-top:8px;">
+        <b>设计颜值党</b>（8.1%）——首发晒图，灵动光眸灯语是传播钩子<br>
+        <b>年轻科技极客</b>（18.0%）——转发 AI 座舱体验，@科技圈朋友<br>
+        传播内容：灯语视频、座舱演示、"AI 原生"概念解读<br>
+        典型路径：小红书发图 → 微博话题 → 抖音二创
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.35);">
+      <div class="k" style="color:var(--red);font-weight:700;">负面传播者 · 19.7% 的人</div>
+      <div class="d" style="margin-top:8px;">
+        <b>品牌质疑者</b>（5.5%）——发起"半价问界"话题，是负向源点；"分家冷饭""看衰等死""换壳论"多由这类人首发<br>
+        <b>华为生态用户</b>（14.2%）——对比贴转发，"买它图什么"句式扩散；"背叛生态"站队敌意来自花粉/问界车主<br>
+        传播内容：标签定性、分家叙事、智驾对比、看衰预言、站队攻击<br>
+        典型路径：微博起话题 → 抖音跟评 → 懂车帝沉淀
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(148,163,184,.35);">
+      <div class="k" style="color:var(--weak);font-weight:700;">围观不传播 · 54.2% 的人</div>
+      <div class="d" style="margin-top:8px;">
+        <b>首购族 + 家庭增购 + 务实派 + 智驾关注党</b>（合计 54.2% 的人）<br>
+        看到内容、记住印象、不转发不评论<br>
+        但他们是最接近购车决策的人——<br>
+        沉默的大多数用"选择池"投票，<br>
+        而非用"声量"投票
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;">
+    <div class="k" style="margin-bottom:10px;color:var(--weak);">正面传播链（模拟中实际路径）</div>
+    <div class="flow">
+      <div class="node hl-g"><b>源点 · 小红书</b><span>颜值党晒灵动光眸灯语<br>发布后 6h</span></div>
+      <div class="arr">→</div>
+      <div class="node hl-g"><b>放大 · 微博</b><span>#灵动光眸# 话题升温<br>24h 内</span></div>
+      <div class="arr">→</div>
+      <div class="node hl-g"><b>扩散 · 抖音</b><span>座舱演示视频二创<br>48h</span></div>
+      <div class="arr">→</div>
+      <div class="node"><b>沉淀 · 各平台</b><span>设计成为 ME7 记忆点<br>72h 后长尾</span></div>
+    </div>
+  </div>
+  <div style="margin-top:14px;">
+    <div class="k" style="margin-bottom:10px;color:var(--weak);">负面传播链（模拟中实际路径，速度更快）</div>
+    <div class="flow">
+      <div class="node hl-r"><b>源点 · 微博</b><span>质疑者发"半价问界"<br>发布后 4h</span></div>
+      <div class="arr">→</div>
+      <div class="node hl-r"><b>放大 · 抖音</b><span>评论区跟评"买它图什么"<br>18h 内</span></div>
+      <div class="arr">→</div>
+      <div class="node hl-r"><b>固化 · 懂车帝</b><span>参数对比帖坐实标签<br>36h</span></div>
+      <div class="arr">→</div>
+      <div class="node"><b>长尾 · 搜索端</b><span>标签进入搜索联想<br>48h 后持续</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;">
+    <div class="k" style="margin-bottom:10px;color:var(--weak);">正负面传播速度对比（模拟世界测量值）</div>
+    <div class="tblwrap"><table>
+      <tr><th>传播指标</th><th>正面声量</th><th>负面声量</th><th>解读</th></tr>
+      <tr><td><b>首个传播峰到达</b></td><td>发布后 24h</td><td class="t-r">发布后 18h</td><td>负向更快达到第一个峰（以放大节点计）</td></tr>
+      <tr><td><b>跨平台传染（首平台→全平台）</b></td><td>72h 跨 4 平台</td><td class="t-r">48h 跨 4 平台</td><td>负向跨平台速度快 33%</td></tr>
+      <tr><td><b>声量峰值</b></td><td>预售期 +31.2%</td><td class="t-r">预售期 +44.6%</td><td>价格悬念期负向冲得更猛</td></tr>
+      <tr><td><b>30 天末残留</b></td><td>12.3%</td><td class="t-r">25.9%</td><td>负向残留是正向的两倍多</td></tr>
+      <tr><td><b>@召唤 / 转评比</b></td><td>18.4%</td><td class="t-r">31.2%</td><td>负向内容更容易被转发扩散</td></tr>
+    </table></div>
+  </div>
+
+  <div style="margin-top:18px;">
+    <div class="k" style="margin-bottom:10px;color:var(--weak);">对赛豆 / AIVA 品牌的影响（模拟世界量化）</div>
+    <div class="grid g4">
+      <div class="card"><div class="k">认知影响</div><div class="v">2.9<span>/5</span></div><div class="d">AIVA 独立认知度：30 天末"ME7 是 AIVA 的车"认知仅 2.9/5，大量用户仍把它归为"问界那家的"。</div></div>
+      <div class="card"><div class="k">标签固化度</div><div class="v">33.7%</div><div class="d">AIVA 相关讨论中"半价问界"关联提及率，标签已进入搜索联想与对比帖标题。</div></div>
+      <div class="card"><div class="k">信任资产</div><div class="v">-0.7<span>分</span></div><div class="d">品牌好感净值变化：智驾质疑与节奏质疑合计压过设计好感，模拟期末净值为负。</div></div>
+      <div class="card"><div class="k">竞品捡漏</div><div class="v">+5.2%</div><div class="d">流失意向的竞品去向：问界 M6 吸走最多（被"半价问界"话术反向引流到正价问界），小米 YU7 次之。</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 附录 ===== -->
+<div class="appendix">
+  <div class="sec-h">
+    <span class="no">附录 A</span><h2>模拟 Agent 的地区分布</h2>
+  </div>
+  <div class="lead">200 万 Agent 次的地域结构对齐 20 万级新能源 SUV 购车人群分布：新一线 + 一线为主（合计 46.4%），华东最多（26.2%）。</div>
+  <div class="grid g2">
+    <div class="card">
+      <div class="k" style="margin-bottom:8px;">城市线级分布</div>
+      <div class="bar-row"><div class="lbl">一线</div><div class="bar-track"><div class="bar-fill" style="width:20.3%;background:var(--blue);"></div></div><div class="pct">20.3%</div></div>
+      <div class="bar-row"><div class="lbl">新一线</div><div class="bar-track"><div class="bar-fill" style="width:26.1%;background:var(--blue);"></div></div><div class="pct">26.1%</div></div>
+      <div class="bar-row"><div class="lbl">二线</div><div class="bar-track"><div class="bar-fill" style="width:22.4%;background:var(--blue);"></div></div><div class="pct">22.4%</div></div>
+      <div class="bar-row"><div class="lbl">三线</div><div class="bar-track"><div class="bar-fill" style="width:16.8%;background:var(--blue);"></div></div><div class="pct">16.8%</div></div>
+      <div class="bar-row"><div class="lbl">四线及以下</div><div class="bar-track"><div class="bar-fill" style="width:14.4%;background:var(--blue);"></div></div><div class="pct">14.4%</div></div>
+    </div>
+    <div class="card">
+      <div class="k" style="margin-bottom:8px;">七大区域分布</div>
+      <div class="bar-row"><div class="lbl">华东</div><div class="bar-track"><div class="bar-fill" style="width:26.2%;background:var(--green);"></div></div><div class="pct">26.2%</div></div>
+      <div class="bar-row"><div class="lbl">华南</div><div class="bar-track"><div class="bar-fill" style="width:16.9%;background:var(--green);"></div></div><div class="pct">16.9%</div></div>
+      <div class="bar-row"><div class="lbl">华北</div><div class="bar-track"><div class="bar-fill" style="width:15.8%;background:var(--green);"></div></div><div class="pct">15.8%</div></div>
+      <div class="bar-row"><div class="lbl">西南</div><div class="bar-track"><div class="bar-fill" style="width:13.9%;background:var(--green);"></div></div><div class="pct">13.9%</div></div>
+      <div class="bar-row"><div class="lbl">华中</div><div class="bar-track"><div class="bar-fill" style="width:12.7%;background:var(--green);"></div></div><div class="pct">12.7%</div></div>
+      <div class="bar-row"><div class="lbl">西北</div><div class="bar-track"><div class="bar-fill" style="width:8.3%;background:var(--green);"></div></div><div class="pct">8.3%</div></div>
+      <div class="bar-row"><div class="lbl">东北</div><div class="bar-track"><div class="bar-fill" style="width:6.2%;background:var(--green);"></div></div><div class="pct">6.2%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 附录 B 完整画像 ===== -->
+<div class="appendix">
+  <div class="sec-h">
+    <span class="no">附录 B</span><h2>32 个完整 Agent 画像</h2>
+    <span class="q">8 类 × 4 个 · 可复现抽样</span>
+  </div>
+  <div class="lead">以下 32 个 Agent 从模拟世界随机抽样（每类 4 个），展示他们的基础属性、舆论立场与购车倾向。画像结构（性别/年龄/城市/职业/预算/婚育）与 20 万级新能源 SUV 客群结构对齐。</div>
+
+  <div class="agent"><div class="a1"><b>年轻科技极客</b><span>男 · 27 岁 · 杭州 · AI 产品经理</span></div><div class="a2">预算 22 万，关注豆包座舱与智驾边界；立场偏正，但追问"城区智驾是不是期货"<br><span style="color:var(--green);">认可：豆包座舱 8.7/10 · 800V 7.9/10</span> <span style="color:var(--red);">不认可：智驾 5.2/10 · 品牌 4.3/10</span></div><div class="a3">购车意向 78% · 品牌认可 6.2/10 · 选择池 在</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻科技极客</b><span>男 · 24 岁 · 上海 · 算法工程师</span></div><div class="a2">预算 20 万，看好 800V+增程双动力；认可"AI 原生"叙事，关注 OTA 节奏<br><span style="color:var(--green);">认可：800V 8.4/10 · 增程 8.0/10</span> <span style="color:var(--red);">不认可：智驾 5.9/10 · 售后 4.8/10</span></div><div class="a3">购车意向 82% · 品牌认可 6.5/10 · 选择池 在</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻科技极客</b><span>女 · 26 岁 · 北京 · 大厂运营</span></div><div class="a2">预算 21 万，被无唤醒对话打动；担心首批车机稳定性<br><span style="color:var(--green);">认可：豆包座舱 8.6/10 · 设计 7.8/10</span> <span style="color:var(--red);">不认可：车规稳定 4.9/10 · 智驾 5.5/10</span></div><div class="a3">购车意向 41% · 品牌认可 5.8/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻科技极客</b><span>男 · 29 岁 · 深圳 · 硬件工程师</span></div><div class="a2">预算 23 万，对比智界 R7 后倾向 ME7 座舱；关注售后网点<br><span style="color:var(--green);">认可：豆包座舱 8.2/10 · 性价比 7.7/10</span> <span style="color:var(--red);">不认可：售后 4.6/10 · 智驾 5.6/10</span></div><div class="a3">购车意向 66% · 品牌认可 6.0/10 · 选择池 在</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>性价比务实派</b><span>男 · 31 岁 · 苏州 · 产品经理</span></div><div class="a2">预算 20 万，逐项对比 YU7/阿维塔 07；认为"价格没出都是画饼"<br><span style="color:var(--green);">认可：配置 8.1/10 · 800V 7.8/10</span> <span style="color:var(--red);">不认可：价格未明 4.5/10 · 品牌 4.9/10</span></div><div class="a3">购车意向 55% · 品牌认可 5.2/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>性价比务实派</b><span>女 · 30 岁 · 成都 · 财务</span></div><div class="a2">预算 19 万，关注低配诚意；"低配阉智驾就换深蓝"<br><span style="color:var(--green);">认可：性价比 8.3/10 · 增程 7.6/10</span> <span style="color:var(--red);">不认可：低配诚意 4.2/10</span></div><div class="a3">购车意向 49% · 品牌认可 4.8/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>性价比务实派</b><span>男 · 34 岁 · 武汉 · 工程师</span></div><div class="a2">预算 21 万，认可增程 1200km；质疑"半价问界"话术本身<br><span style="color:var(--green);">认可：增程 8.5/10 · 续航 8.1/10</span> <span style="color:var(--red);">不认可：话术 3.9/10 · 智驾 5.4/10</span></div><div class="a3">购车意向 44% · 品牌认可 4.6/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>性价比务实派</b><span>女 · 28 岁 · 南京 · 市场</span></div><div class="a2">预算 20 万，等配置明细；"没有价格信息先不讨论"<br><span style="color:var(--green);">认可：配置 7.9/10</span> <span style="color:var(--red);">不认可：信息不足 4.0/10</span></div><div class="a3">购车意向 38% · 品牌认可 4.9/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻首购族</b><span>女 · 24 岁 · 重庆 · 设计</span></div><div class="a2">预算 18 万，被灵动光眸吸引；新品牌犹豫，"第一批车不敢当小白鼠"<br><span style="color:var(--green);">认可：灯语 8.8/10 · 设计 8.5/10</span> <span style="color:var(--red);">不认可：售后 4.1/10 · 稳定性 4.5/10</span></div><div class="a3">购车意向 52% · 品牌认可 5.5/10 · 选择池 观望</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻首购族</b><span>男 · 25 岁 · 长沙 · 程序员</span></div><div class="a2">预算 20 万，喜欢轿跑造型；等预售再决定<br><span style="color:var(--green);">认可：造型 8.0/10 · 座舱 7.7/10</span> <span style="color:var(--red);">不认可：售后 4.3/10</span></div><div class="a3">购车意向 47% · 品牌认可 5.1/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻首购族</b><span>女 · 23 岁 · 西安 · 新媒体</span></div><div class="a2">预算 17 万，超预算但被灯语打动；关注低配版是否保留<br><span style="color:var(--green);">认可：灯语 8.9/10 · 设计 8.6/10</span> <span style="color:var(--red);">不认可：价格超预算 3.8/10</span></div><div class="a3">购车意向 35% · 品牌认可 5.3/10 · 选择池 否</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>年轻首购族</b><span>男 · 26 岁 · 郑州 · 销售</span></div><div class="a2">预算 19 万，看中空间；担心新品牌售后网点少<br><span style="color:var(--green);">认可：空间 8.2/10</span> <span style="color:var(--red);">不认可：售后 4.0/10 · 品牌 4.4/10</span></div><div class="a3">购车意向 43% · 品牌认可 4.7/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>华为生态用户</b><span>男 · 33 岁 · 深圳 · 问界 M7 车主</span></div><div class="a2">预算 25 万换购；"买 ME7 图什么？"参照系锚定问界<br><span style="color:var(--green);">认可：——</span> <span style="color:var(--red);">不认可：智驾 3.8/10 · 生态 3.2/10 · 品牌 4.0/10</span></div><div class="a3">购车意向 22% · 品牌认可 3.6/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>华为生态用户</b><span>女 · 32 岁 · 东莞 · 智界 R7 关注者</span></div><div class="a2">预算 22 万，纠结智驾；"华为 ADS 迭代几轮了，元戎呢？"<br><span style="color:var(--green);">认可：座舱 7.6/10</span> <span style="color:var(--red);">不认可：智驾 4.1/10 · 品牌 4.2/10</span></div><div class="a3">购车意向 31% · 品牌认可 4.0/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>华为生态用户</b><span>男 · 35 岁 · 广州 · 数码博主</span></div><div class="a2">预算 21 万，认可豆包座舱但质疑车规级；发布测评向内容<br><span style="color:var(--green);">认可：座舱 8.0/10 · 设计 7.8/10</span> <span style="color:var(--red);">不认可：车规稳定 4.4/10 · 智驾 4.8/10</span></div><div class="a3">购车意向 38% · 品牌认可 4.3/10 · 选择池 观望</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>华为生态用户</b><span>女 · 30 岁 · 佛山 · 问界 M5 车主</span></div><div class="a2">预算 20 万，习惯鸿蒙流转；"没有华为生态，体验打折"<br><span style="color:var(--green);">认可：——</span> <span style="color:var(--red);">不认可：生态隔离 3.1/10 · 座舱 4.9/10</span></div><div class="a3">购车意向 18% · 品牌认可 3.4/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>智驾关注党</b><span>男 · 29 岁 · 上海 · 算法工程师</span></div><div class="a2">预算 24 万，盯城区智驾 OTA 解锁；"首发版就是测试员"<br><span style="color:var(--green);">认可：800V 8.1/10 · 无图路线 7.4/10</span> <span style="color:var(--red);">不认可：OTA 未解锁 4.0/10</span></div><div class="a3">购车意向 58% · 品牌认可 5.0/10 · 选择池 观望</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>智驾关注党</b><span>男 · 28 岁 · 北京 · 自动驾驶从业者</span></div><div class="a2">预算 22 万，对比华为 ADS/小鹏 XNGP；认可元戎无图方案路线<br><span style="color:var(--green);">认可：无图路线 7.9/10</span> <span style="color:var(--red);">不认可：成熟度 4.5/10 · 未验证 4.2/10</span></div><div class="a3">购车意向 52% · 品牌认可 4.8/10 · 选择池 观望</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>智驾关注党</b><span>男 · 32 岁 · 合肥 · 硬件测试</span></div><div class="a2">预算 21 万，等实车智驾测试；"纸面参数不算数"<br><span style="color:var(--green);">认可：纸面参数 7.6/10</span> <span style="color:var(--red);">不认可：未实测 4.3/10</span></div><div class="a3">购车意向 46% · 品牌认可 4.9/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>智驾关注党</b><span>男 · 30 岁 · 南京 · 数据工程师</span></div><div class="a2">预算 20 万，关注 800V 快充；对"豆包座舱"持保留意见<br><span style="color:var(--green);">认可：800V 8.3/10</span> <span style="color:var(--red);">不认可：座舱 5.6/10 · 智驾 5.2/10</span></div><div class="a3">购车意向 44% · 品牌认可 5.2/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>家庭增购用户</b><span>女 · 35 岁 · 天津 · 二胎妈妈</span></div><div class="a2">预算 23 万，大五座 + 增程 1200km 是刚需；"智驾不是最关心的"<br><span style="color:var(--green);">认可：空间 8.7/10 · 增程 8.6/10</span> <span style="color:var(--red);">不认可：智驾 5.8/10</span></div><div class="a3">购车意向 71% · 品牌认可 6.3/10 · 选择池 在</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>家庭增购用户</b><span>男 · 38 岁 · 青岛 · 个体</span></div><div class="a2">预算 22 万，看空间与后排；等试驾到店<br><span style="color:var(--green);">认可：空间 8.4/10 · 后排 8.2/10</span> <span style="color:var(--red);">不认可：实车未知 4.8/10</span></div><div class="a3">购车意向 49% · 品牌认可 5.6/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>家庭增购用户</b><span>女 · 33 岁 · 宁波 · 教师</span></div><div class="a2">预算 21 万，增程版关注者；"孩子晕车，底盘调校重要"<br><span style="color:var(--green);">认可：增程 8.5/10 · 空间 8.3/10</span> <span style="color:var(--red);">不认可：底盘未实测 4.6/10</span></div><div class="a3">购车意向 54% · 品牌认可 5.8/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>家庭增购用户</b><span>男 · 36 岁 · 福州 · 医生</span></div><div class="a2">预算 24 万，对比问界 M6；"同厂但定位不同，看价格"<br><span style="color:var(--green);">认可：空间 8.1/10</span> <span style="color:var(--red);">不认可：品牌 4.9/10 · 智驾 5.4/10</span></div><div class="a3">购车意向 61% · 品牌认可 5.5/10 · 选择池 在</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>设计颜值党</b><span>女 · 26 岁 · 成都 · 时尚设计</span></div><div class="a2">预算 20 万，被灯语击中；首发晒图传播，不看参数<br><span style="color:var(--green);">认可：灯语 9.2/10 · 设计 9.0/10</span> <span style="color:var(--red);">不认可：参数 6.1/10</span></div><div class="a3">购车意向 73% · 品牌认可 6.8/10 · 选择池 在</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>设计颜值党</b><span>女 · 25 岁 · 杭州 · 插画师</span></div><div class="a2">预算 19 万，喜欢轿跑线条；"内饰有没有实拍？"<br><span style="color:var(--green);">认可：造型 8.8/10 · 灯语 8.7/10</span> <span style="color:var(--red);">不认可：内饰未曝光 5.2/10</span></div><div class="a3">购车意向 56% · 品牌认可 6.2/10 · 选择池 观望</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>设计颜值党</b><span>男 · 27 岁 · 上海 · 品牌设计</span></div><div class="a2">预算 21 万，认可"AI 原生"美学；批评发布会没展示内饰<br><span style="color:var(--green);">认可：美学 8.6/10 · AI 原生 8.1/10</span> <span style="color:var(--red);">不认可：发布会信息量 5.0/10</span></div><div class="a3">购车意向 48% · 品牌认可 6.0/10 · 选择池 观望</div><div class="a4"><span class="tag t-y">中立</span></div></div>
+  <div class="agent"><div class="a1"><b>设计颜值党</b><span>女 · 24 岁 · 北京 · 模特</span></div><div class="a2">预算 18 万，灵眸之夜种草；"发朋友圈大家都在问"<br><span style="color:var(--green);">认可：灯语 9.0/10 · 出圈 8.8/10</span> <span style="color:var(--red);">不认可：价格 5.4/10</span></div><div class="a3">购车意向 44% · 品牌认可 6.4/10 · 选择池 观望</div><div class="a4"><span class="tag t-g">正向</span></div></div>
+  <div class="agent"><div class="a1"><b>品牌质疑者</b><span>男 · 38 岁 · 北京 · 汽车行业观察者</span></div><div class="a2">预算无固定，专挖叙事破绽；"3 个月出车，品控存疑"<br><span style="color:var(--green);">认可：——</span> <span style="color:var(--red);">不认可：节奏 2.8/10 · 品控 3.0/10 · 品牌 3.2/10</span></div><div class="a3">购车意向 6% · 品牌认可 2.8/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>品牌质疑者</b><span>男 · 41 岁 · 上海 · 媒体主编</span></div><div class="a2">关注股权结构；"赛豆出表 + 国资背景，独立性能信吗"<br><span style="color:var(--green);">认可：——</span> <span style="color:var(--red);">不认可：独立性 3.1/10 · 股权 3.5/10</span></div><div class="a3">购车意向 9% · 品牌认可 3.0/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>品牌质疑者</b><span>男 · 35 岁 · 深圳 · 私募研究员</span></div><div class="a2">关注销量与节奏；"蓝电三年六万辆，换皮能翻身？"<br><span style="color:var(--green);">认可：——</span> <span style="color:var(--red);">不认可：销量 3.0/10 · 换皮 2.9/10</span></div><div class="a3">购车意向 11% · 品牌认可 3.1/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+  <div class="agent"><div class="a1"><b>品牌质疑者</b><span>女 · 33 岁 · 杭州 · 汽车 KOL</span></div><div class="a2">关注"半价问界"叙事张力；做对比视频拉流量<br><span style="color:var(--green);">认可：叙事张力 6.0/10</span> <span style="color:var(--red);">不认可：品牌 4.0/10 · 智驾 4.2/10</span></div><div class="a3">购车意向 15% · 品牌认可 3.8/10 · 选择池 否</div><div class="a4"><span class="tag t-r">负向</span></div></div>
+</div>
+
+<!-- ===== 附录 C 原生舆情原声 ===== -->
+<div class="appendix">
+  <div class="sec-h">
+    <span class="no">附录 C</span><h2>原生舆情原声</h2>
+    <span class="q">仅注入上市信息后自然涌现 · 无品牌干预</span>
+  </div>
+  <div class="lead">以下评论来自模拟世界自然演化（未注入任何品牌引导动作），按情绪归类的精选原声，覆盖 8 类人群——本附录为附录 E 全量 91 条中的代表性样本（E 为全量、C 为精选）。<b>每条原声都已关联到具体发言 Agent，点击卡片可查看该 Agent 的量化画像。</b></div>
+  <details class="q-card g"><summary>光眸灯语这个细节，是把"科技感"翻译成"情绪感"的唯一一家，20 万价位我愿意为它买单。<span class="who">—— 设计颜值党 · 女 26 岁 · 成都 · 时尚设计</span></summary><div class="agent-box"><div class="ag">设计颜值党 · 女 26 岁 · 成都 · 时尚设计<span> · 预算 20 万 · 首发晒图传播 · 高声量</span></div><div class="agrid"><span><b>认可：</b><span class="pos">灯语 9.2/10 · 设计 9.0/10</span></span><span><b>不认可：</b><span class="neg">参数 6.1/10</span></span><span><b>购车意向：</b>73%</span><span><b>品牌认可：</b>6.8/10</span><span><b>选择池：</b>在</span><span><b>情绪立场：</b><span class="st st-g">正向</span></span><span class="full"><b>心理轨迹：</b>被灯语击中 → 晒图传播 → 主动忽略参数短板，处于"为情绪价值买单"阶段</span></div></div></details>
+  <details class="q-card g"><summary>无唤醒对话 + 情绪感知，这才是座舱该有的样子，比一堆堆参数有意思。<span class="who">—— 年轻科技极客 · 女 26 岁 · 北京 · 大厂运营</span></summary><div class="agent-box"><div class="ag">年轻科技极客 · 女 26 岁 · 北京 · 大厂运营<span> · 预算 21 万 · 观望等实测</span></div><div class="agrid"><span><b>认可：</b><span class="pos">豆包座舱 8.6/10 · 设计 7.8/10</span></span><span><b>不认可：</b><span class="neg">车规稳定 4.9/10 · 智驾 5.5/10</span></span><span><b>购车意向：</b>41%</span><span><b>品牌认可：</b>5.8/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-g">正向</span></span><span class="full"><b>心理轨迹：</b>被无唤醒对话打动 → 转发座舱演示 → 但担心首批车机稳定性，未入池</span></div></div></details>
+  <details class="q-card g"><summary>800V + 增程双动力都给了，20 万级这个配置表是真敢给。<span class="who">—— 性价比务实派 · 男 31 岁 · 苏州 · 产品经理</span></summary><div class="agent-box"><div class="ag">性价比务实派 · 男 31 岁 · 苏州 · 产品经理<span> · 预算 20 万 · 逐项对比竞品</span></div><div class="agrid"><span><b>认可：</b><span class="pos">配置 8.1/10 · 800V 7.8/10</span></span><span><b>不认可：</b><span class="neg">价格未明 4.5/10 · 品牌 4.9/10</span></span><span><b>购车意向：</b>55%</span><span><b>品牌认可：</b>5.2/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-g">正向</span></span><span class="full"><b>心理轨迹：</b>认可配置给得足 → 拿 YU7/阿维塔 07 逐项对比 → "价格没出都是画饼"，等预售</span></div></div></details>
+  <details class="q-card g"><summary>增程 1200km 综合续航，带娃回老家不用中途充电，考虑。<span class="who">—— 家庭增购用户 · 女 35 岁 · 天津 · 二胎妈妈</span></summary><div class="agent-box"><div class="ag">家庭增购用户 · 女 35 岁 · 天津 · 二胎妈妈<span> · 预算 23 万 · 沉默但潜在意向</span></div><div class="agrid"><span><b>认可：</b><span class="pos">空间 8.7/10 · 增程 8.6/10</span></span><span><b>不认可：</b><span class="neg">智驾 5.8/10</span></span><span><b>购车意向：</b>71%</span><span><b>品牌认可：</b>6.3/10</span><span><b>选择池：</b>在</span><span><b>情绪立场：</b><span class="st st-g">正向</span></span><span class="full"><b>心理轨迹：</b>大五座 + 增程续航命中刚需 → 智驾不是优先项 → 已入池，等预售价格</span></div></div></details>
+  <details class="q-card g"><summary>"先有 AI 再有车"这个说法挺新，比一堆参数发布会强。<span class="who">—— 年轻科技极客 · 男 29 岁 · 深圳 · 硬件工程师</span></summary><div class="agent-box"><div class="ag">年轻科技极客 · 男 29 岁 · 深圳 · 硬件工程师<span> · 预算 23 万 · 比较中 · 双竞品池</span></div><div class="agrid"><span><b>认可：</b><span class="pos">豆包座舱 8.2/10 · 性价比 7.7/10</span></span><span><b>不认可：</b><span class="neg">售后 4.6/10 · 智驾 5.6/10</span></span><span><b>购车意向：</b>66%</span><span><b>品牌认可：</b>6.0/10</span><span><b>选择池：</b>在</span><span><b>情绪立场：</b><span class="st st-g">正向</span></span><span class="full"><b>心理轨迹：</b>认可"AI 原生"叙事 → 对比智界 R7 后倾向 ME7 座舱 → 关注售后网点，双竞品池</span></div></div></details>
+  <details class="q-card r"><summary>又来个"半价问界"，买问界冲的是华为光环，买 ME7 图什么？<span class="who">—— 华为生态用户 · 男 33 岁 · 深圳 · 问界 M7 车主</span></summary><div class="agent-box"><div class="ag">华为生态用户 · 男 33 岁 · 深圳 · 问界 M7 车主<span> · 预算 25 万换购 · 高声量负向传播</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——（参照系是问界/华为）</span></span><span><b>不认可：</b><span class="neg">智驾 3.8/10 · 生态 3.2/10 · 品牌 4.0/10</span></span><span><b>购车意向：</b>22%</span><span><b>品牌认可：</b>3.6/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>"买 ME7 图什么"句式发起者之一 → 以问界为参照锚定 ME7 → 转发对比内容，负向源点人群</span></div></div></details>
+  <details class="q-card r"><summary>发布会就放了外观和理念，内饰、空间、智驾实测一样没有，发布了个寂寞。<span class="who">—— 性价比务实派 · 男 34 岁 · 武汉 · 工程师</span></summary><div class="agent-box"><div class="ag">性价比务实派 · 男 34 岁 · 武汉 · 工程师<span> · 预算 21 万 · 观点反复 · 比较期</span></div><div class="agrid"><span><b>认可：</b><span class="pos">增程 8.5/10 · 续航 8.1/10</span></span><span><b>不认可：</b><span class="neg">话术 3.9/10 · 智驾 5.4/10</span></span><span><b>购车意向：</b>44%</span><span><b>品牌认可：</b>4.6/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>认可增程续航 → 但发布会信息量不足触发"发布了个寂寞" → 质疑话术本身，暂未入池</span></div></div></details>
+  <details class="q-card r"><summary>6 月才立品牌，9 月就首秀，10 月就申报，3 个月走完别人 24 个月的流程，品控呢？<span class="who">—— 品牌质疑者 · 男 38 岁 · 北京 · 汽车行业观察者</span></summary><div class="agent-box"><div class="ag">品牌质疑者 · 男 38 岁 · 北京 · 汽车行业观察者<span> · 预算无固定 · 负向发起源点</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">节奏 2.8/10 · 品控 3.0/10 · 品牌 3.2/10</span></span><span><b>购车意向：</b>6%</span><span><b>品牌认可：</b>2.8/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>专挖品牌叙事破绽 → 以时间线攻击节奏 → "半价问界"话题源点人物</span></div></div></details>
+  <details class="q-card r"><summary>豆包车规级验证过几轮？跟鸿蒙座舱比，稳定性还差得远吧。<span class="who">—— 华为生态用户 · 男 35 岁 · 广州 · 数码博主</span></summary><div class="agent-box"><div class="ag">华为生态用户 · 男 35 岁 · 广州 · 数码博主<span> · 预算 21 万 · 高声量 · 双面内容</span></div><div class="agrid"><span><b>认可：</b><span class="pos">座舱 8.0/10 · 设计 7.8/10</span></span><span><b>不认可：</b><span class="neg">车规稳定 4.4/10 · 智驾 4.8/10</span></span><span><b>购车意向：</b>38%</span><span><b>品牌认可：</b>4.3/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>认可豆包座舱体验 → 但以鸿蒙座舱为标尺质疑车规级验证 → 发布测评向内容，双面但总体偏负</span></div></div></details>
+  <details class="q-card r"><summary>城区智驾还要 OTA 解锁，首发车主先当三个月测试员。<span class="who">—— 智驾关注党 · 男 29 岁 · 上海 · 算法工程师</span></summary><div class="agent-box"><div class="ag">智驾关注党 · 男 29 岁 · 上海 · 算法工程师<span> · 预算 24 万 · 高声量参数质疑</span></div><div class="agrid"><span><b>认可：</b><span class="pos">800V 8.1/10 · 无图路线 7.4/10</span></span><span><b>不认可：</b><span class="neg">OTA 未解锁 4.0/10</span></span><span><b>购车意向：</b>58%</span><span><b>品牌认可：</b>5.0/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>盯城区智驾 OTA 解锁 → "首发版就是测试员" → 参数质疑型负向，但未完全出局</span></div></div></details>
+  <details class="q-card y"><summary>配置看着不错，价格没出，先关注。<span class="who">—— 性价比务实派 · 女 28 岁 · 南京 · 市场</span></summary><div class="agent-box"><div class="ag">性价比务实派 · 女 28 岁 · 南京 · 市场<span> · 预算 20 万 · 沉默低声量</span></div><div class="agrid"><span><b>认可：</b><span class="pos">配置 7.9/10</span></span><span><b>不认可：</b><span class="neg">信息不足 4.0/10</span></span><span><b>购车意向：</b>38%</span><span><b>品牌认可：</b>4.9/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-y">中立</span></span><span class="full"><b>心理轨迹：</b>"没有价格信息先不讨论" → 等配置明细 → 低声量观望，价格落地后才可能表态</span></div></div></details>
+  <details class="q-card y"><summary>新品牌第一批车，等 3 个月口碑再说。<span class="who">—— 年轻首购族 · 男 25 岁 · 长沙 · 程序员</span></summary><div class="agent-box"><div class="ag">年轻首购族 · 男 25 岁 · 长沙 · 程序员<span> · 预算 20 万 · 观望低声量</span></div><div class="agrid"><span><b>认可：</b><span class="pos">造型 8.0/10 · 座舱 7.7/10</span></span><span><b>不认可：</b><span class="neg">售后 4.3/10</span></span><span><b>购车意向：</b>47%</span><span><b>品牌认可：</b>5.1/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-y">中立</span></span><span class="full"><b>心理轨迹：</b>喜欢轿跑造型 → 新品牌顾虑 → 等首批口碑再决定，典型沉默首购族</span></div></div></details>
+  <details class="q-card y"><summary>低配到底给不给智驾？配置明细出来再比。<span class="who">—— 智驾关注党 · 男 30 岁 · 南京 · 数据工程师</span></summary><div class="agent-box"><div class="ag">智驾关注党 · 男 30 岁 · 南京 · 数据工程师<span> · 预算 20 万 · 参数流中性</span></div><div class="agrid"><span><b>认可：</b><span class="pos">800V 8.3/10</span></span><span><b>不认可：</b><span class="neg">座舱 5.6/10 · 智驾 5.2/10</span></span><span><b>购车意向：</b>44%</span><span><b>品牌认可：</b>5.2/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-y">中立</span></span><span class="full"><b>心理轨迹：</b>关注 800V 快充 → 对豆包座舱持保留 → 等配置明细做参数对比，不预设立场</span></div></div></details>
+  <details class="q-card y"><summary>想试驾，看看实车空间和底盘。<span class="who">—— 家庭增购用户 · 男 38 岁 · 青岛 · 个体</span></summary><div class="agent-box"><div class="ag">家庭增购用户 · 男 38 岁 · 青岛 · 个体<span> · 预算 22 万 · 沉默等试驾</span></div><div class="agrid"><span><b>认可：</b><span class="pos">空间 8.4/10 · 后排 8.2/10</span></span><span><b>不认可：</b><span class="neg">实车未知 4.8/10</span></span><span><b>购车意向：</b>49%</span><span><b>品牌认可：</b>5.6/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-y">中立</span></span><span class="full"><b>心理轨迹：</b>看空间与后排 → 等试驾到店 → 实车体验前不表态，沉默潜在买家</span></div></div></details>
+  <details class="q-card y"><summary>样子是真的好看，但不知道售后网点覆盖怎么样。<span class="who">—— 年轻首购族 · 男 26 岁 · 郑州 · 销售</span></summary><div class="agent-box"><div class="ag">年轻首购族 · 男 26 岁 · 郑州 · 销售<span> · 预算 19 万 · 观望低声量</span></div><div class="agrid"><span><b>认可：</b><span class="pos">空间 8.2/10</span></span><span><b>不认可：</b><span class="neg">售后 4.0/10 · 品牌 4.4/10</span></span><span><b>购车意向：</b>43%</span><span><b>品牌认可：</b>4.7/10</span><span><b>选择池：</b>观望</span><span><b>情绪立场：</b><span class="st st-y">中立</span></span><span class="full"><b>心理轨迹：</b>看中空间 → 担心新品牌售后网点少 → 好看但不敢下手，等渠道信息</span></div></div></details>
+  <details class="q-card r"><summary>座舱弃鸿蒙上豆包，智驾从 ADS 换元戎，这不就是明着跟华为分家？等 2027 年看谁才是亲儿子。<span class="who">—— 品牌质疑者 · 男 36 岁 · 深圳 · 科技媒体编辑</span></summary><div class="agent-box"><div class="ag">品牌质疑者 · 男 36 岁 · 深圳 · 科技媒体编辑<span> · 预算无固定 · 分家话题源点人物</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">分家叙事 2.6/10 · 品牌独立性 3.0/10 · 生态 3.4/10</span></span><span><b>购车意向：</b>4%</span><span><b>品牌认可：</b>2.6/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>行业事件链追踪 → 把"弃鸿蒙转豆包"解读为分家 → 持续输出对比内容，"分家冷饭"话题源点人物</span></div></div></details>
+  <details class="q-card r"><summary>新品牌死亡率九成，赛豆还有蓝电的前科，我看 ME7 就是最后的绝唱，等着看戏。<span class="who">—— 品牌质疑者 · 男 29 岁 · 上海 · 汽车吃瓜自媒体</span></summary><div class="agent-box"><div class="ag">品牌质疑者 · 男 29 岁 · 上海 · 汽车吃瓜自媒体<span> · 预算无 · 高声量幸灾乐祸</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">品牌 2.2/10 · 前景 1.8/10</span></span><span><b>购车意向：</b>2%</span><span><b>品牌认可：</b>2.0/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>翻蓝电销量旧账 → 输出"活不过几款车"预言 → 发布会越响越兴奋，"看衰等死"型吃瓜源点</span></div></div></details>
+  <details class="q-card r"><summary>凤凰工厂跟问界 M7 共线生产，参数还这么像，不就是问界换个壳？<span class="who">—— 品牌质疑者 · 男 40 岁 · 重庆 · 二手车评估师</span></summary><div class="agent-box"><div class="ag">品牌质疑者 · 男 40 岁 · 重庆 · 二手车评估师<span> · 预算无 · 专业向负向</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">同质化 3.0/10 · 品牌 2.8/10</span></span><span><b>购车意向：</b>3%</span><span><b>品牌认可：</b>2.4/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>以同厂共线 + 参数相似为据 → 输出"贴牌论" → 在懂车帝参数区扩散，"换壳/贴牌"话题源点</span></div></div></details>
+  <details class="q-card r"><summary>问界车主就是冲华为去的，赛豆转头跟华为撇清关系，买你的车=背叛生态，想都别想。<span class="who">—— 华为生态用户 · 男 34 岁 · 深圳 · 花粉 · 问界 M9 意向车主</span></summary><div class="agent-box"><div class="ag">华为生态用户 · 男 34 岁 · 深圳 · 花粉<span> · 预算 25 万 · 高声量立场攻击</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">站队 2.0/10 · 生态 2.4/10</span></span><span><b>购车意向：</b>8%</span><span><b>品牌认可：</b>2.8/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>生态忠诚驱动 → "分家=背叛" → 立场性抵制，不比较产品只站队，"站队敌意"源点人群</span></div></div></details>
+  <details class="q-card r"><summary>问界和赛豆双品牌，渠道、产能、售后全要分，凤凰工厂先给谁？沙磁致远 34.5% 是大股东，赛力斯说了算吗——看它怎么消化。<span class="who">—— 品牌质疑者 · 男 37 岁 · 上海 · 汽车分析师</span></summary><div class="agent-box"><div class="ag">品牌质疑者 · 男 37 岁 · 上海 · 汽车分析师<span> · 预算无 · 专业观望型负向</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">双品牌运营 3.6/10 · 股权结构 3.8/10</span></span><span><b>购车意向：</b>5%</span><span><b>品牌认可：</b>3.0/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>拆股权与产能分配 → "消化得动吗"观望 → 理性看衰，等 2027 年财报验证</span></div></div></details>
+  <details class="q-card r"><summary>理想嫌宁王贵还能换中航，赛豆直接被宁德入股，电芯采购被股东锁死，成本怎么降？20 万级价格战先输一截。<span class="who">—— 品牌质疑者 · 男 39 岁 · 北京 · 电池产业链分析师</span></summary><div class="agent-box"><div class="ag">品牌质疑者 · 男 39 岁 · 北京 · 电池产业链分析师<span> · 预算无 · 专业向负向</span></div><div class="agrid"><span><b>认可：</b><span class="neg">——</span></span><span><b>不认可：</b><span class="neg">成本结构 3.4/10 · 议价空间 2.8/10</span></span><span><b>购车意向：</b>6%</span><span><b>品牌认可：</b>3.4/10</span><span><b>选择池：</b>否</span><span><b>情绪立场：</b><span class="st st-r">负向</span></span><span class="full"><b>心理轨迹：</b>供应链视角切入 → 股权绑定=议价空间锁死 → "成本降不下来怎么打价格战"专业质疑</span></div></div></details>
+</div>
+
+<!-- ===== 附录 D 品牌话题反应原声 ===== -->
+<div class="appendix">
+  <div class="sec-h">
+    <span class="no">附录 D</span><h2>撞上品牌话题的反应原声</h2>
+    <span class="q">各人群对"AIVA 品牌 / 半价问界标签"的真实反应</span>
+  </div>
+  <div class="lead">把"赛豆独立品牌 + 半价问界标签"话题注入模拟世界后，8 类人群的反应原声（未经任何品牌引导）。</div>
+  <div class="quote g">我不管它叫赛豆还是 AIVA，车好开、座舱聪明就完事了。<span class="who">—— 年轻科技极客</span></div>
+  <div class="quote g">脱离华为做自己的 AI 座舱，反而想看它能走到哪。<span class="who">—— 年轻科技极客</span></div>
+  <div class="quote y">赛豆独立是独立，但售后和问界是不是一个体系？得问清楚。<span class="who">—— 性价比务实派</span></div>
+  <div class="quote y">"半价问界"这说法带节奏，但确实让人好奇它跟 M6 差在哪。<span class="who">—— 家庭增购用户</span></div>
+  <div class="quote r">独立了不还是赛力斯的车？换个标就敢叫新品牌。<span class="who">—— 品牌质疑者</span></div>
+  <div class="quote r">叫 AIVA 也好，赛豆也好，没有华为智驾就是没有华为智驾。<span class="who">—— 华为生态用户</span></div>
+  <div class="quote r">它要真是"半价问界"，那为什么不去买问界？这个逻辑我捋不顺。<span class="who">—— 智驾关注党</span></div>
+  <div class="quote r">品牌 3 个月就发车，这个名字我还没记住就要上市了。<span class="who">—— 品牌质疑者</span></div>
+  <div class="quote y">灯语很可爱，但品牌是谁我真没记住。<span class="who">—— 设计颜值党</span></div>
+  <div class="quote r">分家？问界冲华为买的，赛豆跟华为分了家，这个品牌我绕道。<span class="who">—— 华为生态用户</span></div>
+  <div class="quote r">赛豆 + 问界双品牌，产能售后怎么分？先看它怎么消化再说。<span class="who">—— 品牌质疑者</span></div>
+</div>
+
+<!-- ===== 附录 E 全量评论 ===== -->
+<div class="appendix">
+  <div class="sec-h">
+    <span class="no">附录 E</span><h2>评论涌现全量样本</h2>
+    <span class="q">模拟世界涌现 91 条评论 · 全部在此 · 带情绪与人群标注</span>
+  </div>
+  <div class="lead">以下 91 条为模拟世界在 30 天窗口内涌现的代表性评论全量（按阶段抽样保真，覆盖全部 22 个舆论方向与 8 类人群）。每条标注情绪：<span class="tag t-g">正</span> <span class="tag t-r">负</span> <span class="tag t-y">中</span>。</div>
+  <div class="grid g2">
+    <div class="card">
+      <div class="k" style="margin-bottom:8px;">上市传播期（D1-D18）· 50 条</div>
+      <div class="quote g">巴黎那个灵眸之夜太绝了，灯语眨眼那一下，科技感直接拉满。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">这个灯不是装饰，是把车变成有表情的活物了。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">无唤醒对话加情绪感知，座舱这块是真懂年轻人。<span class="who">正 · 年轻科技极客</span></div>
+      <div class="quote g">20 万级给 800V，还要什么自行车。<span class="who">正 · 性价比务实派</span></div>
+      <div class="quote g">增程 1200km，回老家终于不用排队充电了。<span class="who">正 · 家庭增购用户</span></div>
+      <div class="quote g">"先有 AI 再有车"这个叙事，比卷参数高级。<span class="who">正 · 年轻科技极客</span></div>
+      <div class="quote g">轿跑姿态配大五座，尺寸正好卡在我审美上。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">豆包上车，情绪感知这个方向对了。<span class="who">正 · 年轻科技极客</span></div>
+      <div class="quote g">巴黎首秀敢穿成那样做发布会，这牌子有性格。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">纯电 700km 加增程双动力，覆盖我全部场景。<span class="who">正 · 家庭增购用户</span></div>
+      <div class="quote r">又是"半价问界"，赛力斯这是要自己打自己？<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">买问界冲华为，买 ME7 图豆包？豆包又不在车上替你开车。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote r">发布会就聊理念，车呢？内饰呢？智驾实测呢？<span class="who">负 · 性价比务实派</span></div>
+      <div class="quote r">3 个月从立品牌到申报，这个速度在汽车圈太反常了。<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">元戎无图智驾，城区还要 OTA，首发版就是测试版。<span class="who">负 · 智驾关注党</span></div>
+      <div class="quote r">跟华为 ADS 比，豆包座舱还差着几轮车规验证。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote r">没有华为生态流转，这个座舱体验打七折。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote r">新品牌渠道都没铺开，售后怎么保证？<span class="who">负 · 年轻首购族</span></div>
+      <div class="quote r">感觉发布了个寂寞，就一个壳子加一个灯。<span class="who">负 · 性价比务实派</span></div>
+      <div class="quote r">蓝电三年卖了六万辆，换个名字就敢叫新物种？<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">智驾 2026 年不是稀缺品，你拿什么跟人打。<span class="who">负 · 智驾关注党</span></div>
+      <div class="quote r">发布会请超模跨界，钱花在营销上，车本身呢？<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">豆包车规级验证过几轮？极端可靠性拿什么保证。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote r">20 万级合资纯电都卷疯了，你一个新牌子凭什么。<span class="who">负 · 性价比务实派</span></div>
+      <div class="quote r">华为不投你，字节也不独家投你，技术底座谁背书？<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote y">价格呢？没价格一切免谈。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">等配置明细出来再比，现在都是画饼。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">新品牌第一批车，等三个月口碑。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">想试驾，实车空间和底盘没试过不下结论。<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">低配给不给智驾？给就给力，不给就换别家。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">灯是好看，但车长什么样还没看全。<span class="who">中 · 设计颜值党</span></div>
+      <div class="quote y">增程版价格是关键，超 22 我就看别的。<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">赛豆是赛力斯的子品牌吧？售后能去问界店吗。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">这个尺寸轴距 3050，真 5 米级？那空间可以。<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">等实车智驾测试视频，纸面参数不算数。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">先观望，等 2027 交付口碑。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">发布会灯光秀不错，产品力等实测。<span class="who">中 · 设计颜值党</span></div>
+      <div class="quote y">内饰图都没有，怎么判断值不值。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">选装逻辑没公布，低配诚意是问号。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">看完实车再说话，现在不评价。<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">这车到底算轿跑还是 SUV？<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">换电方案定了吗？定了考虑。<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">手动挂车 700kg？这个选装有点意思。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">最高车速 255？这数据有点猛。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">等 2026 年底预售，现在关注。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">先收藏，蹲一个价格发布会。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote r">座舱弃鸿蒙上豆包，智驾从 ADS 换元戎，这不就是明着跟华为分家？等 2027 年看谁才是亲儿子。<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">新品牌死亡率九成，赛豆还有蓝电的前科，我看 ME7 就是最后的绝唱，等着看戏。<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">凤凰工厂跟问界 M7 共线，参数还这么像，不就是问界换个壳？<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">问界车主就是冲华为去的，赛豆转头跟华为撇清关系，买你的车=背叛生态，想都别想。<span class="who">负 · 华为生态用户</span></div>
+    </div>
+    <div class="card">
+      <div class="k" style="margin-bottom:8px;">预售与交付期（D19-D30）· 41 条</div>
+      <div class="quote g">预售信息出来了，20 万级配置表是真敢给。<span class="who">正 · 性价比务实派</span></div>
+      <div class="quote g">低配保留灵动光眸，诚意有了。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">增程版预售价香，家庭用户冲了。<span class="who">正 · 家庭增购用户</span></div>
+      <div class="quote g">试驾完座舱，豆包这个交互确实流畅。<span class="who">正 · 年轻科技极客</span></div>
+      <div class="quote g">实车比申报图还好看，跑态感真的强。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">灯语互动太戳了，孩子上车就玩。<span class="who">正 · 家庭增购用户</span></div>
+      <div class="quote g">800V 快充实测 15 分钟到 80%，不虚标。<span class="who">正 · 智驾关注党</span></div>
+      <div class="quote g">首批车机流畅度出乎意料，豆包这波稳。<span class="who">正 · 年轻科技极客</span></div>
+      <div class="quote g">空间比想象大，跨界没牺牲后排。<span class="who">正 · 家庭增购用户</span></div>
+      <div class="quote g">这个价位做到这个质感，卷王来了。<span class="who">正 · 性价比务实派</span></div>
+      <div class="quote g">提车两周，灯语被围观两次，情绪价值拉满。<span class="who">正 · 设计颜值党</span></div>
+      <div class="quote g">增程纯电都试了，底盘调校在线。<span class="who">正 · 家庭增购用户</span></div>
+      <div class="quote r">预售价比预期高，说好的"半价问界"呢？<span class="who">负 · 性价比务实派</span></div>
+      <div class="quote r">低配智驾要选装，这算盘打得真响。<span class="who">负 · 智驾关注党</span></div>
+      <div class="quote r">城区智驾果然是 OTA 期货，首发版先忍着。<span class="who">负 · 智驾关注党</span></div>
+      <div class="quote r">交付了智驾还是没解锁，承诺呢？<span class="who">负 · 智驾关注党</span></div>
+      <div class="quote r">车机偶发卡顿，车规级验证真不够。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote r">售后网点确实少，首保要跑 60 公里。<span class="who">负 · 年轻首购族</span></div>
+      <div class="quote r">三电终身质保细则没写清楚，含糊。<span class="who">负 · 性价比务实派</span></div>
+      <div class="quote r">半价问界？半价是半价，问界不是问界。<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">第一批车主就是小白鼠，智驾问题一堆。<span class="who">负 · 智驾关注党</span></div>
+      <div class="quote r">跟华为体系比，座舱生态还是单薄。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote r">交付节奏拖沓，说好的提车时间一推再推。<span class="who">负 · 年轻首购族</span></div>
+      <div class="quote r">看了一圈对比，这个价位还是选 YU7 稳。<span class="who">负 · 性价比务实派</span></div>
+      <div class="quote r">名字还没记住，负面先记住了。<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">豆包车规级还是差鸿蒙一截，实话。<span class="who">负 · 华为生态用户</span></div>
+      <div class="quote y">等首批口碑再决定，先不锁单。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">预售价比预期低一档，纠结了。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">智驾 OTA 时间表出了，先看看。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">实车看了，比想象好，价格再想想。<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">试驾排不上，先观望。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">交付慢可以理解，别减配就行。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">提车排到明年了，先观望观望。<span class="who">中 · 智驾关注党</span></div>
+      <div class="quote y">增程版和纯电版差多少钱？<span class="who">中 · 家庭增购用户</span></div>
+      <div class="quote y">看到实车口碑两极分化，再等等。<span class="who">中 · 年轻首购族</span></div>
+      <div class="quote y">灯语是加分项，不是购车理由。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">下半年新车太多，比完再定。<span class="who">中 · 性价比务实派</span></div>
+      <div class="quote y">小红书刷到的，先关注着。<span class="who">中 · 设计颜值党</span></div>
+      <div class="quote r">预售都出了，问界和赛豆双品牌，产能售后怎么分，先看它怎么消化。<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">理想嫌宁王贵还能换中航，赛豆直接被宁德入股，电芯采购被股东锁死，成本怎么降？<span class="who">负 · 品牌质疑者</span></div>
+      <div class="quote r">分家之后问界还卖得好好的，赛豆这个"新儿子"怕是要被架在火上烤。<span class="who">负 · 品牌质疑者</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <b>口径声明：</b>本报告全部内容为模拟世界（SOCIAL WORLD MODEL）中已发生的舆论事实——20 轮 × 10 万名 Agent × 30 天 × 6 平台。<br>
+  报告只陈述模拟涌现的舆情地形（声音、人群、平台、传播路径、影响量级），不含任何营销动作建议。<br>
+  AIVA ME7 上市舆论推演 · 境瞳科技 Renlab · 模拟预测报告
+</div>
+
+
+
+</div>
+</body>
+</html>
